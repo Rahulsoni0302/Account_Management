@@ -65,6 +65,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         setMaximumSize(new java.awt.Dimension(1300, 850));
         setMinimumSize(new java.awt.Dimension(1300, 850));
         setPreferredSize(new java.awt.Dimension(1300, 850));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1300, 850));
         jPanel1.setMinimumSize(new java.awt.Dimension(1300, 850));
@@ -72,7 +73,6 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         printpnl.setBackground(new java.awt.Color(255, 255, 255));
-        printpnl.setForeground(new java.awt.Color(0, 0, 0));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -209,20 +209,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         });
         jPanel1.add(PAINT, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 750, 230, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1297, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

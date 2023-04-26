@@ -266,18 +266,7 @@ public class MainFrame extends javax.swing.JFrame {
         basepanel.setMaximumSize(new java.awt.Dimension(1300, 850));
         basepanel.setMinimumSize(new java.awt.Dimension(1300, 850));
         basepanel.setPreferredSize(new java.awt.Dimension(1300, 850));
-
-        javax.swing.GroupLayout basepanelLayout = new javax.swing.GroupLayout(basepanel);
-        basepanel.setLayout(basepanelLayout);
-        basepanelLayout.setHorizontalGroup(
-            basepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1300, Short.MAX_VALUE)
-        );
-        basepanelLayout.setVerticalGroup(
-            basepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
-        );
-
+        basepanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(basepanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 1, 1300, 850));
 
         pack();

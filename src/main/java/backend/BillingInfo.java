@@ -114,16 +114,20 @@ public class BillingInfo {
            
            LocalDateTime bd = LocalDateTime.now();
            
-           for (int i=0 ; i<description ;i++)//loop for every description 
-           {
-               CallableStatement cbi = conn.prepareCall("call billing_info (?,?,?,?,?,?,?)");
-               cbi.setInt(1, );
-               cbi.setDate(2, );
-               cbi.setString(3, str[i]);
-               cbi.setInt(4,);
-               cbi.setFloat(5, );
-               cbi.setFloat(6, i);
-               cbi.setFloat(7, i);
+           for (int i=0 ; i<description ;i++)           {
+             try //loop for every description
+             {
+                 CallableStatement cbi = conn.prepareCall("call billing_info (?,?,?,?,?,?,?)");
+                 cbi.setInt(1, );
+                 cbi.setDate(2, );
+                 cbi.setString(3, str[i]);
+                 cbi.setInt(4,);
+                 cbi.setFloat(5, );
+                 cbi.setFloat(6, i);
+                 cbi.setFloat(7, i);
+             } catch (SQLException ex) {
+                 Logger.getLogger(BillingInfo.class.getName()).log(Level.SEVERE, null, ex);
+             }
             }
     
     }

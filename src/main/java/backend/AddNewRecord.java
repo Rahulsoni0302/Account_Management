@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Rahul
- * this class contains methods : check for existing customer or customer suggetions 
+ * this class contains methods : check for existing customer or customer suggestions 
  *                               add records for both new as well as existing customer
  *                               
  *

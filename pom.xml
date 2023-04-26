@@ -11,4 +11,23 @@
         <maven.compiler.target>18</maven.compiler.target>
         <exec.mainClass>com.mycompany.account_management.Account_Management</exec.mainClass>
     </properties>
+    
+    <dependencies>
+       
+        <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+<dependency>
+
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.0.32</version>
+</dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE170</version>
+        </dependency>
+    </dependencies>
 </project>
+
+
+
