@@ -33,6 +33,50 @@ public class User {
      * @param b password
      * @return 
      */
+    
+    String name = null;
+   
+   public  boolean getlogincredentials(String a , String b ){
+        
+        
+        try {
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            
+            conn = DriverManager.getConnection(dbURL, user, password);
+            String sql = "select name , u_password from user_registration where name = ? and u_password = ? ;";
+            PreparedStatement st = conn.prepareStatement(sql);
+            
+            st.setString(1, a);
+            st.setString(2, b);
+            
+            
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+                
+                name = rs.getNString(1);
+            }
+            
+            conn.close();
+           
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        if(name == null){
+            return false;
+        }
+         else
+          return true;
+        }
+    
+    
+    
+    
     public void userregistration (){
         
         try {

@@ -74,38 +74,46 @@
                       <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="gstnolbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                          <Component id="passwordlbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                          <Component id="addresslbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="enterpriselnamebl" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="emaillbl" alignment="1" min="-2" pref="113" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="usernamelbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                          <Component id="phonenolbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="gstnolbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="passwordlbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="addresslbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="enterpriselnamebl" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="emaillbl" alignment="1" min="-2" pref="113" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                  <Component id="usernamelbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                                  <Component id="phonenolbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <Component id="conpasswordlbl" min="-2" pref="147" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="conpasswordtxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="gstnotxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="passwordtxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="usernametxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="phonenotxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="emailtxt" max="32767" attributes="0"/>
+                                  <Component id="enterprisenametxt" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="conpasswordlbl" min="-2" pref="147" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="passworderror" min="-2" pref="385" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="conpasswordtxt" alignment="0" max="32767" attributes="0"/>
-                          <Component id="gstnotxt" alignment="0" max="32767" attributes="0"/>
-                          <Component id="passwordtxt" alignment="0" max="32767" attributes="0"/>
-                          <Component id="usernametxt" alignment="0" max="32767" attributes="0"/>
-                          <Component id="phonenotxt" alignment="0" max="32767" attributes="0"/>
-                          <Component id="emailtxt" max="32767" attributes="0"/>
-                          <Component id="enterprisenametxt" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="170" max="32767" attributes="0"/>
+                      <EmptySpace pref="160" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -154,7 +162,9 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="savebtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="150" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="passworderror" min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace pref="105" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -305,6 +315,8 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="conpasswordtxtActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="passworderror">
             </Component>
           </SubComponents>
         </Container>

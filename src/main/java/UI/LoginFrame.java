@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,6 +27,8 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public LoginFrame() {
         initComponents();
+        
+       // newuserlb1.set
     }
 
     /**
@@ -50,6 +53,10 @@ public class LoginFrame extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         error = new javax.swing.JLabel();
+        proceedforedit = new javax.swing.JLabel();
+        passwordlbl1 = new javax.swing.JLabel();
+        passwordtxt1 = new javax.swing.JPasswordField();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -105,7 +112,7 @@ public class LoginFrame extends javax.swing.JFrame {
         forgotpasswordlbl.setText("Forgot password ?");
 
         newuserlbl.setForeground(new java.awt.Color(51, 153, 255));
-        newuserlbl.setText("new user ? sign in");
+        newuserlbl.setText("new user / edit");
         newuserlbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newuserlblMouseClicked(evt);
@@ -118,35 +125,77 @@ public class LoginFrame extends javax.swing.JFrame {
 
         error.setForeground(new java.awt.Color(255, 0, 51));
 
+        proceedforedit.setBackground(new java.awt.Color(0, 153, 153));
+        proceedforedit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        proceedforedit.setForeground(new java.awt.Color(255, 255, 255));
+        proceedforedit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        proceedforedit.setText("PROCEED");
+        proceedforedit.setOpaque(true);
+        proceedforedit.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                proceedforeditMouseMoved(evt);
+            }
+        });
+        proceedforedit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                proceedforeditMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                proceedforeditMouseExited(evt);
+            }
+        });
+
+        passwordlbl1.setText("Password");
+
+        passwordtxt1.setBorder(null);
+        passwordtxt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordtxt1ActionPerformed(evt);
+            }
+        });
+
+        jSeparator3.setForeground(new java.awt.Color(0, 153, 153));
+
         javax.swing.GroupLayout foregrndpanelLayout = new javax.swing.GroupLayout(foregrndpanel);
         foregrndpanel.setLayout(foregrndpanelLayout);
         foregrndpanelLayout.setHorizontalGroup(
             foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(foregrndpanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(usernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(foregrndpanelLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(submitlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(foregrndpanelLayout.createSequentialGroup()
-                                    .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(newuserlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(forgotpasswordlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(57, 57, 57)))
-                            .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(usernametxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                                .addComponent(passwordlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(passwordtxt)
-                                .addComponent(jSeparator1)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))))
-                    .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(foregrndpanelLayout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(loginlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                        .addGap(95, 95, 95)
+                        .addComponent(loginlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                    .addGroup(foregrndpanelLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(foregrndpanelLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(foregrndpanelLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(passwordtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                                            .addComponent(jSeparator1)
+                                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, foregrndpanelLayout.createSequentialGroup()
+                                        .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(newuserlbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(proceedforedit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(passwordlbl1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(submitlbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(foregrndpanelLayout.createSequentialGroup()
+                                .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(usernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(usernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(forgotpasswordlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(foregrndpanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(passwordtxt1)))
                 .addContainerGap())
         );
         foregrndpanelLayout.setVerticalGroup(
@@ -158,10 +207,10 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(usernamelbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
                 .addComponent(usernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(passwordlbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,9 +221,17 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(forgotpasswordlbl)
                 .addGap(18, 18, 18)
                 .addComponent(submitlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
+                .addGap(12, 12, 12)
                 .addComponent(newuserlbl)
-                .addGap(63, 63, 63))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordlbl1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordtxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(proceedforedit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout backgrndpanelLayout = new javax.swing.GroupLayout(backgrndpanel);
@@ -203,44 +260,25 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_usernametxtActionPerformed
 
     private void submitlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitlblMouseClicked
-        
-      // getlogincredentials  
       
       usrnm = usernametxt.getText();
        pass =  passwordtxt.getText();
-      
-       try {
-            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
-            String user = "root";
-            String password = "#@Rahul8269";
-            Connection conn = null;
-            
-            conn = DriverManager.getConnection(dbURL, user, password);
-            String sql = "select name , u_password from user_registration where name = ? and u_password = ? ;";
-            PreparedStatement st = conn.prepareStatement(sql);
-            
-            st.setString(1, usrnm);
-            st.setString(2, pass);
-           
-            
-            ResultSet rs = st.executeQuery();
-            
-            if(rs.next()){
-                
-                 this.dispose();
+       
+       User lc = new User();
+       boolean result = lc.getlogincredentials(usrnm,pass);
+       
+       if(result == true){
+                   this.dispose();
                    MainFrame mf = new MainFrame();
                    mf.setVisible(true);
-                
-                
-                 }
-            else{
+       }
+       else{
                 
                error.setText("invalid username or password !");
             }
             
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+       
         
     }//GEN-LAST:event_submitlblMouseClicked
 
@@ -253,15 +291,54 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_submitlblMouseExited
 
     private void newuserlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newuserlblMouseClicked
-        RegistrationFrame rf = new RegistrationFrame();
-        rf.setVisible(true);
-        dispose();
+        try {
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            
+            conn = DriverManager.getConnection(dbURL, user, password);
+            String sql = "select * from user_registration";
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            if (rs.next()){
+                 
+                
+            }
+            else{
+                 RegistrationFrame rf = new RegistrationFrame();
+                 rf.setVisible(true);
+                 dispose();
+            }
+            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_newuserlblMouseClicked
 
     private void passwordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtxtActionPerformed
         // TODO add your handling code here:
       
     }//GEN-LAST:event_passwordtxtActionPerformed
+
+    private void proceedforeditMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proceedforeditMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proceedforeditMouseMoved
+
+    private void proceedforeditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proceedforeditMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proceedforeditMouseClicked
+
+    private void proceedforeditMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proceedforeditMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proceedforeditMouseExited
+
+    private void passwordtxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtxt1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordtxt1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,10 +352,14 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel forgotpasswordlbl;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel loginlbl;
     private javax.swing.JLabel newuserlbl;
     private javax.swing.JLabel passwordlbl;
+    private javax.swing.JLabel passwordlbl1;
     public javax.swing.JPasswordField passwordtxt;
+    public javax.swing.JPasswordField passwordtxt1;
+    private javax.swing.JLabel proceedforedit;
     private javax.swing.JLabel submitlbl;
     private javax.swing.JLabel usernamelbl;
     private javax.swing.JTextField usernametxt;
