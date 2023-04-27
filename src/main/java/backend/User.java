@@ -28,15 +28,22 @@ public class User {
         
     
     /**
-     *this method will get login credentials , needed at the time of login 
-     * @param a username
-     * @param b password
+     * 
+     * @param a 
+     * @param b 
      * @return 
      */
     
-    String name = null;
+    String name = null;//used for checking whether the rs returned any row or not
    
-   public  boolean getlogincredentials(String a , String b ){
+    /**
+     *this method will get login credentials , needed at the time of login or another info
+     * @param a username
+     * @param b password
+     * @param c option : 1 for only password verification ,2 for both username and password
+     * @return
+     */
+    public  boolean getlogincredentials(String a , String b , byte c ){
         
         
         try {
@@ -46,19 +53,39 @@ public class User {
             Connection conn = null;
             
             conn = DriverManager.getConnection(dbURL, user, password);
-            String sql = "select name , u_password from user_registration where name = ? and u_password = ? ;";
-            PreparedStatement st = conn.prepareStatement(sql);
-            
-            st.setString(1, a);
-            st.setString(2, b);
             
             
-            ResultSet rs = st.executeQuery();
-            
-            while(rs.next()){
+            if (c==1){
+                String sql ="select u_password from user_registration where u_password = ? ;";
+                 PreparedStatement st = conn.prepareStatement(sql);
+             
+                st.setString(1, b);
+                
+                 ResultSet rs = st.executeQuery();
+                 
+                 while(rs.next()){
                 
                 name = rs.getNString(1);
+                }
             }
+            else
+            {
+                String sql = "select name , u_password from user_registration where name = ? and u_password = ? ;";
+                PreparedStatement st = conn.prepareStatement(sql);
+             
+                st.setString(1, a);
+                st.setString(2, b);
+            
+                ResultSet rs = st.executeQuery();
+                
+                while(rs.next()){
+                
+                name = rs.getNString(1);
+                }
+            }
+           
+            
+            
             
             conn.close();
            

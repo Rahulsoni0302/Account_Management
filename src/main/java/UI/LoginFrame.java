@@ -21,6 +21,8 @@ public class LoginFrame extends javax.swing.JFrame {
     
     public String usrnm ;
     public String pass;
+    public String pass1;
+    byte a; //for stating the login credential method
 
     /**
      * Creates new form LoginFrame
@@ -194,6 +196,7 @@ public class LoginFrame extends javax.swing.JFrame {
         getContentPane().add(backgrndpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 721, 538));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernametxtActionPerformed
@@ -205,9 +208,10 @@ public class LoginFrame extends javax.swing.JFrame {
       
       usrnm = usernametxt.getText();
        pass =  passwordtxt.getText();
+       a=2;
        
        User lc = new User();
-       boolean result = lc.getlogincredentials(usrnm,pass);
+       boolean result = lc.getlogincredentials(usrnm,pass,a);
        
        if(result == true){
                    this.dispose();
@@ -218,14 +222,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 
                error.setText("invalid username or password !");
             }
-            
-        
-       
         
     }//GEN-LAST:event_submitlblMouseClicked
 
     private void submitlblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitlblMouseMoved
-       submitlbl. setBackground(new java.awt.Color(0, 102, 103));
+       submitlbl.setBackground(new java.awt.Color(0, 102, 103));
     }//GEN-LAST:event_submitlblMouseMoved
 
     private void submitlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitlblMouseExited
@@ -270,19 +271,33 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void proceedforeditMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proceedforeditMouseMoved
         // TODO add your handling code here:
+        proceedforedit.setBackground(new java.awt.Color(0, 102, 103));
     }//GEN-LAST:event_proceedforeditMouseMoved
 
     private void proceedforeditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proceedforeditMouseClicked
         // TODO add your handling code here:
+        
+        pass1 = passwordtxt1.getText();
+        a=1;
+        User lc = new User();
+        boolean result = lc.getlogincredentials(null, pass1,a);
+        
+        if(result == true){
+            this.dispose();
+             new RegistrationFrame().setVisible(true);
+        }
+        else{
+            error.setText("Invalid Password !");
+        }
     }//GEN-LAST:event_proceedforeditMouseClicked
-
-    private void proceedforeditMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proceedforeditMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_proceedforeditMouseExited
 
     private void passwordtxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtxt1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordtxt1ActionPerformed
+
+    private void proceedforeditMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proceedforeditMouseExited
+        proceedforedit.setBackground(new java.awt.Color(0, 153, 153));
+    }//GEN-LAST:event_proceedforeditMouseExited
 
     /**
      * @param args the command line arguments

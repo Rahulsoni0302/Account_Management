@@ -16,6 +16,10 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        
+        SearchInF sif = new SearchInF();
+        basepanel.removeAll();
+        basepanel.add(sif).setVisible(true);
     }
 
     /**
