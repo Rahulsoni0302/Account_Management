@@ -28,11 +28,11 @@ public class tester {
             conn = DriverManager.getConnection(dbURL, user, password);
             
             Statement st = conn.createStatement();
-            String sql = "select name , u_password from user_registration;";
+            String sql = "select name , u_password from user_registration where name= 'manish soni';";
             
             ResultSet rs = st.executeQuery(sql);
             
-            while (rs.next()){
+            if(rs.next()){
                 
                 System.out.println (rs.getString(1));
                 System.out.println(rs.getString(2));

@@ -240,44 +240,59 @@ public class RegistrationFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
-       LoginFrame lf = new LoginFrame();
+       
+        usrnm = usernametxt.getText();
+        phno = phonenotxt.getText();
+        entnm = enterprisenametxt.getText();
+        email = emailtxt.getText(); 
+        add = addresstxt.getText();
+        gstno = gstnotxt.getText();
+        pass =   passwordtxt.getText();
+        confpass = conpasswordtxt.getText();
+        
+        if(pass.equals(conf))
+        
+        
+        
+        
+        LoginFrame lf = new LoginFrame();
        lf.setVisible(true);
        dispose();
     }//GEN-LAST:event_savebtnActionPerformed
 
     private void usernametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernametxtActionPerformed
         // TODO add your handling code here:
-       usrnm = usernametxt.getText();
+       
     }//GEN-LAST:event_usernametxtActionPerformed
 
     private void passwordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtxtActionPerformed
         // TODO add your handling code here:
-      pass =   passwordtxt.getText();
+     
     }//GEN-LAST:event_passwordtxtActionPerformed
 
     private void phonenotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenotxtActionPerformed
         // TODO add your handling code here:
-        phno = phonenotxt.getText();
+       
     }//GEN-LAST:event_phonenotxtActionPerformed
 
     private void emailtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailtxtActionPerformed
         // TODO add your handling code here:
-        email = emailtxt.getText();
+        
     }//GEN-LAST:event_emailtxtActionPerformed
 
     private void gstnotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gstnotxtActionPerformed
         // TODO add your handling code here:
-        gstno = gstnotxt.getText();
+        
     }//GEN-LAST:event_gstnotxtActionPerformed
 
     private void conpasswordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conpasswordtxtActionPerformed
         // TODO add your handling code here:
-        confpass = conpasswordtxt.getText();
+        
     }//GEN-LAST:event_conpasswordtxtActionPerformed
 
     private void enterprisenametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterprisenametxtActionPerformed
         // TODO add your handling code here:
-        entnm = enterprisenametxt.getText();
+        
     }//GEN-LAST:event_enterprisenametxtActionPerformed
 
     /**

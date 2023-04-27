@@ -4,6 +4,13 @@
  */
 package UI;
 import backend.User;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -11,8 +18,8 @@ import backend.User;
  */
 public class LoginFrame extends javax.swing.JFrame {
     
-    public String usrnm;
-    public char pass[];
+    public String usrnm ;
+    public String pass;
 
     /**
      * Creates new form LoginFrame
@@ -30,13 +37,6 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
-        jDialog1 = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         backgrndpanel = new javax.swing.JPanel();
         foregrndpanel = new javax.swing.JPanel();
         loginlbl = new javax.swing.JLabel();
@@ -49,60 +49,7 @@ public class LoginFrame extends javax.swing.JFrame {
         newuserlbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-
-        jScrollPane1.setViewportView(jEditorPane1);
-
-        jDialog1.setUndecorated(true);
-
-        jLabel1.setText("Incorrect username or password !");
-
-        jLabel2.setText("please enter again.");
-
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jButton1)))
-                .addContainerGap(87, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1)
-                .addContainerGap(74, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -169,6 +116,8 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(0, 153, 153));
 
+        error.setForeground(new java.awt.Color(255, 0, 51));
+
         javax.swing.GroupLayout foregrndpanelLayout = new javax.swing.GroupLayout(foregrndpanel);
         foregrndpanel.setLayout(foregrndpanelLayout);
         foregrndpanelLayout.setHorizontalGroup(
@@ -176,37 +125,38 @@ public class LoginFrame extends javax.swing.JFrame {
             .addGroup(foregrndpanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, foregrndpanelLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(loginlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(101, 101, 101))
+                    .addComponent(usernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(foregrndpanelLayout.createSequentialGroup()
-                        .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(foregrndpanelLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(submitlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(foregrndpanelLayout.createSequentialGroup()
-                                            .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(newuserlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(forgotpasswordlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(57, 57, 57)))
-                                    .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(usernametxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                                        .addComponent(passwordlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(passwordtxt)
-                                        .addComponent(jSeparator1)
-                                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                        .addGap(20, 20, 20))))
+                        .addGap(1, 1, 1)
+                        .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(submitlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(foregrndpanelLayout.createSequentialGroup()
+                                    .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(newuserlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(forgotpasswordlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(57, 57, 57)))
+                            .addGroup(foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(usernametxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                                .addComponent(passwordlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passwordtxt)
+                                .addComponent(jSeparator1)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(foregrndpanelLayout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(loginlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addContainerGap())
         );
         foregrndpanelLayout.setVerticalGroup(
             foregrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(foregrndpanelLayout.createSequentialGroup()
-                .addGap(145, 145, 145)
+                .addGap(97, 97, 97)
                 .addComponent(loginlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
+                .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(usernamelbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,29 +199,48 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void usernametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernametxtActionPerformed
         // TODO add your handling code here:
-        usrnm = usernametxt.getText();
+        
     }//GEN-LAST:event_usernametxtActionPerformed
 
     private void submitlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitlblMouseClicked
         
-        User lc = new User();//lc= login credentials
-        boolean result =lc.getlogincredentials(usrnm,pass);
-        
-        if (result == true){
-           // MainFrame mf = new MainFrame();
-            //mf.setVisible(true);
-             java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
-                     }             
-        else{
-            jDialog1.setVisible(true);
-        }
+      // getlogincredentials  
+      
+      usrnm = usernametxt.getText();
+       pass =  passwordtxt.getText();
+      
+       try {
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
             
-        
+            conn = DriverManager.getConnection(dbURL, user, password);
+            String sql = "select name , u_password from user_registration where name = ? and u_password = ? ;";
+            PreparedStatement st = conn.prepareStatement(sql);
+            
+            st.setString(1, usrnm);
+            st.setString(2, pass);
+           
+            
+            ResultSet rs = st.executeQuery();
+            
+            if(rs.next()){
+                
+                 this.dispose();
+                   MainFrame mf = new MainFrame();
+                   mf.setVisible(true);
+                
+                
+                 }
+            else{
+                
+               error.setText("invalid username or password !");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_submitlblMouseClicked
 
@@ -291,14 +260,8 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void passwordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtxtActionPerformed
         // TODO add your handling code here:
-        pass = passwordtxt.getPassword();
+      
     }//GEN-LAST:event_passwordtxtActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        new LoginFrame().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,21 +270,15 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgrndpanel;
+    public javax.swing.JLabel error;
     private javax.swing.JPanel foregrndpanel;
     private javax.swing.JLabel forgotpasswordlbl;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel loginlbl;
     private javax.swing.JLabel newuserlbl;
     private javax.swing.JLabel passwordlbl;
-    private javax.swing.JPasswordField passwordtxt;
+    public javax.swing.JPasswordField passwordtxt;
     private javax.swing.JLabel submitlbl;
     private javax.swing.JLabel usernamelbl;
     private javax.swing.JTextField usernametxt;
