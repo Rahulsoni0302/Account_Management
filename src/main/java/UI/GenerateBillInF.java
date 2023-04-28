@@ -193,6 +193,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         PAINT.setForeground(new java.awt.Color(255, 255, 255));
         PAINT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PAINT.setText("PRINT");
+        PAINT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PAINT.setOpaque(true);
         PAINT.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {

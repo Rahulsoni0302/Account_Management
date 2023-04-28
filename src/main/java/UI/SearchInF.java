@@ -101,6 +101,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
         searchlbl.setForeground(new java.awt.Color(255, 255, 255));
         searchlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         searchlbl.setText("SEARCH");
+        searchlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         searchlbl.setOpaque(true);
         searchlbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {

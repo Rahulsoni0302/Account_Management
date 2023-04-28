@@ -62,9 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1676, 850));
         setMinimumSize(new java.awt.Dimension(1676, 850));
-        setPreferredSize(new java.awt.Dimension(1676, 850));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dashboardpanel.setBackground(new java.awt.Color(0, 153, 153));
@@ -86,6 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
         homelbl.setForeground(new java.awt.Color(255, 255, 255));
         homelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         homelbl.setText("HOME");
+        homelbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         homelbl.setOpaque(true);
         homelbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -123,6 +122,7 @@ public class MainFrame extends javax.swing.JFrame {
         genbilllbl.setForeground(new java.awt.Color(255, 255, 255));
         genbilllbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         genbilllbl.setText("Generate Bill");
+        genbilllbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         genbilllbl.setOpaque(true);
         genbilllbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -160,6 +160,7 @@ public class MainFrame extends javax.swing.JFrame {
         billinghislbl.setForeground(new java.awt.Color(255, 255, 255));
         billinghislbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         billinghislbl.setText("Billing History");
+        billinghislbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         billinghislbl.setOpaque(true);
         billinghislbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -197,6 +198,7 @@ public class MainFrame extends javax.swing.JFrame {
         addreclbl.setForeground(new java.awt.Color(255, 255, 255));
         addreclbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addreclbl.setText("Add New Record");
+        addreclbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addreclbl.setOpaque(true);
         addreclbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -234,6 +236,7 @@ public class MainFrame extends javax.swing.JFrame {
         importreclbl.setForeground(new java.awt.Color(255, 255, 255));
         importreclbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         importreclbl.setText("Import Records");
+        importreclbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         importreclbl.setOpaque(true);
         importreclbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
