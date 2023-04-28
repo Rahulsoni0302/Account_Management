@@ -284,7 +284,7 @@ public class LoginFrame extends javax.swing.JFrame {
         
         if(result == true){
             this.dispose();
-             new RegistrationFrame().setVisible(true);
+             new RegistrationFrame(1).setVisible(true);
         }
         else{
             error.setText("Invalid Password !");
