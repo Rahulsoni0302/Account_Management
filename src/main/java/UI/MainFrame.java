@@ -395,7 +395,7 @@ void setpanel(Component com){
             }
         });
         SearchInF sif = new SearchInF();
-        basepanel.removeAll();
+        //basepanel.removeAll();
         basepanel.add(sif).setVisible(true);
         
     };
