@@ -136,6 +136,9 @@ public class User {
             cr.setString(5, e);
             cr.setString(6, f);
             cr.setString(7, g);
+            
+            cr.execute();
+            
             }
             else{
                
@@ -148,6 +151,8 @@ public class User {
                 cr.setString(5, e);
                 cr.setString(6, f);
                 cr.setString(7, g);
+                
+                cr.execute();
             }
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);

@@ -25,17 +25,18 @@ public class RegistrationFrame extends javax.swing.JFrame {
      */
     
    public String usrnm ,phno,entnm,email,add,gstno,pass,confpass;
-   private boolean r=false;
+   public byte h;
     public RegistrationFrame() {
                  initComponents();  
                  savelbl.setVisible(false);
                  savelbl.setEnabled(false);
+                 h=0;
     }
     
     public RegistrationFrame(int a){//parameterised constructor for call edit registration
             initComponents();
             savelbl.setVisible(false);
-            
+              h = 1;
             setregistrationdetails();        
     }
 
@@ -76,11 +77,11 @@ public class RegistrationFrame extends javax.swing.JFrame {
         usrnmpherr = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
 
-        jDialogeditsaved.setMaximumSize(new java.awt.Dimension(342, 258));
         jDialogeditsaved.setMinimumSize(new java.awt.Dimension(342, 258));
         jDialogeditsaved.setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Details Saved Successfully");
@@ -113,23 +114,23 @@ public class RegistrationFrame extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(saveeditlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(130, 130, 130))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(saveeditlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveeditlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialogeditsavedLayout = new javax.swing.GroupLayout(jDialogeditsaved.getContentPane());
@@ -184,6 +185,8 @@ public class RegistrationFrame extends javax.swing.JFrame {
         conpasswordlbl.setText("Confirm Password :");
 
         addresstxt.setColumns(20);
+        addresstxt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addresstxt.setForeground(new java.awt.Color(0, 153, 153));
         addresstxt.setRows(5);
         addresstxt.setBorder(null);
         jScrollPane1.setViewportView(addresstxt);
@@ -464,13 +467,19 @@ public class RegistrationFrame extends javax.swing.JFrame {
 
     private void savelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_savelblMouseClicked
         
+      usrnm= usernametxt.getText();
+      phno=  phonenotxt.getText();
+     email=  emailtxt.getText();
+       entnm=  enterprisenametxt.getText();
+      gstno=  gstnotxt.getText();        
+      add=  addresstxt.getText();        
+        pass=passwordtxt.getText();        
+      confpass=  conpasswordtxt.getText();
       
-      
-     byte h = 1;
-     
-     
+    
           User er = new User();
           er.editregistration(usrnm ,phno,entnm,email,add,gstno,pass,h);
+          jDialogeditsaved.setLocationRelativeTo(this.jPanel2);
           jDialogeditsaved.setVisible(true);
       
     }//GEN-LAST:event_savelblMouseClicked
@@ -571,37 +580,7 @@ public class RegistrationFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrationFrame().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addresslbl;
