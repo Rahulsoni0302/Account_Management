@@ -7,6 +7,7 @@ package backend;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import UI.BillingHistoryInF;
 
 
 /**
@@ -21,9 +22,9 @@ import java.util.logging.Logger;
 public class SearchCustBills{
     
     
-    void billingHistory()//used to fetch the bills of the recent customers
+    void billingHistory()//shifted to billinghistory jframe
     {
-        try {
+      /*  try {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
             String user = "root";
             String password = "#@Rahul8269";
@@ -33,16 +34,20 @@ public class SearchCustBills{
             CallableStatement cbh= conn.prepareCall("call billing_history()");
             
             ResultSet rs= cbh.executeQuery();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            
+            DefaultTableModel model = (DefaultTableModel)
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(SearchCustBills.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
     
-    
-    
-   public static void main (String args[]) throws ClassNotFoundException{
-       
-       try {
+    void searchcustbills()/* or billing history for custom customer */{
+        
+        
+        try {
            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
            String user = "root";
            String password = "#@Rahul8269";
@@ -60,10 +65,7 @@ public class SearchCustBills{
            
            while(rs.next()){
                
-              System.out.println("id = "+rs.getInt(1));
-              System.out.println(rs.getDate(4)+ " date");
-              System.out.println(rs.getString(2)+" name");
-              System.out.println(rs.getString(3)+ " mob no");
+              
           
             
            }
@@ -75,8 +77,28 @@ public class SearchCustBills{
        }
             
             
-         
-       
+    }
+    
+    void billinghistorycustomdates(){
+        
+        try {
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            
+            conn = DriverManager.getConnection(dbURL, user, password);
+            CallableStatement cbhcd = conn.prepareCall("call billing_history_custom_dates(?,?)");
+            
+            cbhcd.setDate(1, x);
+            cbhcd.setDate(2, x);
+            
+            ResultSet rs = cbhcd.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchCustBills.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        
     }
 }
    

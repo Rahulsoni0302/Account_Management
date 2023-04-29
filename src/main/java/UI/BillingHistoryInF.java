@@ -4,7 +4,17 @@
  */
 package UI;
 
+import backend.SearchCustBills;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +30,8 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
+        
+        billingHistory();
     }
 
     /**
@@ -32,14 +44,14 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        headinglbl = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        table = new javax.swing.JTable();
+        recentbillbl = new javax.swing.JLabel();
+        searchtxt = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        search = new javax.swing.JLabel();
+        infolbl = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1300, 850));
         setMinimumSize(new java.awt.Dimension(1300, 850));
@@ -51,37 +63,29 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1300, 850));
         jPanel1.setPreferredSize(new java.awt.Dimension(1300, 850));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Billing History");
+        headinglbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        headinglbl.setText("Billing History");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "ID", "NAME", "MOB.NO.", "DATE", "BILL COPY"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        table.setRowHeight(30);
+        jScrollPane1.setViewportView(table);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Most Recent Bills");
+        recentbillbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        recentbillbl.setText("Most Recent Bills");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField1.setText("jTextField1");
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        searchtxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchtxt.setBorder(null);
+        searchtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                searchtxtActionPerformed(evt);
             }
         });
 
@@ -89,27 +93,30 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 153, 153));
         jSeparator1.setOpaque(true);
 
-        jLabel3.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("SEARCH");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.setFocusable(false);
-        jLabel3.setOpaque(true);
-        jLabel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        search.setBackground(new java.awt.Color(0, 153, 153));
+        search.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        search.setForeground(new java.awt.Color(255, 255, 255));
+        search.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        search.setText("SEARCH");
+        search.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        search.setFocusable(false);
+        search.setOpaque(true);
+        search.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jLabel3MouseMoved(evt);
+                searchMouseMoved(evt);
             }
         });
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel3MouseExited(evt);
+                searchMouseExited(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Or Search for customer");
+        infolbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        infolbl.setText("Or Search for customer name / id / number ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,44 +126,44 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(headinglbl, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(556, 556, 556))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1)
+                                .addComponent(searchtxt)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(209, 209, 209)))
                         .addGap(261, 261, 261))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(157, 157, 157)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(recentbillbl, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(infolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(175, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(headinglbl, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jLabel2)
+                .addComponent(recentbillbl)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(infolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -164,28 +171,124 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchtxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchtxtActionPerformed
 
-    private void jLabel3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseMoved
-        jLabel3.setBackground(new java.awt.Color(0, 102, 103));
-    }//GEN-LAST:event_jLabel3MouseMoved
+    private void searchMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseMoved
+        search.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_searchMouseMoved
 
-    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
-        jLabel3.setBackground(new java.awt.Color(0, 152, 152));
-    }//GEN-LAST:event_jLabel3MouseExited
+    private void searchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseExited
+        search.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_searchMouseExited
 
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+        // TODO add your handling code here:
+        String custnm;
+        
+        custnm =searchtxt.getText();
+       
+        
+        try {
+           String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+           String user = "root";
+           String password = "#@Rahul8269";
+           Connection conn = null;
+           
+           conn = DriverManager.getConnection(dbURL, user, password);
+           CallableStatement cscb = conn.prepareCall("{call search_customer_bills(?,?,?,?)}");
+           
+           cscb.setString(1, null);
+           cscb.setDate(4, null);
+           cscb.setString(2, custnm);
+           cscb.setString(3, null);
+           
+           ResultSet rs = cscb.executeQuery();
+           
+           DefaultTableModel model = (DefaultTableModel) table.getModel();
+           
+           int rows = model.getRowCount();
+           for(int i= rows-1;i>=0;i-- ){
+               
+               model.removeRow(i);
+           }
+            
+            
+            String id,name,mobno,date,billcpy;
+            
+            while(rs.next()){
+                id = rs.getString(1);
+                name = rs.getString(2);
+                mobno = rs.getString(3);
+                date= rs.getString(4);
+                billcpy=rs.getString(5);
+               String [] row ={id,name,mobno,date,billcpy}; 
+                model.addRow(row);
+            }
+            
+           
+            
+            conn.close();
+            rs.close();
+            cscb.close();
+            
+            
+          
+          
+       } catch (SQLException ex) {
+           Logger.getLogger(SearchCustBills.class.getName()).log(Level.SEVERE, null, ex);
+       }
+            
+    }//GEN-LAST:event_searchMouseClicked
 
+      private void billingHistory()//used to fetch the bills of the recent customers
+    {
+        try {
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            
+            conn = DriverManager.getConnection(dbURL, user, password);
+            CallableStatement cbh= conn.prepareCall("call billing_history()");
+            
+            ResultSet rs= cbh.executeQuery();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            
+            
+            String id,name,mobno,date,billcpy;
+            
+            while(rs.next()){
+                id = rs.getString(1);
+                name = rs.getString(2);
+                mobno = rs.getString(3);
+                date= rs.getString(4);
+                billcpy=rs.getString(5);
+               String [] row ={id,name,mobno,date,billcpy}; 
+                model.addRow(row);
+            }
+            
+            conn.close();
+            rs.close();
+            cbh.close();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchCustBills.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel headinglbl;
+    private javax.swing.JLabel infolbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel recentbillbl;
+    private javax.swing.JLabel search;
+    private javax.swing.JTextField searchtxt;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

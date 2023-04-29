@@ -9,6 +9,7 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -27,6 +28,12 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
+        
+        LocalDateTime bd = LocalDateTime.now();
+        LocalDateTime date = bd;
+        String datetime = date;
+        
+        dateshowlbl.setd(date);
     }
 
     /**
@@ -43,17 +50,20 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         printpnl = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        enterpriselbl = new javax.swing.JLabel();
+        customernamelbl = new javax.swing.JLabel();
+        datelbl = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        addresslbl = new javax.swing.JLabel();
+        contactlbl = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        PAINT = new javax.swing.JLabel();
+        table = new javax.swing.JTable();
+        nettotallbl = new javax.swing.JLabel();
+        nettotalshowlbl = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        dateshowlbl = new javax.swing.JLabel();
+        printlbl = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -79,20 +89,13 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jSeparator1.setToolTipText("");
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
-        jLabel2.setText("Enterp. Name here");
+        enterpriselbl.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
+        enterpriselbl.setText("Enterp. Name here");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Customer Name here");
+        customernamelbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        customernamelbl.setText("Customer Name here");
 
-        jLabel3.setText("DATE : ");
-
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        datelbl.setText("DATE : ");
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setOpaque(true);
@@ -102,12 +105,12 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jSeparator3.setToolTipText("");
         jSeparator3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        jLabel4.setText("address here ");
+        addresslbl.setText("address here ");
 
-        jLabel5.setText("Contact details");
+        contactlbl.setText("Contact details");
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", null, null, null, null, null},
                 {"2", null, null, null, null, null},
@@ -124,7 +127,17 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 "s. no.", "desc", "quantity", "item wgt", "rate", "total"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        table.setRowHeight(40);
+        jScrollPane2.setViewportView(table);
+
+        nettotallbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        nettotallbl.setText("Net Total : ");
+
+        nettotalshowlbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jSeparator4.setBackground(new java.awt.Color(0, 153, 153));
+        jSeparator4.setForeground(new java.awt.Color(0, 153, 153));
+        jSeparator4.setOpaque(true);
 
         javax.swing.GroupLayout printpnlLayout = new javax.swing.GroupLayout(printpnl);
         printpnl.setLayout(printpnlLayout);
@@ -136,100 +149,111 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(printpnlLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(printpnlLayout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addresslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(124, 124, 124)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)))
+                        .addComponent(contactlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
-                .addGap(0, 100, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(printpnlLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(enterpriselbl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(dateshowlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(47, 47, 47))
+            .addGroup(printpnlLayout.createSequentialGroup()
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nettotallbl, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(printpnlLayout.createSequentialGroup()
+                                .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10))
+                            .addComponent(jSeparator4)))
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addGap(0, 100, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         printpnlLayout.setVerticalGroup(
             printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(printpnlLayout.createSequentialGroup()
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(printpnlLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(39, 39, 39)
+                        .addComponent(dateshowlbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(enterpriselbl, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(addresslbl)
+                    .addComponent(contactlbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nettotallbl, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(nettotalshowlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jPanel1.add(printpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 960, 720));
 
-        PAINT.setBackground(new java.awt.Color(0, 153, 153));
-        PAINT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        PAINT.setForeground(new java.awt.Color(255, 255, 255));
-        PAINT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PAINT.setText("PRINT");
-        PAINT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        PAINT.setOpaque(true);
-        PAINT.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        printlbl.setBackground(new java.awt.Color(0, 153, 153));
+        printlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        printlbl.setForeground(new java.awt.Color(255, 255, 255));
+        printlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        printlbl.setText("PRINT");
+        printlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        printlbl.setOpaque(true);
+        printlbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                PAINTMouseMoved(evt);
+                printlblMouseMoved(evt);
             }
         });
-        PAINT.addMouseListener(new java.awt.event.MouseAdapter() {
+        printlbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PAINTMouseClicked(evt);
+                printlblMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                PAINTMouseExited(evt);
+                printlblMouseExited(evt);
             }
         });
-        jPanel1.add(PAINT, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 750, 230, 30));
+        jPanel1.add(printlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 750, 230, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1297, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void printlblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseMoved
+        printlbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_printlblMouseMoved
 
-    private void PAINTMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PAINTMouseMoved
-        PAINT.setBackground(new java.awt.Color(0, 102, 103));
-    }//GEN-LAST:event_PAINTMouseMoved
-
-    private void PAINTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PAINTMouseClicked
+    private void printlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseClicked
         printBill(printpnl);
-    }//GEN-LAST:event_PAINTMouseClicked
+    }//GEN-LAST:event_printlblMouseClicked
 
-    private void PAINTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PAINTMouseExited
-        PAINT.setBackground(new java.awt.Color(0, 152, 152));
-    }//GEN-LAST:event_PAINTMouseExited
+    private void printlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseExited
+        printlbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_printlblMouseExited
 
     private void printBill(JPanel panel){
         PrinterJob printerJob = PrinterJob.getPrinterJob();
@@ -257,12 +281,12 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel PAINT;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel addresslbl;
+    private javax.swing.JLabel contactlbl;
+    private javax.swing.JLabel customernamelbl;
+    private javax.swing.JLabel datelbl;
+    private javax.swing.JLabel dateshowlbl;
+    private javax.swing.JLabel enterpriselbl;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -270,8 +294,11 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel nettotallbl;
+    private javax.swing.JLabel nettotalshowlbl;
+    private javax.swing.JLabel printlbl;
     private javax.swing.JPanel printpnl;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

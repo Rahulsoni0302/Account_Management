@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import UI.RegistrationFrame;
 import backend.User;
+import java.time.LocalDateTime;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -23,7 +24,11 @@ public class tester {
     
     public static void main (String args[]){
       
+        LocalDateTime bd = LocalDateTime.now();
         
+        bd.
+        
+        System.out.print(bd);
             
     }          
 }
