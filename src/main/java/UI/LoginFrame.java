@@ -4,6 +4,7 @@
  */
 package UI;
 import backend.User;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -85,6 +86,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 usernametxtActionPerformed(evt);
             }
         });
+        usernametxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernametxtKeyPressed(evt);
+            }
+        });
         foregrndpanel.add(usernametxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 196, -1));
 
         passwordlbl.setText("Password");
@@ -94,6 +100,11 @@ public class LoginFrame extends javax.swing.JFrame {
         passwordtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordtxtActionPerformed(evt);
+            }
+        });
+        passwordtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordtxtKeyPressed(evt);
             }
         });
         foregrndpanel.add(passwordtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 196, -1));
@@ -298,6 +309,33 @@ public class LoginFrame extends javax.swing.JFrame {
     private void proceedforeditMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proceedforeditMouseExited
         proceedforedit.setBackground(new java.awt.Color(0, 153, 153));
     }//GEN-LAST:event_proceedforeditMouseExited
+
+    private void usernametxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernametxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            passwordtxt.requestFocus();
+        }
+    }//GEN-LAST:event_usernametxtKeyPressed
+
+    private void passwordtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordtxtKeyPressed
+         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            usrnm = usernametxt.getText();
+            pass =  passwordtxt.getText();
+            a=2;
+
+            User lc = new User();
+            boolean result = lc.getlogincredentials(usrnm,pass,a);
+
+            if(result == true){
+                        this.dispose();
+                        MainFrame mf = new MainFrame();
+                        mf.setVisible(true);
+            }
+            else{
+
+                    error.setText("invalid username or password !");
+                 }
+        }
+    }//GEN-LAST:event_passwordtxtKeyPressed
 
     /**
      * @param args the command line arguments

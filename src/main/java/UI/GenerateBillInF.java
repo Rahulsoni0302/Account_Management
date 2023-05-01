@@ -31,9 +31,9 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         
         LocalDateTime bd = LocalDateTime.now();
         LocalDateTime date = bd;
-        String datetime = date;
-        
-        dateshowlbl.setd(date);
+//        String datetime = date;
+//        
+//        dateshowlbl.setd(date);
     }
 
     /**
@@ -62,7 +62,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         nettotallbl = new javax.swing.JLabel();
         nettotalshowlbl = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        dateshowlbl = new javax.swing.JLabel();
+        dateshowtxt = new javax.swing.JTextField();
         printlbl = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -163,7 +163,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                    .addComponent(dateshowlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dateshowtxt))
                 .addGap(47, 47, 47))
             .addGroup(printpnlLayout.createSequentialGroup()
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -185,14 +185,14 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(printpnlLayout.createSequentialGroup()
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enterpriselbl, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(dateshowlbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(enterpriselbl, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(14, 14, 14)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dateshowtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(32, 32, 32)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -211,7 +211,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                     .addComponent(nettotalshowlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel1.add(printpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 960, 720));
@@ -285,7 +285,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel contactlbl;
     private javax.swing.JLabel customernamelbl;
     private javax.swing.JLabel datelbl;
-    private javax.swing.JLabel dateshowlbl;
+    private javax.swing.JTextField dateshowtxt;
     private javax.swing.JLabel enterpriselbl;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
