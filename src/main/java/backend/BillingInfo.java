@@ -105,7 +105,7 @@ public class BillingInfo {
     
     public static void billinginfo(){
         
-         String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+           String dbURL = "jdbc:mysql://localhost:3306/app_dev";
            String user = "root";
            String password = "#@Rahul8269";
            Connection conn = null;
@@ -114,21 +114,18 @@ public class BillingInfo {
            
            LocalDateTime bd = LocalDateTime.now();
            
-           for (int i=0 ; i<description ;i++)           {
-             try //loop for every description
-             {
+                    
+            
                  CallableStatement cbi = conn.prepareCall("call billing_info (?,?,?,?,?,?,?)");
-                 cbi.setInt(1, );
-                 cbi.setDate(2, );
-                 cbi.setString(3, str[i]);
-                 cbi.setInt(4,);
-                 cbi.setFloat(5, );
-                 cbi.setFloat(6, i);
-                 cbi.setFloat(7, i);
-             } catch (SQLException ex) {
-                 Logger.getLogger(BillingInfo.class.getName()).log(Level.SEVERE, null, ex);
-             }
-            }
+                 cbi.setInt(1, );//id
+                 cbi.setDate(2, );//date
+                 cbi.setString(3, str[i]);//dscription
+                 cbi.setInt(4,);//quantity
+                 cbi.setFloat(5, );//weight
+                 cbi.setFloat(6, i);//rate
+                 cbi.setFloat(7, i);//total
+             
+            
     
     }
 }

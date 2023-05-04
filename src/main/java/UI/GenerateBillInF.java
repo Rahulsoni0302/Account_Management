@@ -5,14 +5,26 @@
 package UI;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,17 +35,18 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     /**
      * Creates new form NewIF
      */
+    
+    
     public GenerateBillInF() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         
-        LocalDateTime bd = LocalDateTime.now();
-        LocalDateTime date = bd;
-//        String datetime = date;
-//        
-//        dateshowlbl.setd(date);
+        
+        setuserdetails();
+        
+
     }
 
     /**
@@ -47,6 +60,11 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jDialog1 = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        ok = new javax.swing.JButton();
+        cancel = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         printpnl = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -59,11 +77,20 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         contactlbl = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        nettotallbl = new javax.swing.JLabel();
         nettotalshowlbl = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        dateshowtxt = new javax.swing.JTextField();
+        dateshow = new javax.swing.JLabel();
+        nettotal = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        remainamount = new javax.swing.JLabel();
+        dueamount = new javax.swing.JLabel();
+        receivedamou = new javax.swing.JLabel();
+        amountrec = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        addrow = new javax.swing.JLabel();
         printlbl = new javax.swing.JLabel();
+        deleterow = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -71,6 +98,55 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Please confirm the print and save");
+
+        ok.setText("OK");
+
+        cancel.setText("cancel");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(ok)
+                        .addGap(70, 70, 70)
+                        .addComponent(cancel)))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ok)
+                    .addComponent(cancel))
+                .addContainerGap(132, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setMaximumSize(new java.awt.Dimension(1300, 850));
         setMinimumSize(new java.awt.Dimension(1300, 850));
@@ -93,7 +169,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         enterpriselbl.setText("Enterp. Name here");
 
         customernamelbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        customernamelbl.setText("Customer Name here");
+        customernamelbl.setText("Customer Name :");
 
         datelbl.setText("DATE : ");
 
@@ -112,32 +188,85 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         table.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null, null, null, null, null},
-                {"2", null, null, null, null, null},
-                {"3", null, null, null, null, null},
-                {"4", null, null, null, null, null},
-                {"5", null, null, null, null, null},
-                {"6", null, null, null, null, null},
-                {"7", null, null, null, null, null},
-                {"8", null, null, null, null, null},
-                {"9", null, null, null, null, null},
-                {"10", null, null, null, null, null}
+
             },
             new String [] {
-                "s. no.", "desc", "quantity", "item wgt", "rate", "total"
+                "desc", "quantity", "item wgt", "rate", "total"
             }
         ));
         table.setRowHeight(40);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
+        table.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tableKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tableKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(table);
-
-        nettotallbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        nettotallbl.setText("Net Total : ");
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(0).setPreferredWidth(80);
+            table.getColumnModel().getColumn(1).setPreferredWidth(10);
+        }
 
         nettotalshowlbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        nettotalshowlbl.setOpaque(true);
 
         jSeparator4.setBackground(new java.awt.Color(0, 153, 153));
         jSeparator4.setForeground(new java.awt.Color(0, 153, 153));
         jSeparator4.setOpaque(true);
+
+        nettotal.setBackground(new java.awt.Color(0, 153, 153));
+        nettotal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        nettotal.setForeground(new java.awt.Color(255, 255, 255));
+        nettotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nettotal.setText("NET TOTAL");
+        nettotal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nettotal.setOpaque(true);
+        nettotal.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                nettotalMouseMoved(evt);
+            }
+        });
+        nettotal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nettotalMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nettotalMouseExited(evt);
+            }
+        });
+
+        jSeparator5.setBackground(new java.awt.Color(0, 153, 153));
+        jSeparator5.setForeground(new java.awt.Color(0, 153, 153));
+        jSeparator5.setOpaque(true);
+
+        remainamount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        remainamount.setText("Amount due :");
+
+        dueamount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        dueamount.setForeground(new java.awt.Color(255, 0, 0));
+        dueamount.setText("dueamou");
+
+        receivedamou.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        receivedamou.setText("Amount Received :");
+
+        amountrec.setText("jTextField1");
+        amountrec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountrecActionPerformed(evt);
+            }
+        });
+        amountrec.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amountrecKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout printpnlLayout = new javax.swing.GroupLayout(printpnl);
         printpnl.setLayout(printpnlLayout);
@@ -146,40 +275,58 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(printpnlLayout.createSequentialGroup()
+                .addComponent(enterpriselbl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
+                        .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateshow, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(234, 234, 234))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(242, 242, 242))))
+            .addGroup(printpnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(printpnlLayout.createSequentialGroup()
-                        .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(printpnlLayout.createSequentialGroup()
-                        .addComponent(addresslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124)
-                        .addComponent(contactlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(printpnlLayout.createSequentialGroup()
-                .addComponent(enterpriselbl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                    .addComponent(dateshowtxt))
-                .addGap(47, 47, 47))
-            .addGroup(printpnlLayout.createSequentialGroup()
-                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(printpnlLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nettotallbl, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(printpnlLayout.createSequentialGroup()
-                                .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10))
-                            .addComponent(jSeparator4)))
-                    .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGap(0, 100, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                                .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(printpnlLayout.createSequentialGroup()
+                                .addComponent(addresslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(124, 124, 124)
+                                .addComponent(contactlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(320, 320, 320))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(printpnlLayout.createSequentialGroup()
+                                .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(printpnlLayout.createSequentialGroup()
+                                .addComponent(receivedamou)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(329, 329, 329))))
+            .addGroup(printpnlLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(329, 329, 329))
         );
         printpnlLayout.setVerticalGroup(
             printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,12 +334,12 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(enterpriselbl, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addContainerGap()
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(dateshowtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateshow, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -204,17 +351,60 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nettotallbl, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(nettotalshowlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dueamount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nettotalshowlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nettotal, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(26, 26, 26)
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(receivedamou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(9, 9, 9))
         );
 
-        jPanel1.add(printpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 960, 720));
+        jPanel1.add(printpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 890, 780));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("\n\n1.\n\n2.\n\n3.\n\n4.\n\n5.\n\n6.\n\n7.\n\n8.\n\n9.\n\n10.");
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 73, 420));
+
+        addrow.setBackground(new java.awt.Color(0, 153, 153));
+        addrow.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addrow.setForeground(new java.awt.Color(255, 255, 255));
+        addrow.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addrow.setText("ADD ROW");
+        addrow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addrow.setOpaque(true);
+        addrow.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                addrowMouseMoved(evt);
+            }
+        });
+        addrow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addrowMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addrowMouseExited(evt);
+            }
+        });
+        jPanel1.add(addrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 300, 100, 50));
 
         printlbl.setBackground(new java.awt.Color(0, 153, 153));
         printlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -236,7 +426,29 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 printlblMouseExited(evt);
             }
         });
-        jPanel1.add(printlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 750, 230, 30));
+        jPanel1.add(printlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 440, 100, 40));
+
+        deleterow.setBackground(new java.awt.Color(0, 153, 153));
+        deleterow.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        deleterow.setForeground(new java.awt.Color(255, 255, 255));
+        deleterow.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deleterow.setText("DELETE ROW");
+        deleterow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleterow.setOpaque(true);
+        deleterow.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                deleterowMouseMoved(evt);
+            }
+        });
+        deleterow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleterowMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleterowMouseExited(evt);
+            }
+        });
+        jPanel1.add(deleterow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 370, 100, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1297, -1));
 
@@ -248,12 +460,127 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_printlblMouseMoved
 
     private void printlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseClicked
-        printBill(printpnl);
+       // printBill(printpnl);
+       billing();
+      
     }//GEN-LAST:event_printlblMouseClicked
 
     private void printlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseExited
         printlbl.setBackground(new java.awt.Color(0, 152, 152));
     }//GEN-LAST:event_printlblMouseExited
+
+    private void tableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyReleased
+        // TODO add your handling code here:
+        
+        
+      
+    }//GEN-LAST:event_tableKeyReleased
+
+    private void nettotalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nettotalMouseMoved
+
+    private void nettotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseClicked
+        // TODO add your handling code here:
+         table.selectAll();
+         float totalb=0;
+         DefaultTableModel model = (DefaultTableModel) table.getModel();
+         int rows= 0;
+         rows=model.getRowCount();
+        
+         System.out.println(rows);
+        for(int i=0;i<rows;i++){
+            
+        float a = Float.parseFloat(model.getValueAt(i, 4).toString());
+         
+          System.out.println(a);
+          totalb=totalb+a;
+          System.out.println(totalb);
+          
+        }
+        
+        nettotalshowlbl.setText(Float.toString(totalb));
+    }//GEN-LAST:event_nettotalMouseClicked
+
+    private void nettotalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nettotalMouseExited
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        // TODO add your handling code here:
+        
+         
+    }//GEN-LAST:event_tableMouseClicked
+
+    private void tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyPressed
+        // for creating new rows
+    
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        if(evt.getKeyCode()==KeyEvent.VK_INSERT){
+            int selectedrow = table.getSelectedRow()+1;
+         
+            int rowcount = model.getRowCount();
+            
+            if((selectedrow== rowcount) && 
+                    (rowcount<10)){
+                 model.insertRow(model.getRowCount(), new Object[]{"","","","",""});
+                    
+            }
+              
+        }
+    }//GEN-LAST:event_tableKeyPressed
+
+    private void addrowMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addrowMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addrowMouseMoved
+
+    private void addrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addrowMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        
+        if(model.getRowCount()<10){
+             model.insertRow(model.getRowCount(), new Object[]{"","","","",""});
+        }
+        
+    }//GEN-LAST:event_addrowMouseClicked
+
+    private void addrowMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addrowMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addrowMouseExited
+
+    private void deleterowMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleterowMouseMoved
+
+    private void deleterowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+       // System.out.println(model.getRowCount());
+       model.removeRow(model.getRowCount()-1);
+    }//GEN-LAST:event_deleterowMouseClicked
+
+    private void deleterowMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleterowMouseExited
+
+    private void amountrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrecActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrecActionPerformed
+
+    private void amountrecKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrecKeyReleased
+        // TODO add your handling code here:
+        String total = nettotalshowlbl.getText();
+        float ttl=Float.valueOf(total);
+        
+       String rec= amountrec.getText();
+       float amourec=Float.valueOf(rec);
+       
+       float rem=ttl-amourec;
+        String remain=Float.toString(rem);
+       dueamount.setText(remain);
+      
+        
+    }//GEN-LAST:event_amountrecKeyReleased
 
     private void printBill(JPanel panel){
         PrinterJob printerJob = PrinterJob.getPrinterJob();
@@ -266,7 +593,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                }
                Graphics2D graphics2D = (Graphics2D)graphics;
                graphics2D.translate(pageFormat.getImageableX()*2,pageFormat.getImageableY()*2);
-               graphics2D.scale(0.5,0.5 );
+               graphics2D.scale(0.85,1.0 );
                panel.paint(graphics2D);
                return Printable.PAGE_EXISTS;
             }
@@ -280,25 +607,124 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 }
             }
     }
+    
+    private void billing(){
+        
+        String des=null;
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            table.selectAll();
+            
+            
+             LocalDateTime bd = LocalDateTime.now();
+            String date = bd.toString();
+        try {
+            
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            conn = DriverManager.getConnection(dbURL, user, password);
+            CallableStatement cbi = conn.prepareCall("call billing_info (?,?,?,?,?,?,?)");
+           int rows=model.getRowCount();
+            for(int i=0; i<rows;i++){
+                
+                System.out.print(rows);
+                des=String.valueOf(model.getValueAt(i, 0));
+               int quantity=Integer.parseInt(model.getValueAt(i, 1).toString());
+               float itmweight=Float.parseFloat(model.getValueAt(i, 2).toString());
+               float rate=Float.parseFloat(model.getValueAt(i, 3).toString());
+               float total=Float.parseFloat(model.getValueAt(i, 4).toString());
+                
+                
+                cbi.setInt(1,2 );//id
+                cbi.setString(2,date);//date
+                cbi.setString(3, des);//dscription
+                cbi.setFloat(4,quantity);//quantity
+                cbi.setFloat(5, itmweight);//weight
+                cbi.setFloat(6, rate);//rate
+                cbi.setFloat(7, total);//total
+                
+              cbi.execute();
+                
+            }
+            
+            conn.close();
+        } catch (SQLException ex) {
+           // jDialog1.setVisible(true);
+            Logger.getLogger(GenerateBillInF.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }
+    
+    private void setuserdetails(){
+        
+        
+            String name,mobno = null,enterprisename = null,gstno,enterpriseadd = null;
+            LocalDateTime bd = LocalDateTime.now();
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-mm-yyyy");
+            String date = bd.format(format) ;
+            dateshow.setText(date);
+        try {
+            
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            conn = DriverManager.getConnection(dbURL, user, password);
+            Statement st = conn.createStatement();
+            String sql = "select name,mob_no,enterprise_name,gstno,enterprise_address from user_registration ";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                name = rs.getString(1);
+                mobno = rs.getString(2);
+                enterprisename= rs.getString(3);
+                gstno= rs.getString(4);
+                enterpriseadd= rs.getString(5);
+            }
+            
+            enterpriselbl.setText( enterprisename);
+            addresslbl.setText(enterpriseadd);
+            contactlbl.setText( mobno);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(GenerateBillInF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+    
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addresslbl;
+    private javax.swing.JLabel addrow;
+    private javax.swing.JTextField amountrec;
+    private javax.swing.JButton cancel;
     private javax.swing.JLabel contactlbl;
     private javax.swing.JLabel customernamelbl;
     private javax.swing.JLabel datelbl;
-    private javax.swing.JTextField dateshowtxt;
+    private javax.swing.JLabel dateshow;
+    private javax.swing.JLabel deleterow;
+    private javax.swing.JLabel dueamount;
     private javax.swing.JLabel enterpriselbl;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JLabel nettotallbl;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel nettotal;
     private javax.swing.JLabel nettotalshowlbl;
+    private javax.swing.JButton ok;
     private javax.swing.JLabel printlbl;
     private javax.swing.JPanel printpnl;
+    private javax.swing.JLabel receivedamou;
+    private javax.swing.JLabel remainamount;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
