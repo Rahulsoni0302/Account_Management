@@ -4,10 +4,11 @@
  */
 package backend;
 
-import static backend.BillingInfo.newcustregister;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +25,7 @@ import java.util.logging.Logger;
 
 public class AddNewRecord {
     
-    public void checkforexistingcust(){
+   /* public void checkforexistingcust(){
         
          String dbURL = "jdbc:mysql://localhost:3306/app_dev";
             String user = "root";
@@ -37,15 +38,44 @@ public class AddNewRecord {
             ccs.setInt(1, 0);
             ccs.setString(2, user);
             ccs.setString(3, user);
-    }
+    }*/
     
     /**
      *this method will insert records for new customer as well as for existing customer 
      * depending upon the parameter value 
      */
-    public static void newrecords(int a)
+    public static void newrecords(String usrid,String description,String amougiving , String date)
     {
-            int newid=0;
+        try {
+           
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            
+            conn = DriverManager.getConnection(dbURL, user, password);
+          
+            CallableStatement carc = conn.prepareCall("call add_records_cust(?,?,?,?)");
+            
+            carc.setString(1, usrid);
+            carc.setString(2, description);
+            carc.setString(3, amougiving);
+            carc.setString(4,date );
+            
+            carc.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddNewRecord.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+           
+        
+    }
+    
+    public static void registernewcust(String usrid,String usrnm,String usrmob){
+        
+        try {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
             String user = "root";
             String password = "#@Rahul8269";
@@ -53,22 +83,18 @@ public class AddNewRecord {
             
             conn = DriverManager.getConnection(dbURL, user, password);
             
-            if(a==1){
-                
-                    newid = newcustregister ();
-                   
-            }
+            PreparedStatement st = conn.prepareStatement("insert into cust_info (id , name , mob_no) values (? ,?,?);");
             
-            CallableStatement carc = conn.prepareCall("call add_record_cust(?,?,?,?)");
+            st.setString(1, usrid);
+            st.setString(2, usrnm);
+            st.setString(3, usrmob);
             
-            carc.setInt(1, newid);
-            carc.setString(2, user);
-            carc.setFloat(3, a);
-            carc.setDate(4, );
-            
-            
-           
-        
+            boolean result = st.execute();
+            conn.close();
+            System.out.println(result);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddNewRecord.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
    

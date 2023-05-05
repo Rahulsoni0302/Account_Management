@@ -5,6 +5,9 @@
 package UI;
 
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import backend.BillingInfo;
+import backend.AddNewRecord;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -20,7 +23,16 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null); 
+        
+        int nwid = BillingInfo.getnewid();
+        newid=Integer.toString(nwid);
+        registrationshowlbl.setText(newid);
+        
+        
     }
+    public String newid;
+    
+    public String amougiven=null,custnm=null,date=null,description=null,mobno=null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,6 +43,15 @@ public class AddRecInF extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jDialogsuccess = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         headinglbl = new javax.swing.JLabel();
         customernamelbl = new javax.swing.JLabel();
@@ -49,9 +70,120 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         registrationshowlbl = new javax.swing.JLabel();
         registrationlbl = new javax.swing.JLabel();
         registrationlbl1 = new javax.swing.JLabel();
-        customernametxt1 = new javax.swing.JTextField();
+        datetxt = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("ERROR");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Fields cannot be empty");
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setText("    OK");
+        jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(92, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Records Saved Successfully ");
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setText("      OK");
+        jLabel6.setOpaque(true);
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialogsuccessLayout = new javax.swing.GroupLayout(jDialogsuccess.getContentPane());
+        jDialogsuccess.getContentPane().setLayout(jDialogsuccessLayout);
+        jDialogsuccessLayout.setHorizontalGroup(
+            jDialogsuccessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialogsuccessLayout.setVerticalGroup(
+            jDialogsuccessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setMaximumSize(new java.awt.Dimension(1300, 850));
         setMinimumSize(new java.awt.Dimension(1300, 850));
@@ -132,6 +264,9 @@ public class AddRecInF extends javax.swing.JInternalFrame {
             }
         });
         savelbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                savelblMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 savelblMouseExited(evt);
             }
@@ -141,18 +276,18 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         registrationshowlbl.setText("0000001");
 
         registrationlbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        registrationlbl.setText("Registration id : ");
+        registrationlbl.setText("Customer id : ");
 
         registrationlbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         registrationlbl1.setText("DATE :");
 
-        customernametxt1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        customernametxt1.setBorder(null);
-        customernametxt1.setMaximumSize(new java.awt.Dimension(64, 25));
-        customernametxt1.setName(""); // NOI18N
-        customernametxt1.addActionListener(new java.awt.event.ActionListener() {
+        datetxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        datetxt.setBorder(null);
+        datetxt.setMaximumSize(new java.awt.Dimension(64, 25));
+        datetxt.setName(""); // NOI18N
+        datetxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customernametxt1ActionPerformed(evt);
+                datetxtActionPerformed(evt);
             }
         });
 
@@ -179,7 +314,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
                         .addComponent(registrationlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(customernametxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +368,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
                         .addComponent(registrationlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(registrationlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(customernametxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(datetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -288,9 +423,50 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         savelbl.setBackground(new java.awt.Color(0, 152, 152));
     }//GEN-LAST:event_savelblMouseExited
 
-    private void customernametxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customernametxt1ActionPerformed
+    private void datetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datetxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_customernametxt1ActionPerformed
+    }//GEN-LAST:event_datetxtActionPerformed
+
+    private void savelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_savelblMouseClicked
+        // TODO add your handling code here:
+      amougiven=  amountgiventxt.getText();
+       custnm= customernametxt.getText();
+      date=  datetxt.getText();
+       description= descriptiontxt.getText();
+       mobno= mobilenumbertxt.getText();
+       
+       if(amougiven.isBlank() || custnm.isBlank() || description.isBlank() ){
+           
+           jDialog1.setLocationRelativeTo(this.jPanel1);
+           jDialog1.setVisible(true);
+           
+       }
+       else{
+           
+           if(date.isBlank()){
+           LocalDateTime bd = LocalDateTime.now();
+           date=bd.toString();
+          }
+           
+           AddNewRecord.registernewcust(newid,custnm,mobno);
+           
+           AddNewRecord.newrecords(newid, description, amougiven, date);
+           
+           jDialogsuccess.setVisible(true);
+       }
+        
+    }//GEN-LAST:event_savelblMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+         
+        jDialog1.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        jDialogsuccess.dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -298,12 +474,21 @@ public class AddRecInF extends javax.swing.JInternalFrame {
     private javax.swing.JTextField amountgiventxt;
     private javax.swing.JLabel customernamelbl;
     private javax.swing.JTextField customernametxt;
-    private javax.swing.JTextField customernametxt1;
+    private javax.swing.JTextField datetxt;
     private javax.swing.JLabel decriptionlbl;
     private javax.swing.JTextField descriptiontxt;
     private javax.swing.JLabel headinglbl;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialogsuccess;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

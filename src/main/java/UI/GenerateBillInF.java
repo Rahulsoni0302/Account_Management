@@ -286,7 +286,6 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         receivedamou.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         receivedamou.setText("Amount Received :");
 
-        amountrec.setText("jTextField1");
         amountrec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 amountrecActionPerformed(evt);
