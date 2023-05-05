@@ -21,9 +21,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.plaf.basic.BasicPopupMenuUI;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -46,7 +48,10 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         
         setuserdetails();
         
-
+        menu.add(jPanel3);
+        menu.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicPopupMenuUI mui;
+        mui = (BasicPopupMenuUI)menu.getUI();
     }
 
     /**
@@ -65,6 +70,10 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        list = new javax.swing.JList<>();
+        menu = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         printpnl = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -86,6 +95,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         dueamount = new javax.swing.JLabel();
         receivedamou = new javax.swing.JLabel();
         amountrec = new javax.swing.JTextField();
+        customernametxt = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         addrow = new javax.swing.JLabel();
@@ -146,6 +156,26 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        list.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(list);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setMaximumSize(new java.awt.Dimension(1300, 850));
@@ -268,6 +298,13 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             }
         });
 
+        customernametxt.setBorder(null);
+        customernametxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                customernametxtKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout printpnlLayout = new javax.swing.GroupLayout(printpnl);
         printpnl.setLayout(printpnlLayout);
         printpnlLayout.setHorizontalGroup(
@@ -290,14 +327,9 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(printpnlLayout.createSequentialGroup()
-                                .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(printpnlLayout.createSequentialGroup()
-                                .addComponent(addresslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(124, 124, 124)
-                                .addComponent(contactlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(addresslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(124, 124, 124)
+                        .addComponent(contactlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -318,15 +350,20 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                                 .addComponent(receivedamou)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(329, 329, 329))))
-            .addGroup(printpnlLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(329, 329, 329))
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(customernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(329, 329, 329))
+            .addGroup(printpnlLayout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         printpnlLayout.setVerticalGroup(
             printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,10 +386,14 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(customernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(2, 2, 2)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(printpnlLayout.createSequentialGroup()
@@ -460,7 +501,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_printlblMouseMoved
 
     private void printlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseClicked
-       // printBill(printpnl);
+       printBill(printpnl);
        billing();
       
     }//GEN-LAST:event_printlblMouseClicked
@@ -582,6 +623,17 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_amountrecKeyReleased
 
+    private void customernametxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customernametxtKeyReleased
+        DefaultListModel model = new DefaultListModel();
+        String search  = customernametxt.getText().trim();
+        Suggestion suggestion = new Suggestion(list,model);
+        if(!search.equals("")){
+            menu.show(customernametxt,0,customernametxt.getHeight()+12);
+            suggestion.searchFilter(customernametxt.getText());
+            customernametxt.requestFocus();
+    }//GEN-LAST:event_customernametxtKeyReleased
+}
+    
     private void printBill(JPanel panel){
         PrinterJob printerJob = PrinterJob.getPrinterJob();
         printerJob.setJobName("print bill");
@@ -593,7 +645,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                }
                Graphics2D graphics2D = (Graphics2D)graphics;
                graphics2D.translate(pageFormat.getImageableX()*2,pageFormat.getImageableY()*2);
-               graphics2D.scale(0.85,1.0 );
+               graphics2D.scale(0.759,1.0 );
                panel.paint(graphics2D);
                return Printable.PAGE_EXISTS;
             }
@@ -699,6 +751,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JButton cancel;
     private javax.swing.JLabel contactlbl;
     private javax.swing.JLabel customernamelbl;
+    private javax.swing.JTextField customernametxt;
     private javax.swing.JLabel datelbl;
     private javax.swing.JLabel dateshow;
     private javax.swing.JLabel deleterow;
@@ -709,15 +762,19 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JList<String> list;
+    private javax.swing.JPopupMenu menu;
     private javax.swing.JLabel nettotal;
     private javax.swing.JLabel nettotalshowlbl;
     private javax.swing.JButton ok;

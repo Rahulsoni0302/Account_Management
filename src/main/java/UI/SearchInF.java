@@ -4,7 +4,9 @@
  */
 package UI;
 
+import javax.swing.DefaultListModel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.plaf.basic.BasicPopupMenuUI;
 
 /**
  *
@@ -15,11 +17,17 @@ public class SearchInF extends javax.swing.JInternalFrame {
     /**
      * Creates new form SearchPanel
      */
+    DefaultListModel model = new DefaultListModel();
     public SearchInF() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
+        
+        menu.add(jPanel2);
+        menu.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicPopupMenuUI mui;
+        mui = (BasicPopupMenuUI)menu.getUI();
     }
 
     /**
@@ -31,6 +39,10 @@ public class SearchInF extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        list = new javax.swing.JList<>();
+        menu = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         customeracctbl = new javax.swing.JTable();
@@ -51,6 +63,24 @@ public class SearchInF extends javax.swing.JInternalFrame {
         searchlbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         editlbl = new javax.swing.JLabel();
+
+        list.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(list);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         setMaximumSize(new java.awt.Dimension(1300, 800));
         setMinimumSize(new java.awt.Dimension(1300, 800));
@@ -80,6 +110,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
         customernamelbl.setText("Enter the customer name:");
 
         searchcustomertxt.setBorder(null);
+        searchcustomertxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchcustomertxtKeyReleased(evt);
+            }
+        });
 
         editrecordpnl.setBackground(new java.awt.Color(255, 255, 255));
         editrecordpnl.setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -239,14 +274,14 @@ public class SearchInF extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -288,6 +323,16 @@ public class SearchInF extends javax.swing.JInternalFrame {
         savelbl.setBackground(new java.awt.Color(0, 152, 152));
     }//GEN-LAST:event_savelblMouseExited
 
+    private void searchcustomertxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchcustomertxtKeyReleased
+        String search  = searchcustomertxt.getText().trim();
+        Suggestion suggestion = new Suggestion(list,model);
+        if(!search.equals("")){
+            menu.show(searchcustomertxt,0,searchcustomertxt.getHeight()+12);
+            searchcustomertxt.requestFocus();
+            suggestion.searchFilter(searchcustomertxt.getText());
+        }        
+    }//GEN-LAST:event_searchcustomertxtKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable customeracctbl;
@@ -301,10 +346,14 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel givenlbl;
     private javax.swing.JTextField giventxt;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JList<String> list;
+    private javax.swing.JPopupMenu menu;
     private javax.swing.JLabel receivedlbl;
     private javax.swing.JTextField receivedtxt;
     private javax.swing.JLabel savelbl;
