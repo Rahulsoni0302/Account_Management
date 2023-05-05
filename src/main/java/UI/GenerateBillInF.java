@@ -107,6 +107,11 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
@@ -630,8 +635,15 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             menu.show(customernametxt,0,customernametxt.getHeight()+12);
             suggestion.searchFilter(customernametxt.getText());
             customernametxt.requestFocus();
+        }
     }//GEN-LAST:event_customernametxtKeyReleased
-}
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        
+        customernametxt.setText(jList1.getSelectedValue());
+    }//GEN-LAST:event_jList1MouseClicked
+
     
     private void printBill(JPanel panel){
         PrinterJob printerJob = PrinterJob.getPrinterJob();

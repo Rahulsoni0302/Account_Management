@@ -295,7 +295,8 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         String str1;
         str1 = str.substring(2);
         txt.setText(str1);
-        //System.out.print(str1);
+        System.out.print(str.substring(0));
+        str1.s
         search(str1);
     }//GEN-LAST:event_listMouseClicked
 

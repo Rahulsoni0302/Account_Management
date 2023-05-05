@@ -4,9 +4,12 @@
  */
 package UI;
 
+import backend.SearchCustomerRecords;
+import java.sql.ResultSet;
 import javax.swing.DefaultListModel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +32,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
         BasicPopupMenuUI mui;
         mui = (BasicPopupMenuUI)menu.getUI();
     }
+    String custinfo=null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,13 +107,22 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NAME", "MOB.NO.", "ID", "TRANS. DATE", "BILLING DATE", "TOTAL AMOUNT", "AMOUNT RECEIEVED", "AMOUNT DUE", "DESCRIPTION"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         customeracctbl.setColumnSelectionAllowed(true);
         customeracctbl.setGridColor(new java.awt.Color(0, 153, 153));
         customeracctbl.setRowHeight(30);
         jScrollPane1.setViewportView(customeracctbl);
+        customeracctbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         customernamelbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         customernamelbl.setText("Enter the customer name:");
@@ -298,6 +311,23 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
     private void searchlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchlblMouseClicked
         // TODO add your handling code here:
+     custinfo = searchcustomertxt.getText();
+     
+     
+     int idlen=custinfo.indexOf(32)-1;
+     String id=custinfo.substring(1, idlen);
+     System.out.println(id);
+     int nmlenstrt = idlen+4;
+     int nmlenend=custinfo.indexOf(32, nmlenstrt)-1;
+     String nm=custinfo.substring(nmlenstrt, nmlenend);
+    System.out.println(nm);
+     String mob=custinfo.substring(3);
+     System.out.println(mob);
+   //  ResultSet rs = SearchCustomerRecords.getcustrecords();
+   
+   DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
+   
+   
     }//GEN-LAST:event_searchlblMouseClicked
 
     private void searchlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchlblMouseExited

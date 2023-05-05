@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class SearchCustomerRecords {
     
-    public static void main (String args[]){
+    public static ResultSet getcustrecords (){
         
         try {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
@@ -37,16 +37,18 @@ public class SearchCustomerRecords {
             cscr.setDate(4, null);
             
             ResultSet rs = cscr.executeQuery();
+             conn.close();
             
-            while(rs.next()){
+            return rs;
+           /*while(rs.next()){
                 
                 System.out.println(rs.getString(1));
                 System.out.println(rs.getString(2));
                 System.out.println(rs.getInt(3));
                 System.out.println(rs.getDate(4));
-            }
+            }*/
             
-            conn.close();
+           
         } catch (SQLException ex) {
             Logger.getLogger(SearchCustomerRecords.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -20,36 +20,13 @@ public class NewClass {
     
     public static void main (String args[]){
     
-        try {
-            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
-            String user = "root";
-            String password = "#@Rahul8269";
-            
-            Connection conn;
-            conn = DriverManager.getConnection(dbURL, user, password);
-            
-            Statement st = conn.createStatement();
-            String sql = "SELECT name FROM app_dev.cust_info";
-            ResultSet rs = st.executeQuery(sql);
-            while(rs.next()){
-                
-               String str;
-                str = rs.getString(1);
-                
-                System.out.println(str);
-
-                
-                
-                
-                
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(NewClass.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       String custinfo ="562    rahulsoni   9893475405";
     
-    
-    
-    
+      int index= custinfo.indexOf(32, 7);
+      System.out.println(index);
+      
+      String mob=custinfo.substring(4);
+       System.out.println(mob);
     
     
     }
