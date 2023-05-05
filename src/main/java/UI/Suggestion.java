@@ -55,7 +55,7 @@ public class Suggestion{
                 String id = rs.getString(1);
                 //String mobno = rs.getString(3);
                 //if(mobno.isEmpty()){
-                    String str= id+"    "+nm;
+                    String str= id+" "+nm;
                     all=str;
                 
                 /*else{

@@ -42,11 +42,11 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         
     }
     
-    public void search(){
+    public void search(String str){
         String custnm;
         
-        custnm =txt.getText();
-       
+        //custnm =txt.getText();
+       custnm = str;
         
         try {
            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
@@ -275,7 +275,8 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchMouseExited
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
-        search();   
+        String str = txt.getText();
+        search(str);   
     }//GEN-LAST:event_searchMouseClicked
 
     private void txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyReleased
@@ -290,7 +291,12 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtKeyReleased
 
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        search();
+        String str = list.getSelectedValue();
+        String str1;
+        str1 = str.substring(2);
+        txt.setText(str1);
+        //System.out.print(str1);
+        search(str1);
     }//GEN-LAST:event_listMouseClicked
 
       private void billingHistory()//used to fetch the bills of the recent customers

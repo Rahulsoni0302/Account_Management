@@ -3,7 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 /**
  *
@@ -14,6 +19,9 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    int cornerRadius;
+    Color backgroundColor;
+    
     public MainFrame() {
         initComponents();
         
@@ -36,15 +44,10 @@ public class MainFrame extends javax.swing.JFrame {
         dashboardpanel = new javax.swing.JPanel();
         welcomelbl = new javax.swing.JLabel();
         menuinfo = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         homelbl = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         genbilllbl = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         billinghislbl = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         addreclbl = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
         importreclbl = new javax.swing.JLabel();
         basepanel = new javax.swing.JPanel();
 
@@ -72,15 +75,18 @@ public class MainFrame extends javax.swing.JFrame {
 
         welcomelbl.setForeground(new java.awt.Color(255, 255, 255));
         welcomelbl.setText("WELCOME......");
-        dashboardpanel.add(welcomelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 16, 116, -1));
+        dashboardpanel.add(welcomelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 30));
 
-        menuinfo.setText("SEARCH CUSTOMER");
-        dashboardpanel.add(menuinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 38, 307, 65));
-
-        jPanel4.setBackground(new java.awt.Color(0, 102, 102));
+        menuinfo.setBackground(new java.awt.Color(0, 102, 102));
+        menuinfo.setForeground(new java.awt.Color(255, 255, 255));
+        menuinfo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        menuinfo.setText("SEARCH CUSTOMER   ");
+        menuinfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuinfo.setOpaque(true);
+        dashboardpanel.add(menuinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 370, 60));
 
         homelbl.setBackground(new java.awt.Color(0, 153, 153));
-        homelbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        homelbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         homelbl.setForeground(new java.awt.Color(255, 255, 255));
         homelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         homelbl.setText("HOME");
@@ -99,29 +105,13 @@ public class MainFrame extends javax.swing.JFrame {
                 homelblMousePressed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(homelbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(homelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        dashboardpanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 354, -1));
-
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        dashboardpanel.add(homelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 370, 50));
 
         genbilllbl.setBackground(new java.awt.Color(0, 153, 153));
-        genbilllbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        genbilllbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         genbilllbl.setForeground(new java.awt.Color(255, 255, 255));
         genbilllbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        genbilllbl.setText("Generate Bill");
+        genbilllbl.setText("GENERATE BILL");
         genbilllbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         genbilllbl.setOpaque(true);
         genbilllbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -137,29 +127,13 @@ public class MainFrame extends javax.swing.JFrame {
                 genbilllblMouseExited(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(genbilllbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(genbilllbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        dashboardpanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 354, -1));
-
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        dashboardpanel.add(genbilllbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 370, 50));
 
         billinghislbl.setBackground(new java.awt.Color(0, 153, 153));
-        billinghislbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        billinghislbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         billinghislbl.setForeground(new java.awt.Color(255, 255, 255));
         billinghislbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        billinghislbl.setText("Billing History");
+        billinghislbl.setText("BILLING HISTORY");
         billinghislbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         billinghislbl.setOpaque(true);
         billinghislbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -175,29 +149,13 @@ public class MainFrame extends javax.swing.JFrame {
                 billinghislblMousePressed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(billinghislbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(billinghislbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        dashboardpanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 354, -1));
-
-        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        dashboardpanel.add(billinghislbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 370, 50));
 
         addreclbl.setBackground(new java.awt.Color(0, 153, 153));
-        addreclbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addreclbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         addreclbl.setForeground(new java.awt.Color(255, 255, 255));
         addreclbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addreclbl.setText("Add New Record");
+        addreclbl.setText("ADD NEW RECORD");
         addreclbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addreclbl.setOpaque(true);
         addreclbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -213,23 +171,7 @@ public class MainFrame extends javax.swing.JFrame {
                 addreclblMousePressed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addreclbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(addreclbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        dashboardpanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 354, -1));
-
-        jPanel5.setBackground(new java.awt.Color(0, 102, 102));
+        dashboardpanel.add(addreclbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 370, 50));
 
         importreclbl.setBackground(new java.awt.Color(0, 153, 153));
         importreclbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -251,21 +193,7 @@ public class MainFrame extends javax.swing.JFrame {
                 importreclblMousePressed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(importreclbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(importreclbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        dashboardpanel.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 354, -1));
+        dashboardpanel.add(importreclbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 354, 29));
 
         getContentPane().add(dashboardpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 369, 850));
 
@@ -335,33 +263,70 @@ public class MainFrame extends javax.swing.JFrame {
         GenerateBillInF inf = new GenerateBillInF();
         basepanel.removeAll();
         basepanel.add(inf).setVisible(true);
+        menuinfo.setText("GENERATE BILLS  ");
     }//GEN-LAST:event_genbilllblMouseClicked
 
     private void homelblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homelblMousePressed
         SearchInF sif = new SearchInF();
         basepanel.removeAll();
         basepanel.add(sif).setVisible(true);
+        menuinfo.setText("SEARCH CUSTOMER  ");
     }//GEN-LAST:event_homelblMousePressed
 
     private void billinghislblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billinghislblMousePressed
         BillingHistoryInF bif = new BillingHistoryInF(); 
         basepanel.removeAll();
         basepanel.add(bif).setVisible(true);
+        menuinfo.setText("BILLING HISTORY  ");
     }//GEN-LAST:event_billinghislblMousePressed
 
     private void addreclblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addreclblMousePressed
         AddRecInF aif = new AddRecInF(); 
         basepanel.removeAll();
         basepanel.add(aif).setVisible(true);
+        menuinfo.setText("ADD NEW RECORDS  ");
     }//GEN-LAST:event_addreclblMousePressed
 
     private void importreclblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importreclblMousePressed
         ImportRecInF iif = new ImportRecInF(); 
         basepanel.removeAll();
         basepanel.add(iif).setVisible(true);
+        menuinfo.setText("Import/Export records  ");
     }//GEN-LAST:event_importreclblMousePressed
-void setpanel(Component com){
-    basepanel.add(com).setVisible(true);
+
+    
+//        public void RoundedPanel(int radius) {
+//            super();
+//            cornerRadius = radius;
+//        }
+//
+//        public void RoundedPanel(int radius, Color bgColor) {
+//            super();
+//            cornerRadius = radius;
+//            backgroundColor = bgColor;
+//        }
+    /**
+     *
+     * @param g
+     */
+    @Override
+    public void paintComponents(Graphics g){
+    super.paintComponents(g);
+    Dimension arcs = new Dimension(cornerRadius, cornerRadius);
+            int width = getWidth();
+            int height = getHeight();
+            Graphics2D graphics = (Graphics2D) g;
+            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            //Draws the rounded panel with borders.
+            if (backgroundColor != null) {
+                graphics.setColor(backgroundColor);
+            } else {
+                graphics.setColor(getBackground());
+            }
+            graphics.fillRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint background
+            graphics.setColor(getForeground());
+            graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);
 }
     /**
      * @param args the command line arguments
@@ -411,11 +376,6 @@ void setpanel(Component com){
     private javax.swing.JLabel genbilllbl;
     private javax.swing.JLabel homelbl;
     private javax.swing.JLabel importreclbl;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel menuinfo;

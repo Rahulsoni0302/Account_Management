@@ -69,6 +69,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(list);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -332,6 +337,14 @@ public class SearchInF extends javax.swing.JInternalFrame {
             suggestion.searchFilter(searchcustomertxt.getText());
         }        
     }//GEN-LAST:event_searchcustomertxtKeyReleased
+
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+        String str = list.getSelectedValue();
+        String str1;
+        str1 = str.substring(2);
+        searchcustomertxt.setText(str1);
+        //System.out.print(str1);
+    }//GEN-LAST:event_listMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
