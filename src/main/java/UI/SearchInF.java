@@ -6,6 +6,9 @@ package UI;
 
 import backend.SearchCustomerRecords;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
@@ -310,22 +313,42 @@ public class SearchInF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchlblMouseMoved
 
     private void searchlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchlblMouseClicked
-        // TODO add your handling code here:
-     custinfo = searchcustomertxt.getText();
-     
-     
-     int idlen=custinfo.indexOf(32)-1;
-     String id=custinfo.substring(1, idlen);
-     System.out.println(id);
-     int nmlenstrt = idlen+4;
-     int nmlenend=custinfo.indexOf(32, nmlenstrt)-1;
-     String nm=custinfo.substring(nmlenstrt, nmlenend);
-    System.out.println(nm);
-     String mob=custinfo.substring(3);
-     System.out.println(mob);
-   //  ResultSet rs = SearchCustomerRecords.getcustrecords();
-   
-   DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
+        try {
+            // TODO add your handling code here:
+            custinfo = searchcustomertxt.getText();
+            
+            
+            int idlen=custinfo.indexOf(32)-1;
+            String id=custinfo.substring(1, idlen);
+            System.out.println(id);
+            int nmlenstrt = idlen+4;
+            int nmlenend=custinfo.indexOf(32, nmlenstrt)-1;
+            String nm=custinfo.substring(nmlenstrt, nmlenend);
+            System.out.println(nm);
+            String mob=custinfo.substring(3);
+            System.out.println(mob);
+            ResultSet rs = SearchCustomerRecords.getcustrecords();
+            
+            DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
+            
+            while (rs.next()){
+                String name=rs.getString(1);
+                String mob_no=rs.getString(2);
+                String i_d=rs.getString(3);
+                String trnxdt=rs.getString(4);
+                String billdt=rs.getString(5);
+                String ttlamou=rs.getString(6);
+                String amourec=rs.getString(7);
+                String amoudue=rs.getString(8);
+                String descrptn=rs.getString(9);
+                
+                String []row={name,mob_no,i_d,trnxdt,billdt,ttlamou,amourec,amoudue,descrptn};
+                
+                model.addRow(row);
+                
+            }    } catch (SQLException ex) {
+            Logger.getLogger(SearchInF.class.getName()).log(Level.SEVERE, null, ex);
+        }
    
    
     }//GEN-LAST:event_searchlblMouseClicked
