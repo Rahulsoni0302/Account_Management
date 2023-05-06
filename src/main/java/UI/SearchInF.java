@@ -34,6 +34,8 @@ public class SearchInF extends javax.swing.JInternalFrame {
         menu.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicPopupMenuUI mui;
         mui = (BasicPopupMenuUI)menu.getUI();
+        
+        editrecordpnl.setVisible(false);
     }
     String custinfo=null;
 
@@ -56,8 +58,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
         customernamelbl = new javax.swing.JLabel();
         searchcustomertxt = new javax.swing.JTextField();
         editrecordpnl = new javax.swing.JPanel();
-        duelbl = new javax.swing.JLabel();
-        dueshowlbl = new javax.swing.JLabel();
         receivedlbl = new javax.swing.JLabel();
         givenlbl = new javax.swing.JLabel();
         receivedtxt = new javax.swing.JTextField();
@@ -67,9 +67,15 @@ public class SearchInF extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         savelbl = new javax.swing.JLabel();
+        descrptn = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        descriptiontxt = new javax.swing.JTextField();
+        errorlbl = new javax.swing.JLabel();
         searchlbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         editlbl = new javax.swing.JLabel();
+        duelbl = new javax.swing.JLabel();
+        dueshowlbl = new javax.swing.JLabel();
 
         list.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { " " };
@@ -142,33 +148,23 @@ public class SearchInF extends javax.swing.JInternalFrame {
         editrecordpnl.setMinimumSize(new java.awt.Dimension(732, 259));
         editrecordpnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        duelbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        duelbl.setForeground(new java.awt.Color(255, 0, 51));
-        duelbl.setText("Amount due :");
-        editrecordpnl.add(duelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 110, 43));
-
-        dueshowlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        dueshowlbl.setForeground(new java.awt.Color(255, 0, 51));
-        dueshowlbl.setText("here");
-        editrecordpnl.add(dueshowlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 60, 43));
-
         receivedlbl.setText("Amount Received : ");
         editrecordpnl.add(receivedlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 61, 110, 49));
 
         givenlbl.setText("Amount Given : ");
-        editrecordpnl.add(givenlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 128, 110, 49));
+        editrecordpnl.add(givenlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 110, 49));
 
         receivedtxt.setBorder(null);
         editrecordpnl.add(receivedtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 72, 266, -1));
 
         giventxt.setBorder(null);
-        editrecordpnl.add(giventxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 139, 266, -1));
+        editrecordpnl.add(giventxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 266, -1));
 
         datelbl.setText("Date : ");
-        editrecordpnl.add(datelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, 59, -1));
+        editrecordpnl.add(datelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 60, 40));
 
         dateshowtxt.setBorder(null);
-        editrecordpnl.add(dateshowtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 16, 154, 24));
+        editrecordpnl.add(dateshowtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 154, 24));
 
         jSeparator2.setBackground(new java.awt.Color(0, 153, 153));
         jSeparator2.setForeground(new java.awt.Color(0, 153, 153));
@@ -178,7 +174,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
         jSeparator3.setBackground(new java.awt.Color(0, 153, 153));
         jSeparator3.setForeground(new java.awt.Color(0, 153, 153));
         jSeparator3.setOpaque(true);
-        editrecordpnl.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 167, 270, -1));
+        editrecordpnl.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 270, -1));
 
         savelbl.setBackground(new java.awt.Color(0, 153, 153));
         savelbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -201,6 +197,22 @@ public class SearchInF extends javax.swing.JInternalFrame {
             }
         });
         editrecordpnl.add(savelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, 146, 29));
+
+        descrptn.setText("Description : ");
+        editrecordpnl.add(descrptn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 110, 49));
+
+        jSeparator4.setBackground(new java.awt.Color(0, 153, 153));
+        jSeparator4.setForeground(new java.awt.Color(0, 153, 153));
+        jSeparator4.setOpaque(true);
+        editrecordpnl.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 203, 270, -1));
+
+        descriptiontxt.setBorder(null);
+        editrecordpnl.add(descriptiontxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 266, -1));
+
+        errorlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        errorlbl.setForeground(new java.awt.Color(255, 0, 0));
+        errorlbl.setText("jLabel1");
+        editrecordpnl.add(errorlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 260, 30));
 
         searchlbl.setBackground(new java.awt.Color(0, 153, 153));
         searchlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -248,27 +260,44 @@ public class SearchInF extends javax.swing.JInternalFrame {
             }
         });
 
+        duelbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        duelbl.setForeground(new java.awt.Color(255, 0, 51));
+        duelbl.setText("Amount due :");
+
+        dueshowlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        dueshowlbl.setForeground(new java.awt.Color(255, 0, 51));
+        dueshowlbl.setText("here");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(193, 193, 193)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(editlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(searchcustomertxt, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(searchlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(277, 277, 277)
-                            .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(editrecordpnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(352, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(193, 193, 193)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(editlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(382, 382, 382)
+                                .addComponent(duelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dueshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(searchcustomertxt, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(searchlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(277, 277, 277)
+                                    .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(editrecordpnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1028, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,13 +310,16 @@ public class SearchInF extends javax.swing.JInternalFrame {
                     .addComponent(searchlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(editlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(duelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dueshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editrecordpnl, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addComponent(editrecordpnl, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -318,15 +350,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
             custinfo = searchcustomertxt.getText();
             
             
-            int idlen=custinfo.indexOf(32)-1;
-            String id=custinfo.substring(1, idlen);
-            System.out.println(id);
-            int nmlenstrt = idlen+4;
-            int nmlenend=custinfo.indexOf(32, nmlenstrt)-1;
-            String nm=custinfo.substring(nmlenstrt, nmlenend);
-            System.out.println(nm);
-            String mob=custinfo.substring(3);
-            System.out.println(mob);
+           
             ResultSet rs = SearchCustomerRecords.getcustrecords();
             
             DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
@@ -363,6 +387,8 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
     private void editlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editlblMouseClicked
         // TODO add your handling code here:
+       // jPanel1.add(editrecordpnl);
+          editrecordpnl.setVisible(true);
     }//GEN-LAST:event_editlblMouseClicked
 
     private void editlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editlblMouseExited
@@ -375,6 +401,19 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
     private void savelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_savelblMouseClicked
         // TODO add your handling code here:
+        String amourec=receivedtxt.getText();
+        String amougiven = giventxt.getText();
+        String descrptn=descriptiontxt.getText();
+        
+        if(amourec.isBlank() && amougiven.isBlank()){
+            errorlbl.setText("both fields can't be empty !");
+        }
+        else if ((amourec.isBlank() && amougiven.isBlank())==false){
+         errorlbl.setText("both fields can't be filled  !");
+        }
+        else{
+            
+        }
     }//GEN-LAST:event_savelblMouseClicked
 
     private void savelblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_savelblMouseExited
@@ -405,10 +444,13 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel customernamelbl;
     private javax.swing.JLabel datelbl;
     private javax.swing.JTextField dateshowtxt;
+    private javax.swing.JTextField descriptiontxt;
+    private javax.swing.JLabel descrptn;
     private javax.swing.JLabel duelbl;
     private javax.swing.JLabel dueshowlbl;
     private javax.swing.JLabel editlbl;
     private javax.swing.JPanel editrecordpnl;
+    private javax.swing.JLabel errorlbl;
     private javax.swing.JLabel givenlbl;
     private javax.swing.JTextField giventxt;
     private javax.swing.JPanel jPanel1;
@@ -418,6 +460,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JList<String> list;
     private javax.swing.JPopupMenu menu;
     private javax.swing.JLabel receivedlbl;

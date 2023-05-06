@@ -18,16 +18,40 @@ import java.util.logging.Logger;
  */
 public class NewClass {
     
+       
+    
     public static void main (String args[]){
     
-       String custinfo ="562    rahulsoni   9893475405";
+         String nwnm=null;
+        String id="258";
+        String name ="ra hul soni";
+        
+       String modname= name.replaceAll("\\s", "");
+        
+       
+        String mob="9893475405";
+        
+       String custinfo = id+"   "+modname+"    "+mob;
     
-      int index= custinfo.indexOf(32, 7);
-      System.out.println(index);
+      int idlen= custinfo.indexOf(32);
+     String idn = custinfo.substring(0, idlen);
+      System.out.println(idn);
       
-      String mob=custinfo.substring(4);
-       System.out.println(mob);
+      int nmstrt=idlen+3;
+      int nmend=custinfo.indexOf(32, nmstrt);
+      
+     String nmn= custinfo.substring(nmstrt, nmend);
+     System.out.println(nmn);
+     
+     int mobstrt=nmend+4;
+     String mobn=custinfo.substring(mobstrt);
+     System.out.println(mobn);
     
+      
+    
+    
+      
+     
     
     }
 }

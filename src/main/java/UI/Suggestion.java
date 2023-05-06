@@ -53,8 +53,8 @@ public class Suggestion{
             while(rs.next()){
                 String nm = rs.getString("name");
                 String id = rs.getString(1);
-                //String mobno = rs.getString(3);
-                //if(mobno.isEmpty()){
+                String mobno = rs.getString(3);
+                //if(mobno.isEmpty()|| mobno.is){
                     String str= id+" "+nm;
                     all=str;
                 

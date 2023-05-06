@@ -56,5 +56,15 @@ public class SearchCustomerRecords {
            
            
     }
-    
+ 
+    public static boolean addrecord(){
+        
+        String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            
+            conn = DriverManager.getConnection(dbURL, user, password);
+            CallableStatement cscr = conn.prepareCall("{call search_customer_records(?,?,?,?)}");
+    }
 }
