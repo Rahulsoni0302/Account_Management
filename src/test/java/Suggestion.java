@@ -1,4 +1,6 @@
 
+import backend.SearchCustBills;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -71,14 +74,14 @@ public class Suggestion extends javax.swing.JFrame {
                 String nm = rs.getString("name");
                 String id = rs.getString(1);
                 String mobno = rs.getString(3);
-                if(mobno.isEmpty()){
-                    String str= id+"    "+nm;
+                //if(mobno.isEmpty()){
+                    String str= id+"    "+nm+"    "+mobno;
                     all=str;
-                }
-                else{
-                    String str= id+"    "+nm+"      "+mobno;
-                    all=str;
-                }
+                
+                //else{
+                  //  String str= id+"    "+nm+"      "+mobno;
+                   // all=str;
+                //}
                 // str = rs.getString(1);
                arlist.add(all);
                 model.addElement(all);
@@ -147,7 +150,14 @@ public class Suggestion extends javax.swing.JFrame {
         list = new javax.swing.JList<>();
         menu = new javax.swing.JPopupMenu();
         txt = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
 
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(list);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -169,26 +179,107 @@ public class Suggestion extends javax.swing.JFrame {
             }
         });
 
+        table.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "NAME", "MOB.NO.", "DATE", "BILL COPY"
+            }
+        ));
+        table.setFocusable(false);
+        table.setRowHeight(30);
+        jScrollPane2.setViewportView(table);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+        public void search(String cid,String nm,String no){
+        String custnm,custid,custno;
+        
+        //custnm =txt.getText();
+        custid = cid;
+        custnm = nm;
+        custno = no;
+        
+        try {
+           String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+           String user = "root";
+           String password = "#@Rahul8269";
+           Connection conn = null;
+           
+           conn = DriverManager.getConnection(dbURL, user, password);
+           CallableStatement cscb = conn.prepareCall("{call search_customer_bills(?,?,?,?)}");
+           
+           cscb.setString(1, custid);
+           cscb.setDate(4, null);
+           cscb.setString(2, custnm);
+           cscb.setString(3, custno);
+           
+           ResultSet rs = cscb.executeQuery();
+           
+           DefaultTableModel model = (DefaultTableModel) table.getModel();
+           
+           int rows = model.getRowCount();
+           for(int i= rows-1;i>=0;i-- ){
+               
+               model.removeRow(i);
+           }
+            
+            
+            String id,name,mobno,date,billcpy;
+            
+            while(rs.next()){
+                id = rs.getString(1);
+                name = rs.getString(2);
+                mobno = rs.getString(3);
+                date= rs.getString(4);
+                billcpy=rs.getString(5);
+               String [] row ={id,name,mobno,date,billcpy}; 
+                model.addRow(row);
+            }
+            
+           
+            
+            conn.close();
+            rs.close();
+            cscb.close();
+            
+            
+          
+          
+       } catch (SQLException ex) {
+           Logger.getLogger(SearchCustBills.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    
     private void txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyReleased
         String search  = txt.getText().trim();
         if(!search.equals("")){
@@ -201,6 +292,32 @@ public class Suggestion extends javax.swing.JFrame {
             System.out.println(arlist);
         }
     }//GEN-LAST:event_txtKeyReleased
+
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+        String custinfo = list.getSelectedValue();
+        
+        int idlen= custinfo.indexOf(32);
+        String idn = custinfo.substring(0, idlen);
+       System.out.println(idn);
+      
+        int nmstrt=idlen+4;
+        int nmend=custinfo.indexOf(32, nmstrt);
+
+        String nmn= custinfo.substring(nmstrt, nmend);
+        System.out.println(nmn);
+
+        //String mobn = " ";
+        int mobstrt=nmend+4;
+        String mobn=custinfo.substring(mobstrt);
+        System.out.println(mobn);
+        
+        search(idn,nmn,mobn);
+        txt.setText(nmn);
+        System.out.print(idn+" "+nmn+" "+mobn);
+    }//GEN-LAST:event_listMouseClicked
+    
+    
+    
     
     /**
      * @param args the command line arguments
@@ -240,8 +357,10 @@ public class Suggestion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> list;
     private javax.swing.JPopupMenu menu;
+    private javax.swing.JTable table;
     private javax.swing.JTextField txt;
     // End of variables declaration//GEN-END:variables
 }

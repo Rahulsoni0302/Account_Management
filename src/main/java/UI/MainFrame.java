@@ -3,24 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
 /**
  *
  * @author Abhishek
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainFrame
-     */
-    int cornerRadius;
-    Color backgroundColor;
     
     public MainFrame() {
         initComponents();
@@ -195,7 +183,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         dashboardpanel.add(importreclbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 354, 29));
 
-        getContentPane().add(dashboardpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 369, 850));
+        getContentPane().add(dashboardpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 369, 850));
 
         basepanel.setBackground(new java.awt.Color(255, 255, 255));
         basepanel.setMaximumSize(new java.awt.Dimension(1300, 850));
@@ -294,43 +282,7 @@ public class MainFrame extends javax.swing.JFrame {
         menuinfo.setText("Import/Export records  ");
     }//GEN-LAST:event_importreclblMousePressed
 
-    
-//        public void RoundedPanel(int radius) {
-//            super();
-//            cornerRadius = radius;
-//        }
-//
-//        public void RoundedPanel(int radius, Color bgColor) {
-//            super();
-//            cornerRadius = radius;
-//            backgroundColor = bgColor;
-//        }
-    /**
-     *
-     * @param g
-     */
-    @Override
-    public void paintComponents(Graphics g){
-    super.paintComponents(g);
-    Dimension arcs = new Dimension(cornerRadius, cornerRadius);
-            int width = getWidth();
-            int height = getHeight();
-            Graphics2D graphics = (Graphics2D) g;
-            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            //Draws the rounded panel with borders.
-            if (backgroundColor != null) {
-                graphics.setColor(backgroundColor);
-            } else {
-                graphics.setColor(getBackground());
-            }
-            graphics.fillRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint background
-            graphics.setColor(getForeground());
-            graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);
-}
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -42,11 +42,13 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         
     }
     
-    public void search(String str){
-        String custnm;
+    public void search(String cid,String nm,String no){
+        String custnm,custid,custno;
         
         //custnm =txt.getText();
-       custnm = str;
+        custid = cid;
+        custnm = nm;
+        custno = no;
         
         try {
            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
@@ -57,10 +59,10 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
            conn = DriverManager.getConnection(dbURL, user, password);
            CallableStatement cscb = conn.prepareCall("{call search_customer_bills(?,?,?,?)}");
            
-           cscb.setString(1, null);
+           cscb.setString(1, custid);
            cscb.setDate(4, null);
            cscb.setString(2, custnm);
-           cscb.setString(3, null);
+           cscb.setString(3, custno);
            
            ResultSet rs = cscb.executeQuery();
            
@@ -276,7 +278,7 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
         String str = txt.getText();
-        search(str);   
+        //search(str);   
     }//GEN-LAST:event_searchMouseClicked
 
     private void txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyReleased
@@ -290,14 +292,33 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtKeyReleased
 
+//    public String idString(String str){
+//        String substring = str;
+//        
+//        return substring;
+//    }
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        String str = list.getSelectedValue();
-        String str1;
-        str1 = str.substring(2);
-        txt.setText(str1);
-        System.out.print(str.substring(0));
-        str1.s
-        search(str1);
+        String custinfo = list.getSelectedValue();
+        
+        int idlen= custinfo.indexOf(32);
+        String idn = custinfo.substring(0, idlen);
+       System.out.println(idn);
+      
+        int nmstrt=idlen+4;
+        int nmend=custinfo.indexOf(32, nmstrt);
+
+        String nmn= custinfo.substring(nmstrt, nmend);
+        System.out.println(nmn);
+
+//        String mobn = " ";
+        int mobstrt=nmend+4;
+        String mobn=custinfo.substring(mobstrt);
+        System.out.println(mobn);
+        
+        search(idn,nmn,mobn);
+        txt.setText(nmn);
+        System.out.print(idn+" "+nmn+" "+mobn);
+        
     }//GEN-LAST:event_listMouseClicked
 
       private void billingHistory()//used to fetch the bills of the recent customers

@@ -52,10 +52,11 @@ public class Suggestion{
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
                 String nm = rs.getString("name");
+                String name= nm.replaceAll("\\s", "");
                 String id = rs.getString(1);
                 String mobno = rs.getString(3);
                 //if(mobno.isEmpty()|| mobno.is){
-                    String str= id+" "+nm;
+                    String str= id+"    "+name+"    "+mobno;
                     all=str;
                 
                 /*else{
