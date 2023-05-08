@@ -98,5 +98,5 @@ public class Suggestion{
         list.setModel(model);
         arlist.removeAll(arlist); 
     }
-    
+   
 }

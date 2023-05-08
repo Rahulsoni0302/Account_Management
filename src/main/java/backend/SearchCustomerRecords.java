@@ -20,7 +20,9 @@ import java.util.logging.Logger;
  */
 public class SearchCustomerRecords {
     
-    public static ResultSet getcustrecords (){
+   
+ 
+    public static void addrecord(String description , float amou_due,String amou_rec,String date , String id){
         
         try {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
@@ -29,42 +31,41 @@ public class SearchCustomerRecords {
             Connection conn = null;
             
             conn = DriverManager.getConnection(dbURL, user, password);
-            CallableStatement cscr = conn.prepareCall("{call search_customer_records(?,?,?,?)}");
+            CallableStatement cscr = conn.prepareCall("{call add_records_cust(?,?,?,?,?)}");
             
-            cscr.setInt(1, 1);
-            cscr.setString(2, null);
-            cscr.setString(3, null);
-            cscr.setDate(4, null);
+            cscr.setString(1, id);
+            cscr.setString(2, description);
+            cscr.setString(3, amou_rec);
+            cscr.setFloat(4, amou_due);
+            cscr.setString(5, date);
             
-            ResultSet rs = cscr.executeQuery();
-             conn.close();
+            cscr.execute();
             
-            return rs;
-           /*while(rs.next()){
-                
-                System.out.println(rs.getString(1));
-                System.out.println(rs.getString(2));
-                System.out.println(rs.getInt(3));
-                System.out.println(rs.getDate(4));
-            }*/
             
-           
         } catch (SQLException ex) {
             Logger.getLogger(SearchCustomerRecords.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
-           
-           
     }
- 
-    public static boolean addrecord(){
+    
+     public String[] returncustinfo(String custinfo){
         
-        String dbURL = "jdbc:mysql://localhost:3306/app_dev";
-            String user = "root";
-            String password = "#@Rahul8269";
-            Connection conn = null;
-            
-            conn = DriverManager.getConnection(dbURL, user, password);
-            CallableStatement cscr = conn.prepareCall("{call search_customer_records(?,?,?,?)}");
+        int idlen= custinfo.indexOf(32);
+        String idn = custinfo.substring(0, idlen);
+       System.out.println(idn);
+      
+        int nmstrt=idlen+4;
+        int nmend=custinfo.indexOf(32, nmstrt);
+
+        String nmn= custinfo.substring(nmstrt, nmend);
+        System.out.println(nmn);
+
+//        String mobn = " ";
+        int mobstrt=nmend+4;
+        String mobn=custinfo.substring(mobstrt);
+        System.out.println(mobn);
+        
+        String ci[]={idn,nmn,mobn};
+        
+        return  ci;
     }
 }

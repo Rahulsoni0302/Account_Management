@@ -5,8 +5,12 @@
 package UI;
 
 import backend.SearchCustomerRecords;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -37,7 +41,8 @@ public class SearchInF extends javax.swing.JInternalFrame {
         
         editrecordpnl.setVisible(false);
     }
-    String custinfo=null;
+    String custinfo=null, amouduelast=null,id=null;
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +57,10 @@ public class SearchInF extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
         menu = new javax.swing.JPopupMenu();
+        jDialog1 = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        successdialog = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         customeracctbl = new javax.swing.JTable();
@@ -100,6 +109,58 @@ public class SearchInF extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        successdialog.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        successdialog.setForeground(new java.awt.Color(0, 153, 153));
+        successdialog.setText("Details Saved Sucessfully ");
+
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("    OK");
+        jLabel1.setOpaque(true);
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(successdialog)
+                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(162, 162, 162))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(successdialog, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setMaximumSize(new java.awt.Dimension(1300, 800));
         setMinimumSize(new java.awt.Dimension(1300, 800));
         setName(""); // NOI18N
@@ -110,7 +171,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1300, 800));
         jPanel1.setPreferredSize(new java.awt.Dimension(1300, 800));
 
-        customeracctbl.setForeground(new java.awt.Color(255, 255, 255));
         customeracctbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -243,7 +303,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
         editlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         editlbl.setForeground(new java.awt.Color(255, 255, 255));
         editlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        editlbl.setText("Edit details");
+        editlbl.setText("Edit ");
         editlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editlbl.setOpaque(true);
         editlbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -345,35 +405,18 @@ public class SearchInF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchlblMouseMoved
 
     private void searchlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchlblMouseClicked
-        try {
-            // TODO add your handling code here:
-            custinfo = searchcustomertxt.getText();
-            
-            
-           
-            ResultSet rs = SearchCustomerRecords.getcustrecords();
-            
-            DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
-            
-            while (rs.next()){
-                String name=rs.getString(1);
-                String mob_no=rs.getString(2);
-                String i_d=rs.getString(3);
-                String trnxdt=rs.getString(4);
-                String billdt=rs.getString(5);
-                String ttlamou=rs.getString(6);
-                String amourec=rs.getString(7);
-                String amoudue=rs.getString(8);
-                String descrptn=rs.getString(9);
-                
-                String []row={name,mob_no,i_d,trnxdt,billdt,ttlamou,amourec,amoudue,descrptn};
-                
-                model.addRow(row);
-                
-            }    } catch (SQLException ex) {
-            Logger.getLogger(SearchInF.class.getName()).log(Level.SEVERE, null, ex);
-        }
-   
+       
+         custinfo = searchcustomertxt.getText();
+         
+        SearchCustomerRecords ci = new SearchCustomerRecords();
+        
+       String []indci = ci.returncustinfo(custinfo);
+       
+       String id=indci[0];
+       String name=indci[1];
+       String mobno=indci[2];
+       
+       search(id,name,mobno);
    
     }//GEN-LAST:event_searchlblMouseClicked
 
@@ -401,6 +444,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
     private void savelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_savelblMouseClicked
         // TODO add your handling code here:
+        
+        LocalDateTime bd = LocalDateTime.now();
+          String date=bd.toString();  
+          
+          
         String amourec=receivedtxt.getText();
         String amougiven = giventxt.getText();
         String descrptn=descriptiontxt.getText();
@@ -408,11 +456,29 @@ public class SearchInF extends javax.swing.JInternalFrame {
         if(amourec.isBlank() && amougiven.isBlank()){
             errorlbl.setText("both fields can't be empty !");
         }
-        else if ((amourec.isBlank() && amougiven.isBlank())==false){
+        else if ((amourec.isBlank() && amougiven.isBlank())==true){
          errorlbl.setText("both fields can't be filled  !");
         }
         else{
-            
+            if(amourec.isBlank()){
+               float amougvn = Float.valueOf(amougiven);
+              float amoudue = Float.valueOf(amouduelast);
+              amourec = null;
+               
+               float updtamoudue= amougvn + amoudue;
+               
+               SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
+               jDialog1.setVisible(true);
+            }
+            else{
+                float amourecvd=Float.valueOf(amourec);
+                float amoudue = Float.valueOf(amouduelast);
+                 float updtamoudue= amoudue - amourecvd;
+                 
+                  SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
+                  jDialog1.setVisible(true);
+                  
+            }
         }
     }//GEN-LAST:event_savelblMouseClicked
 
@@ -431,12 +497,31 @@ public class SearchInF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchcustomertxtKeyReleased
 
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        String str = list.getSelectedValue();
-        String str1;
-        str1 = str.substring(2);
-        searchcustomertxt.setText(str1);
-        //System.out.print(str1);
+        String custinfo = list.getSelectedValue();
+        
+        SearchCustomerRecords ci = new SearchCustomerRecords();
+        
+       String []indci = ci.returncustinfo(custinfo);
+       
+        id=indci[0];
+       String name=indci[1];
+       String mobno=indci[2];
+       
+        
+       System.out.println(id);
+       System.out.println(name);
+       System.out.println(mobno);
+       
+       
+       search(id,name,mobno);
+       
+        
     }//GEN-LAST:event_listMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jLabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -453,8 +538,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel errorlbl;
     private javax.swing.JLabel givenlbl;
     private javax.swing.JTextField giventxt;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -468,5 +556,77 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel savelbl;
     private javax.swing.JTextField searchcustomertxt;
     private javax.swing.JLabel searchlbl;
+    private javax.swing.JLabel successdialog;
     // End of variables declaration//GEN-END:variables
+
+
+private void search(String id , String nm , String mob){
+     try {
+            // TODO add your handling code here:
+            DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
+            
+             int rows = model.getRowCount();
+           for(int i= rows-1;i>=0;i-- ){
+               
+               model.removeRow(i);
+           }
+            
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            
+            conn = DriverManager.getConnection(dbURL, user, password);
+            CallableStatement cscr = conn.prepareCall("{call search_customer_records(?,?,?,?)}");
+            
+            cscr.setString(1, id);
+            cscr.setString(2, nm);
+            cscr.setString(3, mob);
+            cscr.setDate(4, null);
+            
+            ResultSet rs = cscr.executeQuery();
+            
+           
+           // ResultSet rs = SearchCustomerRecords.getcustrecords(id,nm,mob);
+            
+           int a=1;
+            
+            while (rs.next()){
+                String name=rs.getString(1);
+               
+                String mob_no=rs.getString(2);
+                String i_d=rs.getString(3);
+                String trnxdt=rs.getString(4);
+                String billdt=rs.getString(5);
+                String ttlamou=rs.getString(6);
+                String amourec=rs.getString(7);
+              String amoudue=rs.getString(8);
+                String descrptn=rs.getString(9);
+                
+                //taking the last amount due cell value
+                if(a==1){
+                     amouduelast =rs.getString(8);
+                     a++;
+                }
+               
+                String []row={name,mob_no,i_d,trnxdt,billdt,ttlamou,amourec,amoudue,descrptn};
+                
+                model.addRow(row);
+                
+            } 
+            
+            
+           
+            dueshowlbl.setText(amouduelast);
+            
+           
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchInF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
+}
+
+
+
 }

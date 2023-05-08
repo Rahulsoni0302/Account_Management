@@ -7,6 +7,7 @@ package backend;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -80,9 +81,9 @@ public class BillingInfo {
            
     }
     
-   public static void setamountrecordsvalues()//this method should be called only after billing info is called ,and it will set the amount values
+   public static void setamountrecordsvalues(String id , String trxndate,float ttlamou ,float amoudue , float amourec , String descrptn)
     {
-        try //this method should be called only after billing info is called ,and it will set the amount values
+        try 
         {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
             String user = "root";
@@ -91,17 +92,45 @@ public class BillingInfo {
             
             conn = DriverManager.getConnection(dbURL, user, password);
             
-            CallableStatement sarv = conn.prepareCall("call set_amount_records_values (?,?,?,?,?)");
+            CallableStatement sarv = conn.prepareCall("call set_amount_records_values (?,?,?,?,?,?)");
             
-            sarv.setDate(1, );// transaction date
-            sarv.setFloat(2, 0);//total amount
-            sarv.setFloat(3, 0);//discount
-            sarv.setFloat(4, 0);//received amount
-            sarv.setFloat(5, 0);// due amount
+            sarv.setString(1,id );// id
+            sarv.setString(2, trxndate);//trnx date
+            sarv.setFloat(3, ttlamou);//total amount
+            sarv.setFloat(4, amoudue);//received amount
+            sarv.setFloat(5, amourec);// due amount
+            sarv.setString(6, descrptn);
+            
+            sarv.execute();
+            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(BillingInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+   
+   public static void setdatetobill(String id , String date){
+       
+        try {
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            
+            conn = DriverManager.getConnection(dbURL, user, password);
+            
+            PreparedStatement st = conn.prepareStatement("insert into bills (id , date) values (? , ?); ");
+            
+            st.setString(1, id);
+            st.setString(2, date);
+            
+            st.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(BillingInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+       
+   }
     
   
 }

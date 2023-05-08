@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package UI;
+import backend.BillingInfo;
+import backend.SearchCustomerRecords;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -53,6 +55,9 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         BasicPopupMenuUI mui;
         mui = (BasicPopupMenuUI)menu.getUI();
     }
+    
+    String id=null,date=null;
+    float ttl=0, amourec=0, rem=0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,11 +101,21 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         receivedamou = new javax.swing.JLabel();
         amountrec = new javax.swing.JTextField();
         customernametxt = new javax.swing.JTextField();
+        amountrec1 = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
+        mobilenolbl = new javax.swing.JLabel();
+        mobnotxt = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
+        idlbl = new javax.swing.JLabel();
+        idshowlbl = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         addrow = new javax.swing.JLabel();
         printlbl = new javax.swing.JLabel();
         deleterow = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        amountrec2 = new javax.swing.JTextField();
+        amountrec3 = new javax.swing.JTextField();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -121,8 +136,18 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jLabel1.setText("Please confirm the print and save");
 
         ok.setText("OK");
+        ok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                okMouseClicked(evt);
+            }
+        });
 
         cancel.setText("cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,6 +192,11 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             String[] strings = { " " };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMouseClicked(evt);
+            }
         });
         jScrollPane4.setViewportView(list);
 
@@ -309,6 +339,40 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             }
         });
 
+        amountrec1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountrec1ActionPerformed(evt);
+            }
+        });
+        amountrec1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amountrec1KeyReleased(evt);
+            }
+        });
+
+        jSeparator6.setBackground(new java.awt.Color(0, 153, 153));
+        jSeparator6.setForeground(new java.awt.Color(0, 153, 153));
+        jSeparator6.setOpaque(true);
+
+        mobilenolbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mobilenolbl.setText("Mob. no. :");
+
+        mobnotxt.setBorder(null);
+        mobnotxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mobnotxtKeyReleased(evt);
+            }
+        });
+
+        jSeparator7.setBackground(new java.awt.Color(0, 153, 153));
+        jSeparator7.setForeground(new java.awt.Color(0, 153, 153));
+        jSeparator7.setOpaque(true);
+
+        idlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        idlbl.setText(" ID:");
+
+        idshowlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout printpnlLayout = new javax.swing.GroupLayout(printpnl);
         printpnl.setLayout(printpnlLayout);
         printpnlLayout.setHorizontalGroup(
@@ -336,14 +400,15 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                         .addComponent(contactlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(320, 320, 320))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(printpnlLayout.createSequentialGroup()
+                                .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(amountrec1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(printpnlLayout.createSequentialGroup()
@@ -355,18 +420,32 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(329, 329, 329))
-                    .addGroup(printpnlLayout.createSequentialGroup()
-                        .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(customernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(idlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(printpnlLayout.createSequentialGroup()
+                                .addComponent(idshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(customernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(mobilenolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(mobnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(208, 208, 208))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(329, 329, 329))
             .addGroup(printpnlLayout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         printpnlLayout.setVerticalGroup(
@@ -389,35 +468,47 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                     .addComponent(contactlbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(customernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(2, 2, 2)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(customernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(printpnlLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(mobilenolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mobnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dueamount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nettotalshowlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nettotal, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(26, 26, 26)
+                            .addComponent(customernamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dueamount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(nettotalshowlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nettotal, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(receivedamou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amountrec1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator4)
+                    .addComponent(jSeparator6))
+                .addGap(15, 15, 15))
         );
 
         jPanel1.add(printpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 890, 780));
@@ -495,6 +586,38 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         });
         jPanel1.add(deleterow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 370, 100, 50));
 
+        jCheckBox1.setText("check this box ");
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 520, -1, 30));
+
+        amountrec2.setText("amount due record");
+        amountrec2.setBorder(null);
+        amountrec2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountrec2ActionPerformed(evt);
+            }
+        });
+        amountrec2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amountrec2KeyReleased(evt);
+            }
+        });
+        jPanel1.add(amountrec2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 580, 130, 30));
+
+        amountrec3.setText("if you want to exclude");
+        amountrec3.setBorder(null);
+        amountrec3.setOpaque(true);
+        amountrec3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountrec3ActionPerformed(evt);
+            }
+        });
+        amountrec3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amountrec3KeyReleased(evt);
+            }
+        });
+        jPanel1.add(amountrec3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 550, 130, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1297, -1));
 
         pack();
@@ -505,8 +628,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_printlblMouseMoved
 
     private void printlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseClicked
-       printBill(printpnl);
-       billing();
+      jDialog1.setVisible(true);
       
     }//GEN-LAST:event_printlblMouseClicked
 
@@ -615,12 +737,12 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private void amountrecKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrecKeyReleased
         // TODO add your handling code here:
         String total = nettotalshowlbl.getText();
-        float ttl=Float.valueOf(total);
+         ttl=Float.valueOf(total);
         
        String rec= amountrec.getText();
-       float amourec=Float.valueOf(rec);
+       amourec=Float.valueOf(rec);
        
-       float rem=ttl-amourec;
+        rem=ttl-amourec;
         String remain=Float.toString(rem);
        dueamount.setText(remain);
       
@@ -639,10 +761,85 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_customernametxtKeyReleased
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        // TODO add your handling code here:
+        // TODO add your haabandling code here:
         
-        customernametxt.setText(jList1.getSelectedValue());
+       // customernametxt.setText(jList1.getSelectedValue());
+        
+        
+       
     }//GEN-LAST:event_jList1MouseClicked
+
+    private void okMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okMouseClicked
+        // TODO add your handling code here:
+        billing(id); 
+        BillingInfo.setdatetobill(id, date);
+        printBill(printpnl);
+         
+         if(jCheckBox1.isSelected()){
+         
+            
+             
+         }
+         else{
+              BillingInfo.setamountrecordsvalues(id, date, ttl,  rem, amourec, date);
+         }
+    }//GEN-LAST:event_okMouseClicked
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        // TODO add your handling code here:
+        jDialog1.dispose();
+    }//GEN-LAST:event_cancelMouseClicked
+
+    private void amountrec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec1ActionPerformed
+
+    private void amountrec1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec1KeyReleased
+
+    private void amountrec2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec2ActionPerformed
+
+    private void amountrec2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec2KeyReleased
+
+    private void amountrec3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec3ActionPerformed
+
+    private void amountrec3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec3KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec3KeyReleased
+
+    private void mobnotxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobnotxtKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobnotxtKeyReleased
+
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+        // TODO add your handling code here:
+         String custinfo = list.getSelectedValue();
+          System.out.println(custinfo);
+        
+        SearchCustomerRecords ci = new SearchCustomerRecords();
+        
+       String []indci = ci.returncustinfo(custinfo);
+       
+        id=indci[0];
+       String name=indci[1];
+       String mobno=indci[2];
+       
+        
+       System.out.println(id);
+       System.out.println(name);
+       System.out.println(mobno);
+       
+       idshowlbl.setText(id);
+        customernametxt.setText(name);
+        mobnotxt.setText(mobno);
+    }//GEN-LAST:event_listMouseClicked
 
     
     private void printBill(JPanel panel){
@@ -671,7 +868,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             }
     }
     
-    private void billing(){
+    private void billing(String id){
         
         String des=null;
             DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -679,7 +876,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             
             
              LocalDateTime bd = LocalDateTime.now();
-            String date = bd.toString();
+              date = bd.toString();
         try {
             
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
@@ -699,7 +896,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                float total=Float.parseFloat(model.getValueAt(i, 4).toString());
                 
                 
-                cbi.setInt(1,2 );//id
+                cbi.setString(1,id );//id
                 cbi.setString(2,date);//date
                 cbi.setString(3, des);//dscription
                 cbi.setFloat(4,quantity);//quantity
@@ -759,6 +956,9 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel addresslbl;
     private javax.swing.JLabel addrow;
     private javax.swing.JTextField amountrec;
+    private javax.swing.JTextField amountrec1;
+    private javax.swing.JTextField amountrec2;
+    private javax.swing.JTextField amountrec3;
     private javax.swing.JButton cancel;
     private javax.swing.JLabel contactlbl;
     private javax.swing.JLabel customernamelbl;
@@ -768,6 +968,9 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel deleterow;
     private javax.swing.JLabel dueamount;
     private javax.swing.JLabel enterpriselbl;
+    private javax.swing.JLabel idlbl;
+    private javax.swing.JLabel idshowlbl;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
@@ -783,9 +986,13 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JList<String> list;
     private javax.swing.JPopupMenu menu;
+    private javax.swing.JLabel mobilenolbl;
+    private javax.swing.JTextField mobnotxt;
     private javax.swing.JLabel nettotal;
     private javax.swing.JLabel nettotalshowlbl;
     private javax.swing.JButton ok;
