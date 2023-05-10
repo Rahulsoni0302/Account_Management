@@ -27,8 +27,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         dashboardpanel = new javax.swing.JPanel();
         welcomelbl = new javax.swing.JLabel();
         menuinfo = new javax.swing.JLabel();
@@ -38,19 +36,6 @@ public class MainFrame extends javax.swing.JFrame {
         addreclbl = new javax.swing.JLabel();
         importreclbl = new javax.swing.JLabel();
         basepanel = new javax.swing.JPanel();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1676, 850));
@@ -328,8 +313,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel genbilllbl;
     private javax.swing.JLabel homelbl;
     private javax.swing.JLabel importreclbl;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel menuinfo;
     private javax.swing.JLabel welcomelbl;
     // End of variables declaration//GEN-END:variables

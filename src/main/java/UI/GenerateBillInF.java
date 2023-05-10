@@ -29,6 +29,14 @@ import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
 import javax.swing.table.DefaultTableModel;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfTemplate;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Color;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 /**
  *
@@ -73,8 +81,8 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jDialog1 = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        ok = new javax.swing.JButton();
-        cancel = new javax.swing.JButton();
+        canclelbl = new javax.swing.JLabel();
+        oklbl = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
@@ -108,14 +116,22 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jSeparator7 = new javax.swing.JSeparator();
         idlbl = new javax.swing.JLabel();
         idshowlbl = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         addrow = new javax.swing.JLabel();
         printlbl = new javax.swing.JLabel();
         deleterow = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         amountrec2 = new javax.swing.JTextField();
         amountrec3 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -129,23 +145,55 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
+        jDialog1.setMaximumSize(new java.awt.Dimension(400, 304));
+        jDialog1.setMinimumSize(new java.awt.Dimension(400, 304));
+        jDialog1.setUndecorated(true);
+
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Please confirm the print and save");
 
-        ok.setText("OK");
-        ok.addMouseListener(new java.awt.event.MouseAdapter() {
+        canclelbl.setBackground(new java.awt.Color(255, 255, 255));
+        canclelbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        canclelbl.setForeground(new java.awt.Color(0, 0, 0));
+        canclelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        canclelbl.setText("cancle");
+        canclelbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        canclelbl.setOpaque(true);
+        canclelbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                canclelblMouseMoved(evt);
+            }
+        });
+        canclelbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                okMouseClicked(evt);
+                canclelblMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                canclelblMouseExited(evt);
             }
         });
 
-        cancel.setText("cancel");
-        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        oklbl.setBackground(new java.awt.Color(255, 255, 255));
+        oklbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        oklbl.setForeground(new java.awt.Color(0, 0, 0));
+        oklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        oklbl.setText("OK");
+        oklbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        oklbl.setOpaque(true);
+        oklbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                oklblMouseMoved(evt);
+            }
+        });
+        oklbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelMouseClicked(evt);
+                oklblMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                oklblMouseExited(evt);
             }
         });
 
@@ -154,15 +202,15 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(ok)
-                        .addGap(70, 70, 70)
-                        .addComponent(cancel)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(canclelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -170,11 +218,11 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(58, 58, 58)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ok)
-                    .addComponent(cancel))
-                .addContainerGap(132, Short.MAX_VALUE))
+                    .addComponent(oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(canclelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -213,14 +261,16 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1300, 850));
         setMinimumSize(new java.awt.Dimension(1300, 850));
         setPreferredSize(new java.awt.Dimension(1300, 850));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(1300, 850));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1300, 850));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1300, 850));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1300, 800));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1300, 800));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1300, 800));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         printpnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -444,7 +494,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(329, 329, 329))
             .addGroup(printpnlLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(65, 65, 65)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -513,13 +563,6 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
 
         jPanel1.add(printpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 890, 780));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("\n\n1.\n\n2.\n\n3.\n\n4.\n\n5.\n\n6.\n\n7.\n\n8.\n\n9.\n\n10.");
-        jScrollPane3.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 73, 420));
-
         addrow.setBackground(new java.awt.Color(0, 153, 153));
         addrow.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         addrow.setForeground(new java.awt.Color(255, 255, 255));
@@ -586,9 +629,12 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         });
         jPanel1.add(deleterow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 370, 100, 50));
 
+        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("check this box ");
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 520, -1, 30));
+        jCheckBox1.setBorder(null);
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 520, 120, 30));
 
+        amountrec2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         amountrec2.setText("amount due record");
         amountrec2.setBorder(null);
         amountrec2.addActionListener(new java.awt.event.ActionListener() {
@@ -603,6 +649,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         });
         jPanel1.add(amountrec2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 580, 130, 30));
 
+        amountrec3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         amountrec3.setText("if you want to exclude");
         amountrec3.setBorder(null);
         amountrec3.setOpaque(true);
@@ -616,149 +663,62 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                 amountrec3KeyReleased(evt);
             }
         });
-        jPanel1.add(amountrec3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 550, 130, 30));
+        jPanel1.add(amountrec3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 550, -1, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1297, -1));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("10");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 610, 30, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("1");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 30, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("2");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 30, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("3");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 30, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("4");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 30, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("5");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 30, 30));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("6");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 30, 30));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("7");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 30, 30));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("8");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 530, 30, 30));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("9");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, 30, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1297, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void printlblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseMoved
-        printlbl.setBackground(new java.awt.Color(0, 102, 103));
-    }//GEN-LAST:event_printlblMouseMoved
-
-    private void printlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseClicked
-      jDialog1.setVisible(true);
-      
-    }//GEN-LAST:event_printlblMouseClicked
-
-    private void printlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseExited
-        printlbl.setBackground(new java.awt.Color(0, 152, 152));
-    }//GEN-LAST:event_printlblMouseExited
-
-    private void tableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyReleased
-        // TODO add your handling code here:
-        
-        
-      
-    }//GEN-LAST:event_tableKeyReleased
-
-    private void nettotalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nettotalMouseMoved
-
-    private void nettotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseClicked
-        // TODO add your handling code here:
-         table.selectAll();
-         float totalb=0;
-         DefaultTableModel model = (DefaultTableModel) table.getModel();
-         int rows= 0;
-         rows=model.getRowCount();
-        
-         System.out.println(rows);
-        for(int i=0;i<rows;i++){
-            
-        float a = Float.parseFloat(model.getValueAt(i, 4).toString());
-         
-          System.out.println(a);
-          totalb=totalb+a;
-          System.out.println(totalb);
-          
-        }
-        
-        nettotalshowlbl.setText(Float.toString(totalb));
-    }//GEN-LAST:event_nettotalMouseClicked
-
-    private void nettotalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nettotalMouseExited
-
-    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
-        // TODO add your handling code here:
-        
-         
-    }//GEN-LAST:event_tableMouseClicked
-
-    private void tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyPressed
-        // for creating new rows
-    
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        if(evt.getKeyCode()==KeyEvent.VK_INSERT){
-            int selectedrow = table.getSelectedRow()+1;
-         
-            int rowcount = model.getRowCount();
-            
-            if((selectedrow== rowcount) && 
-                    (rowcount<10)){
-                 model.insertRow(model.getRowCount(), new Object[]{"","","","",""});
-                    
-            }
-              
-        }
-    }//GEN-LAST:event_tableKeyPressed
-
-    private void addrowMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addrowMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addrowMouseMoved
-
-    private void addrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addrowMouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        
-        if(model.getRowCount()<10){
-             model.insertRow(model.getRowCount(), new Object[]{"","","","",""});
-        }
-        
-    }//GEN-LAST:event_addrowMouseClicked
-
-    private void addrowMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addrowMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addrowMouseExited
-
-    private void deleterowMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleterowMouseMoved
-
-    private void deleterowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-       // System.out.println(model.getRowCount());
-       model.removeRow(model.getRowCount()-1);
-    }//GEN-LAST:event_deleterowMouseClicked
-
-    private void deleterowMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleterowMouseExited
-
-    private void amountrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrecActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrecActionPerformed
-
-    private void amountrecKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrecKeyReleased
-        // TODO add your handling code here:
-        String total = nettotalshowlbl.getText();
-         ttl=Float.valueOf(total);
-        
-       String rec= amountrec.getText();
-       amourec=Float.valueOf(rec);
-       
-        rem=ttl-amourec;
-        String remain=Float.toString(rem);
-       dueamount.setText(remain);
-      
-        
-    }//GEN-LAST:event_amountrecKeyReleased
-
-    private void customernametxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customernametxtKeyReleased
-        DefaultListModel model = new DefaultListModel();
-        String search  = customernametxt.getText().trim();
-        Suggestion suggestion = new Suggestion(list,model);
-        if(!search.equals("")){
-            menu.show(customernametxt,0,customernametxt.getHeight()+12);
-            suggestion.searchFilter(customernametxt.getText());
-            customernametxt.requestFocus();
-        }
-    }//GEN-LAST:event_customernametxtKeyReleased
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         // TODO add your haabandling code here:
@@ -768,55 +728,6 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         
        
     }//GEN-LAST:event_jList1MouseClicked
-
-    private void okMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okMouseClicked
-        // TODO add your handling code here:
-        billing(id); 
-        BillingInfo.setdatetobill(id, date);
-        printBill(printpnl);
-         
-         if(jCheckBox1.isSelected()){
-         
-            
-             
-         }
-         else{
-              BillingInfo.setamountrecordsvalues(id, date, ttl,  rem, amourec, date);
-         }
-    }//GEN-LAST:event_okMouseClicked
-
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        // TODO add your handling code here:
-        jDialog1.dispose();
-    }//GEN-LAST:event_cancelMouseClicked
-
-    private void amountrec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec1ActionPerformed
-
-    private void amountrec1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec1KeyReleased
-
-    private void amountrec2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec2ActionPerformed
-
-    private void amountrec2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec2KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec2KeyReleased
-
-    private void amountrec3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec3ActionPerformed
-
-    private void amountrec3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec3KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec3KeyReleased
-
-    private void mobnotxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobnotxtKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mobnotxtKeyReleased
 
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         // TODO add your handling code here:
@@ -840,6 +751,218 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         customernametxt.setText(name);
         mobnotxt.setText(mobno);
     }//GEN-LAST:event_listMouseClicked
+
+    private void canclelblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canclelblMouseMoved
+        canclelbl.setBackground(new java.awt.Color(204,204,204));
+    }//GEN-LAST:event_canclelblMouseMoved
+
+    private void canclelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canclelblMouseClicked
+        // TODO add your handling code here:
+        // jPanel1.add(editrecordpnl);
+        jDialog1.dispose();
+    }//GEN-LAST:event_canclelblMouseClicked
+
+    private void canclelblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canclelblMouseExited
+        canclelbl.setBackground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_canclelblMouseExited
+
+    private void oklblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oklblMouseMoved
+        oklbl.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_oklblMouseMoved
+
+    private void oklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oklblMouseClicked
+        billing(id);
+        BillingInfo.setdatetobill(id, date);
+        printBill(printpnl);
+        try {
+            savePdf();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GenerateBillInF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(jCheckBox1.isSelected()){
+
+        }
+        else{
+            BillingInfo.setamountrecordsvalues(id, date, ttl,  rem, amourec, date);
+        }
+//        jDialog1.dispose();
+//        jPanel1.removeAll();
+//        GenerateBillInF ginf = new GenerateBillInF();
+//        //jPanel1.add(ginf);
+//        ginf.setVisible(true);
+//        ginf.revalidate();
+    }//GEN-LAST:event_oklblMouseClicked
+
+    private void oklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oklblMouseExited
+         oklbl.setBackground(new Color(255,255,255));
+    }//GEN-LAST:event_oklblMouseExited
+
+    private void amountrec3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec3KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec3KeyReleased
+
+    private void amountrec3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec3ActionPerformed
+
+    private void amountrec2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec2KeyReleased
+
+    private void amountrec2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec2ActionPerformed
+
+    private void deleterowMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseExited
+        deleterow.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_deleterowMouseExited
+
+    private void deleterowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        // System.out.println(model.getRowCount());
+        model.removeRow(model.getRowCount()-1);
+    }//GEN-LAST:event_deleterowMouseClicked
+
+    private void deleterowMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseMoved
+        deleterow.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_deleterowMouseMoved
+
+    private void printlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseExited
+        printlbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_printlblMouseExited
+
+    private void printlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseClicked
+        jDialog1.setLocationRelativeTo(printpnl);
+        jDialog1.setVisible(true);
+
+    }//GEN-LAST:event_printlblMouseClicked
+
+    private void printlblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseMoved
+        printlbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_printlblMouseMoved
+
+    private void addrowMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addrowMouseExited
+        addrow.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_addrowMouseExited
+
+    private void addrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addrowMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+        if(model.getRowCount()<10){
+            model.insertRow(model.getRowCount(), new Object[]{"","","","",""});
+        }
+
+    }//GEN-LAST:event_addrowMouseClicked
+
+    private void addrowMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addrowMouseMoved
+        addrow.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_addrowMouseMoved
+
+    private void mobnotxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobnotxtKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobnotxtKeyReleased
+
+    private void amountrec1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec1KeyReleased
+
+    private void amountrec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrec1ActionPerformed
+
+    private void customernametxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customernametxtKeyReleased
+        DefaultListModel model = new DefaultListModel();
+        String search  = customernametxt.getText().trim();
+        Suggestion suggestion = new Suggestion(list,model);
+        if(!search.equals("")){
+            menu.show(customernametxt,0,customernametxt.getHeight()+12);
+            suggestion.searchFilter(customernametxt.getText());
+            customernametxt.requestFocus();
+        }
+    }//GEN-LAST:event_customernametxtKeyReleased
+
+    private void amountrecKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrecKeyReleased
+        // TODO add your handling code here:
+        String total = nettotalshowlbl.getText();
+        ttl=Float.valueOf(total);
+
+        String rec= amountrec.getText();
+        amourec=Float.valueOf(rec);
+
+        rem=ttl-amourec;
+        if(rem>=0){
+        String remain=Float.toString(rem);
+        dueamount.setText(remain);
+        }
+        else{
+            dueamount.setText("NA");
+        }
+
+    }//GEN-LAST:event_amountrecKeyReleased
+
+    private void amountrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrecActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountrecActionPerformed
+
+    private void nettotalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseExited
+        nettotal.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_nettotalMouseExited
+
+    private void nettotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseClicked
+        // TODO add your handling code here:
+        table.selectAll();
+        float totalb=0;
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int rows= 0;
+        rows=model.getRowCount();
+
+        System.out.println(rows);
+        for(int i=0;i<rows;i++){
+
+            float a = Float.parseFloat(model.getValueAt(i, 4).toString());
+
+            System.out.println(a);
+            totalb=totalb+a;
+            System.out.println(totalb);
+
+        }
+
+        nettotalshowlbl.setText(Float.toString(totalb));
+    }//GEN-LAST:event_nettotalMouseClicked
+
+    private void nettotalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseMoved
+        nettotal.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_nettotalMouseMoved
+
+    private void tableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tableKeyReleased
+
+    private void tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyPressed
+        // for creating new rows
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        if(evt.getKeyCode()==KeyEvent.VK_INSERT){
+            int selectedrow = table.getSelectedRow()+1;
+
+            int rowcount = model.getRowCount();
+
+            if((selectedrow== rowcount) &&
+                (rowcount<10)){
+                model.insertRow(model.getRowCount(), new Object[]{"","","","",""});
+
+            }
+
+        }
+    }//GEN-LAST:event_tableKeyPressed
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tableMouseClicked
 
     
     private void printBill(JPanel panel){
@@ -952,6 +1075,28 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
          
     
     }
+    
+    public void savePdf() throws FileNotFoundException{
+        Document doc = new Document();
+        try {            
+            try {
+                PdfWriter writer = PdfWriter.getInstance(doc,new FileOutputStream("D:\\1.pdf"));
+                doc.open();
+                PdfContentByte contentbyte = writer.getDirectContent();
+                PdfTemplate template = contentbyte.createTemplate(1086, 762);
+                Graphics2D g2 = template.createGraphics(1086, 762);
+                jPanel1.print(g2);
+                g2.dispose();
+               contentbyte.addTemplate(template, 30,300);
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(GenerateBillInF.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (DocumentException ex) {
+            Logger.getLogger(GenerateBillInF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        doc.close();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addresslbl;
     private javax.swing.JLabel addrow;
@@ -959,7 +1104,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JTextField amountrec1;
     private javax.swing.JTextField amountrec2;
     private javax.swing.JTextField amountrec3;
-    private javax.swing.JButton cancel;
+    private javax.swing.JLabel canclelbl;
     private javax.swing.JLabel contactlbl;
     private javax.swing.JLabel customernamelbl;
     private javax.swing.JTextField customernametxt;
@@ -973,13 +1118,22 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -988,14 +1142,13 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JList<String> list;
     private javax.swing.JPopupMenu menu;
     private javax.swing.JLabel mobilenolbl;
     private javax.swing.JTextField mobnotxt;
     private javax.swing.JLabel nettotal;
     private javax.swing.JLabel nettotalshowlbl;
-    private javax.swing.JButton ok;
+    private javax.swing.JLabel oklbl;
     private javax.swing.JLabel printlbl;
     private javax.swing.JPanel printpnl;
     private javax.swing.JLabel receivedamou;
