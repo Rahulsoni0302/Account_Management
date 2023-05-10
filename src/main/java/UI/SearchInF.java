@@ -271,7 +271,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
         errorlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         errorlbl.setForeground(new java.awt.Color(255, 0, 0));
-        errorlbl.setText("jLabel1");
         editrecordpnl.add(errorlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 260, 30));
 
         searchlbl.setBackground(new java.awt.Color(0, 153, 153));
@@ -326,7 +325,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
         dueshowlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         dueshowlbl.setForeground(new java.awt.Color(255, 0, 51));
-        dueshowlbl.setText("here");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -379,7 +377,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
                     .addComponent(dueshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editrecordpnl, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -507,10 +505,9 @@ public class SearchInF extends javax.swing.JInternalFrame {
        String name=indci[1];
        String mobno=indci[2];
        
-        
-       System.out.println(id);
-       System.out.println(name);
-       System.out.println(mobno);
+       searchcustomertxt.setText(name);
+       
+      
        
        
        search(id,name,mobno);
@@ -520,7 +517,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        
+        jDialog1.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
 
@@ -615,7 +612,9 @@ private void search(String id , String nm , String mob){
                 
             } 
             
-            
+            if(amouduelast ==null){
+                amouduelast="0";
+            }
            
             dueshowlbl.setText(amouduelast);
             

@@ -44,7 +44,7 @@ public class AddNewRecord {
      *this method will insert records for new customer as well as for existing customer 
      * depending upon the parameter value 
      */
-    public static void newrecords(String usrid,String description,String amougiving , String date)
+    public static void newrecords(String usrid,String description,String amougiving , String date)//method for add new record frame
     {
         try {
            
@@ -55,12 +55,13 @@ public class AddNewRecord {
             
             conn = DriverManager.getConnection(dbURL, user, password);
           
-            CallableStatement carc = conn.prepareCall("call add_records_cust(?,?,?,?)");
+            CallableStatement carc = conn.prepareCall("call add_records_cust(?,?,?,?,?)");
             
             carc.setString(1, usrid);
             carc.setString(2, description);
-            carc.setString(3, amougiving);
-            carc.setString(4,date );
+            carc.setString(3, null);
+            carc.setString(4, amougiving);
+            carc.setString(5,date );
             
             carc.executeUpdate();
             conn.close();

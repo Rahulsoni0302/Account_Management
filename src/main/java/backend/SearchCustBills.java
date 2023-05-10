@@ -22,27 +22,7 @@ import UI.BillingHistoryInF;
 public class SearchCustBills{
     
     
-    void billingHistory()//shifted to billinghistory jframe
-    {
-      /*  try {
-            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
-            String user = "root";
-            String password = "#@Rahul8269";
-            Connection conn = null;
-            
-            conn = DriverManager.getConnection(dbURL, user, password);
-            CallableStatement cbh= conn.prepareCall("call billing_history()");
-            
-            ResultSet rs= cbh.executeQuery();
-            ResultSetMetaData rsmd = rs.getMetaData();
-            
-            DefaultTableModel model = (DefaultTableModel)
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(SearchCustBills.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-    }
+   
     
     void searchcustbills()/* or billing history for custom customer */{
         
@@ -90,8 +70,8 @@ public class SearchCustBills{
             conn = DriverManager.getConnection(dbURL, user, password);
             CallableStatement cbhcd = conn.prepareCall("call billing_history_custom_dates(?,?)");
             
-            cbhcd.setDate(1, x);
-            cbhcd.setDate(2, x);
+           // cbhcd.setDate(1, x);
+            //cbhcd.setDate(2, x);
             
             ResultSet rs = cbhcd.executeQuery();
         } catch (SQLException ex) {
