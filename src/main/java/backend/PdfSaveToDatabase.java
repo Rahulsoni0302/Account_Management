@@ -10,6 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
+import org.icepdf.ri.common.ComponentKeyBinding;
+import org.icepdf.ri.common.SwingController;
+import org.icepdf.ri.common.SwingViewBuilder;
 
 /**
  *
@@ -32,4 +36,21 @@ public class PdfSaveToDatabase {
             Logger.getLogger(PdfSaveToDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void openpdf(String file){
+  
+    try {
+           SwingController control=new SwingController();
+            SwingViewBuilder factry=new SwingViewBuilder(control);
+            JPanel veiwerCompntpnl=factry.buildViewerPanel();
+            ComponentKeyBinding.install(control, veiwerCompntpnl);
+            control.getDocumentViewController().setAnnotationCallback(
+                    new org.icepdf.ri.common.MyAnnotationCallback(
+                    control.getDocumentViewController()));
+                   control.openDocument(file);
+        jScrollPane1.setViewportView(veiwerCompntpnl); 
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,"Cannot Load Pdf");
+        }
+}
 }

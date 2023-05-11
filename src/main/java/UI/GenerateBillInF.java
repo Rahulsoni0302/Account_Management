@@ -37,6 +37,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -145,7 +146,6 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jDialog1.setMaximumSize(new java.awt.Dimension(400, 304));
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 304));
         jDialog1.setUndecorated(true);
 
@@ -157,7 +157,6 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
 
         canclelbl.setBackground(new java.awt.Color(255, 255, 255));
         canclelbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        canclelbl.setForeground(new java.awt.Color(0, 0, 0));
         canclelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         canclelbl.setText("cancle");
         canclelbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -178,7 +177,6 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
 
         oklbl.setBackground(new java.awt.Color(255, 255, 255));
         oklbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        oklbl.setForeground(new java.awt.Color(0, 0, 0));
         oklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         oklbl.setText("OK");
         oklbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -630,6 +628,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jPanel1.add(deleterow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 370, 100, 50));
 
         jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jCheckBox1.setText("check this box ");
         jCheckBox1.setBorder(null);
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 520, 120, 30));
@@ -783,7 +782,11 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
 
         }
         else{
-            BillingInfo.setamountrecordsvalues(id, date, ttl,  rem, amourec, date);
+            
+           String lastamoudue = fetchlastamountdue(id);
+           float remlast=Float.valueOf(lastamoudue);
+           float remfinal=rem+remlast;
+            BillingInfo.setamountrecordsvalues(id, date, ttl,  remfinal, amourec, date);
         }
 //        jDialog1.dispose();
 //        jPanel1.removeAll();
@@ -1096,6 +1099,36 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
             Logger.getLogger(GenerateBillInF.class.getName()).log(Level.SEVERE, null, ex);
         }
         doc.close();
+    }
+    
+    private String fetchlastamountdue(String id ){
+         
+        String due=null;
+        try {
+           
+            
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            conn = DriverManager.getConnection(dbURL, user, password);
+            
+            String sql ="select amount_due from amount_records where id=?\n" +"order by trnx_date desc;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "1");
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                due =rs.getString(1);
+            }
+            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(GenerateBillInF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         return due ;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addresslbl;

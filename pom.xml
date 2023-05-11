@@ -26,6 +26,28 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE170</version>
         </dependency>
+        
+ <!-- https://mvnrepository.com/artifact/org.icepdf.os/icepdf-core -->
+<dependency>
+    <groupId>org.icepdf.os</groupId>
+    <artifactId>icepdf-core</artifactId>
+    <version>6.2.2</version>
+    <exclusions>
+     <exclusion>
+      <groupId>javax.media</groupId>
+      <artifactId>jai_core</artifactId>
+     </exclusion>
+    </exclusions>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.icepdf.os/icepdf-viewer -->
+<dependency>
+    <groupId>org.icepdf.os</groupId>
+    <artifactId>icepdf-viewer</artifactId>
+    <version>6.2.2</version>
+</dependency>
+
+
     </dependencies>
 </project>
 
