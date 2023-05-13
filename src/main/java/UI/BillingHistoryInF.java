@@ -14,9 +14,13 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
 import javax.swing.table.DefaultTableModel;
+import org.icepdf.ri.common.ComponentKeyBinding;
+import org.icepdf.ri.common.SwingController;
+import org.icepdf.ri.common.SwingViewBuilder;
 
 /**
  *
@@ -114,6 +118,8 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
         menu = new javax.swing.JPopupMenu();
+        pdfpanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         headinglbl = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -123,6 +129,7 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         search = new javax.swing.JLabel();
         infolbl = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -140,6 +147,17 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pdfpanelLayout = new javax.swing.GroupLayout(pdfpanel);
+        pdfpanel.setLayout(pdfpanelLayout);
+        pdfpanelLayout.setHorizontalGroup(
+            pdfpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
+        );
+        pdfpanelLayout.setVerticalGroup(
+            pdfpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
         );
 
         setMaximumSize(new java.awt.Dimension(1300, 850));
@@ -214,6 +232,13 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         infolbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         infolbl.setText("Search for customer name / id / number ");
 
+        jButton1.setText("show pdf");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -227,7 +252,9 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(475, 475, 475)
-                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(180, 180, 180)
+                        .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(455, 455, 455)
                         .addComponent(headinglbl, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,7 +278,9 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(recentbillbl)
                 .addGap(18, 18, 18)
@@ -321,6 +350,13 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_listMouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+       PdfFrame pf = new PdfFrame();
+       pf.setVisible(true);
+       pf.openpdf("D://11.pdf");
+    }//GEN-LAST:event_jButton1MouseClicked
+
       private void billingHistory()//used to fetch the bills of the recent customers
     {
         try {
@@ -359,16 +395,36 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
             Logger.getLogger(SearchCustBills.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+      
+       public void openpdf(String file){
+  
+    try {
+           SwingController control=new SwingController();
+            SwingViewBuilder factry=new SwingViewBuilder(control);
+             JPanel veiwerCompntpnl=factry.buildViewerPanel();
+            ComponentKeyBinding.install(control, veiwerCompntpnl);
+            control.getDocumentViewController().setAnnotationCallback(
+                    new org.icepdf.ri.common.MyAnnotationCallback(
+                    control.getDocumentViewController()));
+                   control.openDocument(file);
+        jScrollPane3.setViewportView(veiwerCompntpnl); 
+        } catch (Exception ex) {
+            System.out.println("can't open pdf");
+        }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headinglbl;
     private javax.swing.JLabel infolbl;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JList<String> list;
     private javax.swing.JPopupMenu menu;
+    private javax.swing.JPanel pdfpanel;
     private javax.swing.JLabel recentbillbl;
     private javax.swing.JLabel search;
     private javax.swing.JTable table;
