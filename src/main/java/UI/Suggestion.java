@@ -85,7 +85,7 @@ public class Suggestion{
         
     }
     
-    public void searchFilter(String search){
+    public DefaultListModel searchFilter(String search){
         DefaultListModel filteredsearch = new DefaultListModel();
         ArrayList flist = aList();
         flist.stream().forEach((arlist)->{
@@ -97,6 +97,7 @@ public class Suggestion{
         model=filteredsearch ;
         list.setModel(model);
         arlist.removeAll(arlist); 
+        return model;
     }
    
 }

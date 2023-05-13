@@ -39,15 +39,33 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.PreparedStatement;
 
+
 /**
  *
  * @author Abhishek
- */
-public class GenerateBillInF extends javax.swing.JInternalFrame {
+ */public class GenerateBillInF extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form NewIF
      */
+    
+    public void panelRefresh(){
+        dateshow.setText("");
+        idshowlbl.setText("");
+        customernametxt.setText("");
+        mobnotxt.setText("");
+        
+        DefaultTableModel model = new DefaultTableModel();
+        for(int i=0 ; i<model.getRowCount();i++){
+            model.removeRow(i);
+        }
+        
+        dueamount.setText("");
+        nettotalshowlbl.setText("");
+        amountrec.setText("");
+        amountrec1.setText("");        
+    }
+    
     
     
     public GenerateBillInF() {
@@ -56,7 +74,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         
-        
+        add.setVisible(false);
         setuserdetails();
         
         menu.add(jPanel3);
@@ -133,6 +151,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        add = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -434,11 +453,9 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
                         .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateshow, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(234, 234, 234))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(242, 242, 242))))
+                        .addComponent(dateshow, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(242, 242, 242))
             .addGroup(printpnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -714,6 +731,9 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         jLabel11.setText("9");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, 30, 30));
 
+        add.setText("add");
+        jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 140, 60, 80));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1297, -1));
 
         pack();
@@ -788,12 +808,13 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
            float remfinal=rem+remlast;
             BillingInfo.setamountrecordsvalues(id, date, ttl,  remfinal, amourec, date);
         }
-//        jDialog1.dispose();
+        jDialog1.dispose();
 //        jPanel1.removeAll();
 //        GenerateBillInF ginf = new GenerateBillInF();
 //        //jPanel1.add(ginf);
 //        ginf.setVisible(true);
 //        ginf.revalidate();
+        panelRefresh();
     }//GEN-LAST:event_oklblMouseClicked
 
     private void oklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oklblMouseExited
@@ -881,7 +902,13 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
         Suggestion suggestion = new Suggestion(list,model);
         if(!search.equals("")){
             menu.show(customernametxt,0,customernametxt.getHeight()+12);
-            suggestion.searchFilter(customernametxt.getText());
+            model = suggestion.searchFilter(customernametxt.getText());
+            if(model.isEmpty()){
+                add.setVisible(true);
+            }
+            else{
+                add.setVisible(false);
+            }
             customernametxt.requestFocus();
         }
     }//GEN-LAST:event_customernametxtKeyReleased
@@ -1131,6 +1158,7 @@ public class GenerateBillInF extends javax.swing.JInternalFrame {
          return due ;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel add;
     private javax.swing.JLabel addresslbl;
     private javax.swing.JLabel addrow;
     private javax.swing.JTextField amountrec;

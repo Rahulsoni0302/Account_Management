@@ -52,6 +52,11 @@
             <version>5.3.4</version>
             <type>jar</type>
         </dependency>
+<!--        <dependency>
+            <groupId>org.openrndr.extra</groupId>
+            <artifactId>orx-gradient-descent</artifactId>
+            <version>0.4.3-alpha8</version>
+        </dependency> -->
     </dependencies>
 </project>
 
