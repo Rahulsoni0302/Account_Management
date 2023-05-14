@@ -310,7 +310,7 @@
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jSeparator6" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="amountrec1" alignment="0" pref="213" max="32767" attributes="0"/>
+                                      <Component id="descriptiontxt" alignment="0" pref="213" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -435,7 +435,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="receivedamou" alignment="3" max="32767" attributes="0"/>
                           <Component id="amountrec" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="amountrec1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="descriptiontxt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -677,10 +677,10 @@
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="customernametxtKeyReleased"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="amountrec1">
+            <Component class="javax.swing.JTextField" name="descriptiontxt">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="amountrec1ActionPerformed"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="amountrec1KeyReleased"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descriptiontxtActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="descriptiontxtKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator6">

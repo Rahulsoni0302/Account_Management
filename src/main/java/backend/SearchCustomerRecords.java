@@ -51,18 +51,18 @@ public class SearchCustomerRecords {
         
         int idlen= custinfo.indexOf(32);
         String idn = custinfo.substring(0, idlen);
-       System.out.println(idn);
+      // System.out.println(idn);
       
         int nmstrt=idlen+4;
         int nmend=custinfo.indexOf(32, nmstrt);
 
         String nmn= custinfo.substring(nmstrt, nmend);
-        System.out.println(nmn);
+     //   System.out.println(nmn);
 
 //        String mobn = " ";
         int mobstrt=nmend+4;
         String mobn=custinfo.substring(mobstrt);
-        System.out.println(mobn);
+     //   System.out.println(mobn);
         
         String ci[]={idn,nmn,mobn};
         

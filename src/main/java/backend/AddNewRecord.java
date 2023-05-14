@@ -11,7 +11,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -24,21 +23,6 @@ import java.util.logging.Logger;
  */
 
 public class AddNewRecord {
-    
-   /* public void checkforexistingcust(){
-        
-         String dbURL = "jdbc:mysql://localhost:3306/app_dev";
-            String user = "root";
-            String password = "#@Rahul8269";
-            Connection conn = null;
-            
-            conn = DriverManager.getConnection(dbURL, user, password);
-            
-            CallableStatement ccs = conn.prepareCall("call cust_suggetions(?,?,?)");
-            ccs.setInt(1, 0);
-            ccs.setString(2, user);
-            ccs.setString(3, user);
-    }*/
     
     /**
      *this method will insert records for new customer as well as for existing customer 
@@ -84,15 +68,15 @@ public class AddNewRecord {
             
             conn = DriverManager.getConnection(dbURL, user, password);
             
-            PreparedStatement st = conn.prepareStatement("insert into cust_info (id , name , mob_no) values (? ,?,?);");
+            PreparedStatement st = conn.prepareStatement("insert into cust_info (id , name , mob_no) values (?,?,?);");
             
             st.setString(1, usrid);
             st.setString(2, usrnm);
             st.setString(3, usrmob);
             
-            boolean result = st.execute();
+             st.execute();
             conn.close();
-            System.out.println(result);
+           // System.out.println(result);
         } catch (SQLException ex) {
             Logger.getLogger(AddNewRecord.class.getName()).log(Level.SEVERE, null, ex);
         }

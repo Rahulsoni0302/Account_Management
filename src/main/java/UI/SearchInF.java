@@ -461,9 +461,15 @@ public class SearchInF extends javax.swing.JInternalFrame {
             if(amourec.isBlank()){
                float amougvn = Float.valueOf(amougiven);
               float amoudue = Float.valueOf(amouduelast);
+              
+               System.out.println(amoudue);
+              
+              
               amourec = null;
                
                float updtamoudue= amougvn + amoudue;
+               
+               System.out.println(updtamoudue);
                
                SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
                jDialog1.setVisible(true);
@@ -558,15 +564,23 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
 
 private void search(String id , String nm , String mob){
-     try {
-            // TODO add your handling code here:
-            DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
+    
+    System.out.println(id);
+    System.out.println(nm);
+    System.out.println(mob);
+    
+     DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
             
              int rows = model.getRowCount();
            for(int i= rows-1;i>=0;i-- ){
                
                model.removeRow(i);
            }
+           
+        //   dueshowlbl.setText("N/A"); 
+     try {
+            // TODO add your handling code here:
+           
             
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
             String user = "root";
@@ -582,6 +596,8 @@ private void search(String id , String nm , String mob){
             cscr.setDate(4, null);
             
             ResultSet rs = cscr.executeQuery();
+            
+            
             
            
            // ResultSet rs = SearchCustomerRecords.getcustrecords(id,nm,mob);
@@ -612,12 +628,16 @@ private void search(String id , String nm , String mob){
                 
             } 
             
-            if(amouduelast ==null){
+           // System.out.println(model.getRowCount());
+            
+            if(amouduelast ==null || model.getRowCount()==0){
                 amouduelast="0";
+                 dueshowlbl.setText(amouduelast);
+            }
+            else{
+                 dueshowlbl.setText(amouduelast);
             }
            
-            dueshowlbl.setText(amouduelast);
-            
            
             conn.close();
         } catch (SQLException ex) {

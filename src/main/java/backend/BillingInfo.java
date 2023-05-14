@@ -32,9 +32,7 @@ public class BillingInfo {
      *
      * @return
      */
-    public static int getnewid ()/*this method will register new cust in cust_info db 
-     
-            to check for existing cust , use AddNewRecord.checkforexistingcust*/
+    public static int getnewid ()
     {
         int lastid=0,newid=0;
        
@@ -63,20 +61,7 @@ public class BillingInfo {
             }
             
             newid = lastid+1;
-            
-           /*String dbURL = "jdbc:mysql://localhost:3306/app_dev";
-            String user = "root";
-            String password = "#@Rahul8269";
-            Connection conn = null;
-            
-            conn = DriverManager.getConnection(dbURL, user, password);
-            String sql = "insert into cust_info (id , name , mob_no) values (cust_id , cust_name, cust_mob);";            
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            
-           conn.close();
-            */
-
+           
          return newid;
            
     }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package UI;
+import backend.AddNewRecord;
 import backend.BillingInfo;
 import backend.SearchCustomerRecords;
 import java.awt.Graphics;
@@ -54,16 +55,21 @@ import java.sql.PreparedStatement;
         idshowlbl.setText("");
         customernametxt.setText("");
         mobnotxt.setText("");
-        
-        DefaultTableModel model = new DefaultTableModel();
-        for(int i=0 ; i<model.getRowCount();i++){
-            model.removeRow(i);
-        }
+       
+      
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+       
+         int rows = model.getRowCount();
+           for(int i= rows-1;i>=0;i-- ){
+               
+               model.removeRow(i);
+           }
         
         dueamount.setText("");
         nettotalshowlbl.setText("");
         amountrec.setText("");
-        amountrec1.setText("");        
+        descriptiontxt.setText("");  
+        jCheckBox1.setSelected(false);
     }
     
     
@@ -85,6 +91,7 @@ import java.sql.PreparedStatement;
     
     String id=null,date=null;
     float ttl=0, amourec=0, rem=0;
+    boolean nwusr=false;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,7 +135,7 @@ import java.sql.PreparedStatement;
         receivedamou = new javax.swing.JLabel();
         amountrec = new javax.swing.JTextField();
         customernametxt = new javax.swing.JTextField();
-        amountrec1 = new javax.swing.JTextField();
+        descriptiontxt = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         mobilenolbl = new javax.swing.JLabel();
         mobnotxt = new javax.swing.JTextField();
@@ -406,14 +413,14 @@ import java.sql.PreparedStatement;
             }
         });
 
-        amountrec1.addActionListener(new java.awt.event.ActionListener() {
+        descriptiontxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amountrec1ActionPerformed(evt);
+                descriptiontxtActionPerformed(evt);
             }
         });
-        amountrec1.addKeyListener(new java.awt.event.KeyAdapter() {
+        descriptiontxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                amountrec1KeyReleased(evt);
+                descriptiontxtKeyReleased(evt);
             }
         });
 
@@ -473,7 +480,7 @@ import java.sql.PreparedStatement;
                                 .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(amountrec1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
+                                .addComponent(descriptiontxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(printpnlLayout.createSequentialGroup()
@@ -568,7 +575,7 @@ import java.sql.PreparedStatement;
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(receivedamou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amountrec1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSeparator4)
@@ -790,6 +797,13 @@ import java.sql.PreparedStatement;
     }//GEN-LAST:event_oklblMouseMoved
 
     private void oklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oklblMouseClicked
+        
+        if(nwusr){
+            
+            String nm = customernametxt.getText();
+            String mob = mobnotxt.getText();
+            AddNewRecord.registernewcust(id,nm,mob);
+        }
         billing(id);
         BillingInfo.setdatetobill(id, date);
         printBill(printpnl);
@@ -801,12 +815,27 @@ import java.sql.PreparedStatement;
         if(jCheckBox1.isSelected()){
 
         }
+        else if(rem==0)//to remove unnecessary amount records 
+        {
+            
+        }
         else{
             
            String lastamoudue = fetchlastamountdue(id);
-           float remlast=Float.valueOf(lastamoudue);
+          
+           if(lastamoudue == null){
+               lastamoudue="0";
+           }
+           
+           float remlast=Float.parseFloat(lastamoudue);
+           
+            System.out.println( remlast);
+            
+            
            float remfinal=rem+remlast;
-            BillingInfo.setamountrecordsvalues(id, date, ttl,  remfinal, amourec, date);
+           
+          String descrptn = descriptiontxt.getText();
+           BillingInfo.setamountrecordsvalues(id, date, ttl,  remfinal, amourec, descrptn );
         }
         jDialog1.dispose();
 //        jPanel1.removeAll();
@@ -888,13 +917,13 @@ import java.sql.PreparedStatement;
         // TODO add your handling code here:
     }//GEN-LAST:event_mobnotxtKeyReleased
 
-    private void amountrec1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec1KeyReleased
+    private void descriptiontxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptiontxtKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec1KeyReleased
+    }//GEN-LAST:event_descriptiontxtKeyReleased
 
-    private void amountrec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec1ActionPerformed
+    private void descriptiontxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptiontxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec1ActionPerformed
+    }//GEN-LAST:event_descriptiontxtActionPerformed
 
     private void customernametxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customernametxtKeyReleased
         DefaultListModel model = new DefaultListModel();
@@ -903,8 +932,17 @@ import java.sql.PreparedStatement;
         if(!search.equals("")){
             menu.show(customernametxt,0,customernametxt.getHeight()+12);
             model = suggestion.searchFilter(customernametxt.getText());
+            
+            nwusr=false;
+            
             if(model.isEmpty()){
                 add.setVisible(true);
+                
+                 int nwid = BillingInfo.getnewid();
+                 id=Integer.toString(nwid);
+                 idshowlbl.setText(id);
+                
+                 nwusr=true;
             }
             else{
                 add.setVisible(false);
@@ -948,14 +986,13 @@ import java.sql.PreparedStatement;
         int rows= 0;
         rows=model.getRowCount();
 
-        System.out.println(rows);
-        for(int i=0;i<rows;i++){
+               for(int i=0;i<rows;i++){
 
             float a = Float.parseFloat(model.getValueAt(i, 4).toString());
 
-            System.out.println(a);
+           // System.out.println(a);
             totalb=totalb+a;
-            System.out.println(totalb);
+           // System.out.println(totalb);
 
         }
 
@@ -1140,9 +1177,9 @@ import java.sql.PreparedStatement;
             Connection conn = null;
             conn = DriverManager.getConnection(dbURL, user, password);
             
-            String sql ="select amount_due from amount_records where id=?\n" +"order by trnx_date desc;";
+            String sql ="select amount_due from amount_records where id=? order by trnx_date desc;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, "1");
+            ps.setString(1, id);
             
             ResultSet rs = ps.executeQuery();
             
@@ -1162,7 +1199,6 @@ import java.sql.PreparedStatement;
     private javax.swing.JLabel addresslbl;
     private javax.swing.JLabel addrow;
     private javax.swing.JTextField amountrec;
-    private javax.swing.JTextField amountrec1;
     private javax.swing.JTextField amountrec2;
     private javax.swing.JTextField amountrec3;
     private javax.swing.JLabel canclelbl;
@@ -1172,6 +1208,7 @@ import java.sql.PreparedStatement;
     private javax.swing.JLabel datelbl;
     private javax.swing.JLabel dateshow;
     private javax.swing.JLabel deleterow;
+    private javax.swing.JTextField descriptiontxt;
     private javax.swing.JLabel dueamount;
     private javax.swing.JLabel enterpriselbl;
     private javax.swing.JLabel idlbl;
