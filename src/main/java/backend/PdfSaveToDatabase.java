@@ -5,6 +5,7 @@
 package backend;
 
 import java.io.File;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,7 +24,18 @@ import org.icepdf.ri.common.SwingViewBuilder;
  */
 public class PdfSaveToDatabase {
     
-    public void getpdf(){
+   /* public void getpdf(){
+        try {
+           
+            String sql="";
+            PreparedStatement st =conn.prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(PdfSaveToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
+    
+    public void savepdftodb(String file,String date,String id){
+        
         try {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
             String user = "root";
@@ -32,17 +44,21 @@ public class PdfSaveToDatabase {
             
             conn = DriverManager.getConnection(dbURL, user, password);
             
-            String sql="";
-            PreparedStatement st =conn.prepareStatement(sql);
+           CallableStatement ps = conn.prepareCall("call pdfsavetodb (?,?,?)");
+            
+            ps.setString(1, file);
+            ps.setString(3, id);
+            ps.setString(2, date);
+            
+            ps.execute();
+            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(PdfSaveToDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
+        
     }
     
-    public static void main(String[] args) {
-        File file = new File("C:/Account_management/bills");
-        boolean created = file.mkdirs();
-        System.out.println(file.getAbsolutePath()+" "+created);
-    }
+  
    
 }

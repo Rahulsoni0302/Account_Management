@@ -341,22 +341,22 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         
         int idlen= custinfo.indexOf(32);
         String idn = custinfo.substring(0, idlen);
-       System.out.println(idn);
+     //  System.out.println(idn);
       
         int nmstrt=idlen+4;
         int nmend=custinfo.indexOf(32, nmstrt);
 
         String nmn= custinfo.substring(nmstrt, nmend);
-        System.out.println(nmn);
+    //    System.out.println(nmn);
 
 //        String mobn = " ";
         int mobstrt=nmend+4;
         String mobn=custinfo.substring(mobstrt);
-        System.out.println(mobn);
+      //  System.out.println(mobn);
         
         search(idn,nmn,mobn);
         txt.setText(nmn);
-        System.out.print(idn+" "+nmn+" "+mobn);
+      //  System.out.print(idn+" "+nmn+" "+mobn);
         
     }//GEN-LAST:event_listMouseClicked
 
@@ -372,6 +372,9 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         PdfFrame pf =new PdfFrame();
         pf.setVisible(true);
         String str = String.valueOf(table.getValueAt(selected,4)); 
+        
+        System.out.println("file selected from db"+str);
+        
         pf.openpdf(str);
     }//GEN-LAST:event_tableMouseClicked
 
@@ -414,7 +417,7 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         }
     }
       
-       public void openpdf(String file){
+       private void openpdf(String file){
   
     try {
            SwingController control=new SwingController();

@@ -5,6 +5,7 @@
 package UI;
 import backend.AddNewRecord;
 import backend.BillingInfo;
+import backend.PdfSaveToDatabase;
 import backend.SearchCustomerRecords;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -87,7 +88,7 @@ import java.sql.PreparedStatement;
         mui = (BasicPopupMenuUI)menu.getUI();
     }
     
-    String id=null,date=null,name=null;
+    String id=null,date=null,name=null,loc =null;
     float ttl=0, amourec=0, rem=0;
     boolean nwusr=false;
 
@@ -804,6 +805,7 @@ import java.sql.PreparedStatement;
         }
         billing(id);
         BillingInfo.setdatetobill(id, date);
+        
         printBill(printpnl);
         try {
             savePdf();
@@ -835,6 +837,10 @@ import java.sql.PreparedStatement;
           String descrptn = descriptiontxt.getText();
            BillingInfo.setamountrecordsvalues(id, date, ttl,  remfinal, amourec, descrptn );
         }
+        
+        PdfSaveToDatabase pdf = new PdfSaveToDatabase();
+        
+        pdf.savepdftodb(loc, date, id);
         jDialog1.dispose();
 //        jPanel1.removeAll();
 //        GenerateBillInF ginf = new GenerateBillInF();
@@ -952,9 +958,13 @@ import java.sql.PreparedStatement;
     private void amountrecKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrecKeyReleased
         // TODO add your handling code here:
         String total = nettotalshowlbl.getText();
+        
         ttl=Float.valueOf(total);
 
         String rec= amountrec.getText();
+        if(rec==null){
+            rec="0";
+        }
         amourec=Float.valueOf(rec);
 
         rem=ttl-amourec;
@@ -1110,8 +1120,8 @@ import java.sql.PreparedStatement;
              String mobno = null,enterprisename = null,gstno,enterpriseadd = null;
             LocalDateTime bd = LocalDateTime.now();
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-mm-yyyy");
-            String date = bd.format(format);
-            dateshow.setText(date);
+            String datef = bd.format(format);
+            dateshow.setText(datef);
         try {
             
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
@@ -1145,8 +1155,8 @@ import java.sql.PreparedStatement;
         Document doc = new Document();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-mm-yyyy");
         LocalDateTime bd = LocalDateTime.now();
-        date = bd.format(format);
-        String loc = "C://Account_management//bills//"+id+name+date+".pdf";
+       String datef = bd.format(format);
+        loc = "C://Account_management//bills//"+id+name+datef+".pdf";
         try {            
             try {
                 PdfWriter writer = PdfWriter.getInstance(doc,new FileOutputStream(loc));

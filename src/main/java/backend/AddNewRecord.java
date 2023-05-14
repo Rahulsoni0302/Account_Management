@@ -60,6 +60,10 @@ public class AddNewRecord {
     
     public static void registernewcust(String usrid,String usrnm,String usrmob){
         
+        if(usrmob.isBlank()){
+            usrmob=null;
+        }
+        
         try {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
             String user = "root";
