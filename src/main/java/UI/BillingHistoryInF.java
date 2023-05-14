@@ -5,6 +5,7 @@
 package UI;
 
 import backend.SearchCustBills;
+import java.awt.Component;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,10 +15,14 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
@@ -184,6 +189,11 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         ));
         table.setFocusable(false);
         table.setRowHeight(30);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table);
 
         recentbillbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -354,8 +364,16 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
        PdfFrame pf = new PdfFrame();
        pf.setVisible(true);
-       pf.openpdf("D://11.pdf");
+       pf.openpdf("D://1.pdf");
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        int selected = table.getSelectedRow();
+        PdfFrame pf =new PdfFrame();
+        pf.setVisible(true);
+        String str = String.valueOf(table.getValueAt(selected,4)); 
+        pf.openpdf(str);
+    }//GEN-LAST:event_tableMouseClicked
 
       private void billingHistory()//used to fetch the bills of the recent customers
     {
@@ -412,6 +430,18 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
             System.out.println("can't open pdf");
         }
 }
+//       private TableCellRenderer getRenderer(){
+//           return new DefaultTableCellRenderer(){
+//               public Component getTableCellRendererComponent(JTable table,
+//                    Object value, boolean isSelected, boolean hasFocus,
+//                    int row, int column){
+//                   Component tableCellRendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus,row, column);
+//                       JLabel label = new JLabel();
+//                       tableCellRendererComponent.addComponentListener(search.addMouseListener());
+//                   return tableCellRendererComponent;
+//               }
+//           };
+//       }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headinglbl;
     private javax.swing.JLabel infolbl;

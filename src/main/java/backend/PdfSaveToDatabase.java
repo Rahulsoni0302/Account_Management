@@ -4,6 +4,7 @@
  */
 package backend;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -38,5 +39,10 @@ public class PdfSaveToDatabase {
         }
     }
     
+    public static void main(String[] args) {
+        File file = new File("C:/Account_management/bills");
+        boolean created = file.mkdirs();
+        System.out.println(file.getAbsolutePath()+" "+created);
+    }
    
 }
