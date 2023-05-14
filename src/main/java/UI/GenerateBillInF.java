@@ -72,8 +72,6 @@ import java.sql.PreparedStatement;
         jCheckBox1.setSelected(false);
     }
     
-    
-    
     public GenerateBillInF() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
@@ -89,7 +87,7 @@ import java.sql.PreparedStatement;
         mui = (BasicPopupMenuUI)menu.getUI();
     }
     
-    String id=null,date=null;
+    String id=null,date=null,name=null;
     float ttl=0, amourec=0, rem=0;
     boolean nwusr=false;
 
@@ -764,8 +762,8 @@ import java.sql.PreparedStatement;
         
        String []indci = ci.returncustinfo(custinfo);
        
-        id=indci[0];
-       String name=indci[1];
+       id=indci[0];
+       name=indci[1];
        String mobno=indci[2];
        
         
@@ -774,8 +772,8 @@ import java.sql.PreparedStatement;
        System.out.println(mobno);
        
        idshowlbl.setText(id);
-        customernametxt.setText(name);
-        mobnotxt.setText(mobno);
+       customernametxt.setText(name);
+       mobnotxt.setText(mobno);
     }//GEN-LAST:event_listMouseClicked
 
     private void canclelblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canclelblMouseMoved
@@ -1109,10 +1107,10 @@ import java.sql.PreparedStatement;
     private void setuserdetails(){
         
         
-            String name,mobno = null,enterprisename = null,gstno,enterpriseadd = null;
+             String mobno = null,enterprisename = null,gstno,enterpriseadd = null;
             LocalDateTime bd = LocalDateTime.now();
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-mm-yyyy");
-            String date = bd.format(format) ;
+            String date = bd.format(format);
             dateshow.setText(date);
         try {
             
@@ -1145,9 +1143,13 @@ import java.sql.PreparedStatement;
     
     public void savePdf() throws FileNotFoundException{
         Document doc = new Document();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-mm-yyyy");
+        LocalDateTime bd = LocalDateTime.now();
+        date = bd.format(format);
+        String loc = "C://Account_management//bills//"+id+name+date+".pdf";
         try {            
             try {
-                PdfWriter writer = PdfWriter.getInstance(doc,new FileOutputStream("D:\\1.pdf"));
+                PdfWriter writer = PdfWriter.getInstance(doc,new FileOutputStream(loc));
                 doc.open();
                 PdfContentByte contentbyte = writer.getDirectContent();
                 PdfTemplate template = contentbyte.createTemplate(1086, 762);

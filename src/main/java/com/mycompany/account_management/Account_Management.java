@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import backend.*;
+import java.io.File;
 import ui.*;
 /**
  *
@@ -31,6 +32,8 @@ public class Account_Management {
             new LoginFrame().setVisible(true);
         });
             
-           
+        File file = new File("C:/Account_management/bills");
+        boolean created = file.mkdirs();  
+        System.out.println(created);
 }
 }
