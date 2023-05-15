@@ -7,7 +7,9 @@ package UI;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import backend.BillingInfo;
 import backend.AddNewRecord;
+import java.sql.Date;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -431,7 +433,10 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
       amougiven=  amountgiventxt.getText();
        custnm= customernametxt.getText();
-      date=  datetxt.getText();
+      
+       date=  datetxt.getText();
+       DateTimeFormatter format = DateTimeFormatter.ofPattern("YYYY-MM-DD HH:MI:SS");
+       LocalDateTime dt =  LocalDateTime.parse(date);
        description= descriptiontxt.getText();
        mobno= mobilenumbertxt.getText();
        

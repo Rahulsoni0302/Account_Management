@@ -18,13 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Rahul
  * 
- * pending work :- check for new or existing customer 
- *                cust id generation , bill copy save to db
- * 
- * 
- * this class contains methods : new customer registration 
- *                               set amount records values
- *                               billing info 
+ *
  */
 public class BillingInfo {
     
@@ -48,12 +42,12 @@ public class BillingInfo {
                 Statement st = conn.createStatement();
                 String sql = "select id from cust_info order by id desc limit 1;";
                 ResultSet rs = st.executeQuery(sql);
-                
-                while(rs.next()){
+        
+                    while(rs.next()){
                     lastid = rs.getInt(1);
                     
-                }
-                
+                    }
+                    
                 conn.close();
                
             } catch (SQLException ex) {
