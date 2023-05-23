@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
-        <exec.mainClass>com.mycompany.account_management.Account_Management</exec.mainClass>
+        <exec.mainClass>UI.Account_Management</exec.mainClass>
     </properties>
     
     <dependencies>
@@ -61,7 +61,6 @@
             <groupId>com.toedter</groupId>
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

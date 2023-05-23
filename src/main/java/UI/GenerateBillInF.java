@@ -5,6 +5,7 @@
 package UI;
 import backend.AddNewRecord;
 import backend.BillingInfo;
+import backend.Check;
 import backend.PdfSaveToDatabase;
 import backend.SearchCustomerRecords;
 import java.awt.Graphics;
@@ -959,7 +960,10 @@ import java.sql.PreparedStatement;
         // TODO add your handling code here:
         String total = nettotalshowlbl.getText();
         
-        ttl=Float.valueOf(total);
+        boolean ch = Check.onlyDigits(total, total.length());
+        
+        if(ch==true){
+            ttl=Float.valueOf(total);
 
         String rec= amountrec.getText();
         if(rec==null){
@@ -975,6 +979,12 @@ import java.sql.PreparedStatement;
         else{
             dueamount.setText("NA");
         }
+        }
+        else{
+            dueamount.setText("hello");
+        }
+        
+        
 
     }//GEN-LAST:event_amountrecKeyReleased
 

@@ -4,6 +4,7 @@
  */
 package UI;
 
+import backend.Check;
 import backend.SearchCustomerRecords;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -451,39 +452,64 @@ public class SearchInF extends javax.swing.JInternalFrame {
         String amougiven = giventxt.getText();
         String descrptn=descriptiontxt.getText();
         
+         //check for amourec
+                 
+       
+        
         if(amourec.isBlank() && amougiven.isBlank()){
             errorlbl.setText("both fields can't be empty !");
         }
-        else if ((amourec.isBlank() && amougiven.isBlank())==true){
+        else if ((amourec.isBlank() || amougiven.isBlank())==false){
          errorlbl.setText("both fields can't be filled  !");
         }
         else{
+            
+             boolean first = Check.onlyDigits(amourec, amourec.length());
+                  
+                   //check for float no.
+               boolean sec = Check.onlyDigits(amougiven, amougiven.length());
+               
+               
+               if(first && sec ==true){
+            
             if(amourec.isBlank()){
                float amougvn = Float.valueOf(amougiven);
               float amoudue = Float.valueOf(amouduelast);
-              
-               System.out.println(amoudue);
+           
+             
+              // System.out.println(amoudue);
               
               
               amourec = null;
                
                float updtamoudue= amougvn + amoudue;
                
-               System.out.println(updtamoudue);
-               
-               SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
+            //   System.out.println(updtamoudue);
+              
+              
+                   SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
                jDialog1.setVisible(true);
+               
             }
             else{
                 float amourecvd=Float.valueOf(amourec);
                 float amoudue = Float.valueOf(amouduelast);
                  float updtamoudue= amoudue - amourecvd;
                  
-                  SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
+                
+                 
+                
+                      SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
                   jDialog1.setVisible(true);
+                  
                   
             }
         }
+               else{
+                    errorlbl.setText("invalid number !!!");
+               }      
+       }
+        
     }//GEN-LAST:event_savelblMouseClicked
 
     private void savelblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_savelblMouseExited
@@ -565,10 +591,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
 private void search(String id , String nm , String mob){
     
-    System.out.println(id);
-    System.out.println(nm);
-    System.out.println(mob);
-    
+  
      DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
             
              int rows = model.getRowCount();
