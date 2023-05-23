@@ -36,9 +36,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         
         int nwid = BillingInfo.getnewid();
         newid=Integer.toString(nwid);
-        registrationshowlbl.setText(newid);
-        
-        
+        registrationshowlbl.setText(newid);        
     }
     public String newid;
     
@@ -84,7 +82,12 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
+        jDialog1.setMaximumSize(new java.awt.Dimension(400, 300));
+        jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
+
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setMaximumSize(new java.awt.Dimension(400, 300));
+        jPanel2.setMinimumSize(new java.awt.Dimension(400, 300));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,7 +148,14 @@ public class AddRecInF extends javax.swing.JInternalFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jDialogsuccess.setMaximumSize(new java.awt.Dimension(400, 300));
+        jDialogsuccess.setMinimumSize(new java.awt.Dimension(400, 300));
+        jDialogsuccess.setPreferredSize(new java.awt.Dimension(400, 300));
+
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setMaximumSize(new java.awt.Dimension(400, 300));
+        jPanel3.setMinimumSize(new java.awt.Dimension(400, 300));
+        jPanel3.setName(""); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -443,7 +453,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
        
        if(amougiven.isBlank() || custnm.isBlank() || description.isBlank() ){
            
-           jDialog1.setLocationRelativeTo(this.jPanel1);
+           jDialog1.setLocationRelativeTo(null);
            jDialog1.setVisible(true);
            
        }
@@ -477,6 +487,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
            
            AddNewRecord.newrecords(newid, description, amougiven, dates);
            
+           jDialogsuccess.setLocationRelativeTo(null);
            jDialogsuccess.setVisible(true);
        }
         

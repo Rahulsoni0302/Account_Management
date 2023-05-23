@@ -34,6 +34,7 @@ import javax.swing.plaf.basic.BasicPopupMenuUI;
 import javax.swing.table.DefaultTableModel;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -79,8 +80,6 @@ import java.sql.PreparedStatement;
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
-        
-        add.setVisible(false);
         setuserdetails();
         
         menu.add(jPanel3);
@@ -158,7 +157,6 @@ import java.sql.PreparedStatement;
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        add = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -172,8 +170,11 @@ import java.sql.PreparedStatement;
         });
         jScrollPane1.setViewportView(jList1);
 
-        jDialog1.setMinimumSize(new java.awt.Dimension(400, 304));
+        jDialog1.setLocationByPlatform(true);
+        jDialog1.setMaximumSize(new java.awt.Dimension(400, 300));
+        jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
         jDialog1.setUndecorated(true);
+        jDialog1.setPreferredSize(new java.awt.Dimension(400, 300));
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -298,6 +299,9 @@ import java.sql.PreparedStatement;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         printpnl.setBackground(new java.awt.Color(255, 255, 255));
+        printpnl.setMaximumSize(new java.awt.Dimension(920, 810));
+        printpnl.setMinimumSize(new java.awt.Dimension(920, 810));
+        printpnl.setPreferredSize(new java.awt.Dimension(920, 810));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -353,6 +357,7 @@ import java.sql.PreparedStatement;
             table.getColumnModel().getColumn(1).setPreferredWidth(10);
         }
 
+        nettotalshowlbl.setBackground(new java.awt.Color(255, 255, 255));
         nettotalshowlbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nettotalshowlbl.setOpaque(true);
 
@@ -395,6 +400,7 @@ import java.sql.PreparedStatement;
         receivedamou.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         receivedamou.setText("Amount Received :");
 
+        amountrec.setBorder(null);
         amountrec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 amountrecActionPerformed(evt);
@@ -413,6 +419,7 @@ import java.sql.PreparedStatement;
             }
         });
 
+        descriptiontxt.setBorder(null);
         descriptiontxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descriptiontxtActionPerformed(evt);
@@ -483,15 +490,18 @@ import java.sql.PreparedStatement;
                                 .addComponent(descriptiontxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(printpnlLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
                                 .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(332, 332, 332))
                             .addGroup(printpnlLayout.createSequentialGroup()
                                 .addComponent(receivedamou)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(329, 329, 329))
+                                .addGap(18, 18, 18)
+                                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(323, 323, 323))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(idlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -511,10 +521,6 @@ import java.sql.PreparedStatement;
                                 .addComponent(mobnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(208, 208, 208))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(329, 329, 329))
             .addGroup(printpnlLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -563,27 +569,34 @@ import java.sql.PreparedStatement;
                             .addComponent(idshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(dueamount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(nettotalshowlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nettotal, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(receivedamou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dueamount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator4)
-                    .addComponent(jSeparator6))
-                .addGap(15, 15, 15))
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator6))
+                    .addGroup(printpnlLayout.createSequentialGroup()
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(receivedamou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(69, 69, 69))
         );
 
-        jPanel1.add(printpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 890, 780));
+        jPanel1.add(printpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 920, 820));
 
         addrow.setBackground(new java.awt.Color(0, 153, 153));
         addrow.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -738,10 +751,7 @@ import java.sql.PreparedStatement;
         jLabel11.setText("9");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, 30, 30));
 
-        add.setText("add");
-        jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 140, 60, 80));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1297, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1297, 840));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -891,7 +901,7 @@ import java.sql.PreparedStatement;
     }//GEN-LAST:event_printlblMouseExited
 
     private void printlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseClicked
-        jDialog1.setLocationRelativeTo(printpnl);
+        jDialog1.setLocationRelativeTo(null);
         jDialog1.setVisible(true);
 
     }//GEN-LAST:event_printlblMouseClicked
@@ -941,16 +951,12 @@ import java.sql.PreparedStatement;
             nwusr=false;
             
             if(model.isEmpty()){
-                add.setVisible(true);
                 
                  int nwid = BillingInfo.getnewid();
                  id=Integer.toString(nwid);
                  idshowlbl.setText(id);
                 
                  nwusr=true;
-            }
-            else{
-                add.setVisible(false);
             }
             customernametxt.requestFocus();
         }
@@ -1162,8 +1168,8 @@ import java.sql.PreparedStatement;
     }
     
     public void savePdf() throws FileNotFoundException{
-        Document doc = new Document();
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-mm-yyyy");
+        Document doc = new Document(PageSize.A3);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-mm-yyyy_hh-mm-ss");
         LocalDateTime bd = LocalDateTime.now();
        String datef = bd.format(format);
         loc = "C://Account_management//bills//"+id+name+datef+".pdf";
@@ -1172,11 +1178,11 @@ import java.sql.PreparedStatement;
                 PdfWriter writer = PdfWriter.getInstance(doc,new FileOutputStream(loc));
                 doc.open();
                 PdfContentByte contentbyte = writer.getDirectContent();
-                PdfTemplate template = contentbyte.createTemplate(1086, 762);
-                Graphics2D g2 = template.createGraphics(1086, 762);
-                jPanel1.print(g2);
+                PdfTemplate template = contentbyte.createTemplate(800, 810);
+                Graphics2D g2 = template.createGraphics(800, 810);
+                printpnl.print(g2);
                 g2.dispose();
-               contentbyte.addTemplate(template, 30,300);
+               contentbyte.addTemplate(template, 0,300);
                 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GenerateBillInF.class.getName()).log(Level.SEVERE, null, ex);
@@ -1217,7 +1223,6 @@ import java.sql.PreparedStatement;
          return due ;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel add;
     private javax.swing.JLabel addresslbl;
     private javax.swing.JLabel addrow;
     private javax.swing.JTextField amountrec;

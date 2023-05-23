@@ -44,7 +44,7 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         
         billingHistory();
         
-        menu.add(jPanel2);
+        menu.add(listpnl);
         menu.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicPopupMenuUI mui;
         mui = (BasicPopupMenuUI)menu.getUI();
@@ -119,7 +119,7 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        listpnl = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
         menu = new javax.swing.JPopupMenu();
@@ -134,7 +134,6 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         search = new javax.swing.JLabel();
         infolbl = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -143,14 +142,14 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(list);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout listpnlLayout = new javax.swing.GroupLayout(listpnl);
+        listpnl.setLayout(listpnlLayout);
+        listpnlLayout.setHorizontalGroup(
+            listpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        listpnlLayout.setVerticalGroup(
+            listpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
         );
 
@@ -242,13 +241,6 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         infolbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         infolbl.setText("Search for customer name / id / number ");
 
-        jButton1.setText("show pdf");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -262,9 +254,7 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(475, 475, 475)
-                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180)
-                        .addComponent(jButton1))
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(455, 455, 455)
                         .addComponent(headinglbl, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -288,9 +278,7 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(recentbillbl)
                 .addGap(18, 18, 18)
@@ -331,42 +319,6 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtKeyReleased
 
-//    public String idString(String str){
-//        String substring = str;
-//        
-//        return substring;
-//    }
-    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        String custinfo = list.getSelectedValue();
-        
-        int idlen= custinfo.indexOf(32);
-        String idn = custinfo.substring(0, idlen);
-     //  System.out.println(idn);
-      
-        int nmstrt=idlen+4;
-        int nmend=custinfo.indexOf(32, nmstrt);
-
-        String nmn= custinfo.substring(nmstrt, nmend);
-    //    System.out.println(nmn);
-
-//        String mobn = " ";
-        int mobstrt=nmend+4;
-        String mobn=custinfo.substring(mobstrt);
-      //  System.out.println(mobn);
-        
-        search(idn,nmn,mobn);
-        txt.setText(nmn);
-      //  System.out.print(idn+" "+nmn+" "+mobn);
-        
-    }//GEN-LAST:event_listMouseClicked
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-       PdfFrame pf = new PdfFrame();
-       pf.setVisible(true);
-       pf.openpdf("D://1.pdf");
-    }//GEN-LAST:event_jButton1MouseClicked
-
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         int selected = table.getSelectedRow();
         PdfFrame pf =new PdfFrame();
@@ -377,6 +329,35 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         
         pf.openpdf(str);
     }//GEN-LAST:event_tableMouseClicked
+
+//    public String idString(String str){
+//        String substring = str;
+//        
+//        return substring;
+//    }
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+        String custinfo = list.getSelectedValue();
+
+        int idlen= custinfo.indexOf(32);
+        String idn = custinfo.substring(0, idlen);
+        //  System.out.println(idn);
+
+        int nmstrt=idlen+4;
+        int nmend=custinfo.indexOf(32, nmstrt);
+
+        String nmn= custinfo.substring(nmstrt, nmend);
+        //    System.out.println(nmn);
+
+        //        String mobn = " ";
+        int mobstrt=nmend+4;
+        String mobn=custinfo.substring(mobstrt);
+        //  System.out.println(mobn);
+
+        search(idn,nmn,mobn);
+        txt.setText(nmn);
+        //  System.out.print(idn+" "+nmn+" "+mobn);
+
+    }//GEN-LAST:event_listMouseClicked
 
       private void billingHistory()//used to fetch the bills of the recent customers
     {
@@ -448,14 +429,13 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headinglbl;
     private javax.swing.JLabel infolbl;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JList<String> list;
+    private javax.swing.JPanel listpnl;
     private javax.swing.JPopupMenu menu;
     private javax.swing.JPanel pdfpanel;
     private javax.swing.JLabel recentbillbl;
