@@ -23,16 +23,36 @@ public class Check {
 			// Check if character is
 			// not a digit between 0-9
 			// then return false
-                        if (str.charAt(i)=='.'){
-                            decimal++;
-                        }
+                        
 			if (str.charAt(i) < '0'
-				|| str.charAt(i) > '9' || (decimal != 0 && decimal != 1)) {
-				return false;
+				|| str.charAt(i) > '9' ) {
+                            
+                            if (str.charAt(i)=='.'){
+                          //  System.out.println("decimal count before :"+decimal);
+                            decimal++;
+                           // System.out.println("decimal count after :"+decimal);
+                            
+                            if(decimal != 0 && decimal != 1){
+                                return false;
+                            }
+                        }
+                        else{
+                                return false;
+                            }
+                         	
 			}
 		}
 		// If we reach here, that means
 		// all characters were digits.
 		return true;
 	}
+        
+        /*spublic static void main(String [] args){
+            
+            String a = "56.5lhbj46";
+            
+           boolean result = onlyDigits(a,a.length());
+           
+           System.out.println(result);
+        }*/
 }

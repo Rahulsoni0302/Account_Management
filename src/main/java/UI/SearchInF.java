@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -42,7 +43,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
         
         editrecordpnl.setVisible(false);
     }
-    String custinfo=null, amouduelast=null,id=null;
+    String custinfo=null, amouduelast=null,id=null,date=null;
     
 
     /**
@@ -72,8 +73,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
         givenlbl = new javax.swing.JLabel();
         receivedtxt = new javax.swing.JTextField();
         giventxt = new javax.swing.JTextField();
-        datelbl = new javax.swing.JLabel();
-        dateshowtxt = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         savelbl = new javax.swing.JLabel();
@@ -81,7 +80,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
         jSeparator4 = new javax.swing.JSeparator();
         descriptiontxt = new javax.swing.JTextField();
         errorlbl = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
         searchlbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         editlbl = new javax.swing.JLabel();
@@ -111,9 +109,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jDialog1.setMaximumSize(new java.awt.Dimension(400, 300));
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
-        jDialog1.setPreferredSize(new java.awt.Dimension(400, 300));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -202,6 +198,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
         customernamelbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         customernamelbl.setText("Enter the customer name:");
 
+        searchcustomertxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         searchcustomertxt.setBorder(null);
         searchcustomertxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -226,13 +223,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
         giventxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         giventxt.setBorder(null);
-
-        datelbl.setBackground(new java.awt.Color(255, 255, 255));
-        datelbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        datelbl.setText("Date : ");
-
-        dateshowtxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        dateshowtxt.setBorder(null);
 
         jSeparator2.setBackground(new java.awt.Color(0, 153, 153));
         jSeparator2.setForeground(new java.awt.Color(0, 153, 153));
@@ -276,66 +266,54 @@ public class SearchInF extends javax.swing.JInternalFrame {
         descriptiontxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         descriptiontxt.setBorder(null);
 
+        errorlbl.setBackground(new java.awt.Color(255, 255, 255));
         errorlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         errorlbl.setForeground(new java.awt.Color(255, 0, 0));
-
-        jSeparator5.setBackground(new java.awt.Color(0, 153, 153));
-        jSeparator5.setOpaque(true);
 
         javax.swing.GroupLayout editrecordpnlLayout = new javax.swing.GroupLayout(editrecordpnl);
         editrecordpnl.setLayout(editrecordpnlLayout);
         editrecordpnlLayout.setHorizontalGroup(
             editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editrecordpnlLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(editrecordpnlLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(errorlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(editrecordpnlLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(givenlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(receivedlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
                         .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(editrecordpnlLayout.createSequentialGroup()
-                                .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(givenlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(receivedlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-                                .addGap(23, 23, 23)
+                                .addComponent(giventxt, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(editrecordpnlLayout.createSequentialGroup()
+                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
+                                .addComponent(savelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editrecordpnlLayout.createSequentialGroup()
+                                .addComponent(receivedtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(errorlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editrecordpnlLayout.createSequentialGroup()
                                 .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(receivedtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(giventxt, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(editrecordpnlLayout.createSequentialGroup()
-                                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
-                                        .addComponent(savelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(editrecordpnlLayout.createSequentialGroup()
-                                .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editrecordpnlLayout.createSequentialGroup()
-                                        .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(dateshowtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(97, 97, 97))
-            .addGroup(editrecordpnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(descrptn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(80, 80, 80))
+                    .addGroup(editrecordpnlLayout.createSequentialGroup()
+                        .addComponent(descrptn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         editrecordpnlLayout.setVerticalGroup(
             editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editrecordpnlLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateshowtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(receivedtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(receivedlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
+                .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(receivedtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(receivedlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(errorlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -352,9 +330,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
                 .addGroup(editrecordpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(savelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addComponent(errorlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         searchlbl.setBackground(new java.awt.Color(0, 153, 153));
@@ -437,9 +413,9 @@ public class SearchInF extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1029, Short.MAX_VALUE)
                             .addComponent(editrecordpnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -526,18 +502,16 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private void savelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_savelblMouseClicked
         // TODO add your handling code here:
         
-        LocalDateTime bd = LocalDateTime.now();
-          String date=bd.toString();  
-          
+       
           
         String amourec=receivedtxt.getText();
         String amougiven = giventxt.getText();
         String descrptn=descriptiontxt.getText();
         
-         //check for amourec
-                 
-       
         
+           LocalDateTime bd = LocalDateTime.now();
+           date=bd.toString();
+         
         if(amourec.isBlank() && amougiven.isBlank()){
             errorlbl.setText("both fields can't be empty !");
         }
@@ -639,8 +613,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable customeracctbl;
     private javax.swing.JLabel customernamelbl;
-    private javax.swing.JLabel datelbl;
-    private javax.swing.JTextField dateshowtxt;
     private javax.swing.JTextField descriptiontxt;
     private javax.swing.JLabel descrptn;
     private javax.swing.JLabel duelbl;
@@ -661,7 +633,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JList<String> list;
     private javax.swing.JPopupMenu menu;
     private javax.swing.JLabel receivedlbl;

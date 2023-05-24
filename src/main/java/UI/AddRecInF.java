@@ -473,12 +473,6 @@ public class AddRecInF extends javax.swing.JInternalFrame {
                 // dates=formatter.format(dateu);
                  
                 dates=dt.toString();
-                
-                  System.out.println(dates);
-                  
-               //  Date date = Date.valueOf(dates);
-                 
-                 //dates =date.toString();
                
            }
               

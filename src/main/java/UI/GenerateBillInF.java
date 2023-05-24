@@ -112,6 +112,10 @@ import java.sql.PreparedStatement;
         jScrollPane4 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
         menu = new javax.swing.JPopupMenu();
+        jDialog2 = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         printpnl = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -171,10 +175,8 @@ import java.sql.PreparedStatement;
         jScrollPane1.setViewportView(jList1);
 
         jDialog1.setLocationByPlatform(true);
-        jDialog1.setMaximumSize(new java.awt.Dimension(400, 300));
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
         jDialog1.setUndecorated(true);
-        jDialog1.setPreferredSize(new java.awt.Dimension(400, 300));
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -286,6 +288,60 @@ import java.sql.PreparedStatement;
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel12.setText("Empty Name !!!");
+        jLabel12.setOpaque(true);
+
+        jLabel13.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("      OK");
+        jLabel13.setOpaque(true);
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(120, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(103, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1300, 850));
         setMinimumSize(new java.awt.Dimension(1300, 850));
@@ -365,6 +421,8 @@ import java.sql.PreparedStatement;
         jSeparator4.setForeground(new java.awt.Color(0, 153, 153));
         jSeparator4.setOpaque(true);
 
+        dateshow.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         nettotal.setBackground(new java.awt.Color(0, 153, 153));
         nettotal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         nettotal.setForeground(new java.awt.Color(255, 255, 255));
@@ -395,11 +453,11 @@ import java.sql.PreparedStatement;
 
         dueamount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         dueamount.setForeground(new java.awt.Color(255, 0, 0));
-        dueamount.setText("dueamou");
 
         receivedamou.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         receivedamou.setText("Amount Received :");
 
+        amountrec.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         amountrec.setBorder(null);
         amountrec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -579,8 +637,7 @@ import java.sql.PreparedStatement;
                         .addGap(18, 18, 18)
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(printpnlLayout.createSequentialGroup()
@@ -666,11 +723,13 @@ import java.sql.PreparedStatement;
 
         jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 51, 51));
         jCheckBox1.setText("check this box ");
         jCheckBox1.setBorder(null);
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 520, 120, 30));
 
         amountrec2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        amountrec2.setForeground(new java.awt.Color(255, 51, 51));
         amountrec2.setText("amount due record");
         amountrec2.setBorder(null);
         amountrec2.addActionListener(new java.awt.event.ActionListener() {
@@ -686,6 +745,7 @@ import java.sql.PreparedStatement;
         jPanel1.add(amountrec2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 580, 130, 30));
 
         amountrec3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        amountrec3.setForeground(new java.awt.Color(255, 51, 51));
         amountrec3.setText("if you want to exclude");
         amountrec3.setBorder(null);
         amountrec3.setOpaque(true);
@@ -768,7 +828,7 @@ import java.sql.PreparedStatement;
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         // TODO add your handling code here:
          String custinfo = list.getSelectedValue();
-          System.out.println(custinfo);
+         // System.out.println(custinfo);
         
         SearchCustomerRecords ci = new SearchCustomerRecords();
         
@@ -779,9 +839,9 @@ import java.sql.PreparedStatement;
        String mobno=indci[2];
        
         
-       System.out.println(id);
-       System.out.println(name);
-       System.out.println(mobno);
+      // System.out.println(id);
+       //System.out.println(name);
+       //System.out.println(mobno);
        
        idshowlbl.setText(id);
        customernametxt.setText(name);
@@ -901,8 +961,17 @@ import java.sql.PreparedStatement;
     }//GEN-LAST:event_printlblMouseExited
 
     private void printlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseClicked
-        jDialog1.setLocationRelativeTo(null);
-        jDialog1.setVisible(true);
+        
+        if(id==null){
+            
+            jDialog2.setLocationRelativeTo(this);
+            jDialog2.setVisible(true);
+        }
+        else{
+           jDialog1.setLocationRelativeTo(null);
+        jDialog1.setVisible(true);   
+        }
+      
 
     }//GEN-LAST:event_printlblMouseClicked
 
@@ -987,7 +1056,7 @@ import java.sql.PreparedStatement;
         }
         }
         else{
-            dueamount.setText("hello");
+            dueamount.setText("NA");
         }
         
         
@@ -1054,6 +1123,11 @@ import java.sql.PreparedStatement;
         // TODO add your handling code here:
 
     }//GEN-LAST:event_tableMouseClicked
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+        jDialog2.dispose();
+    }//GEN-LAST:event_jLabel13MouseClicked
 
     
     private void printBill(JPanel panel){
@@ -1242,9 +1316,12 @@ import java.sql.PreparedStatement;
     private javax.swing.JLabel idshowlbl;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1257,6 +1334,7 @@ import java.sql.PreparedStatement;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
