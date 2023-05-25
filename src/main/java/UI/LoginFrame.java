@@ -73,7 +73,6 @@ public class LoginFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(721, 538));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -186,9 +185,9 @@ public class LoginFrame extends javax.swing.JFrame {
         foregrndpanel.add(passwordlbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 86, -1));
 
         passwordtxt1.setBorder(null);
-        passwordtxt1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordtxt1ActionPerformed(evt);
+        passwordtxt1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordtxt1KeyPressed(evt);
             }
         });
         foregrndpanel.add(passwordtxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 200, -1));
@@ -254,6 +253,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_submitlblMouseExited
 
     private void newuserlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newuserlblMouseClicked
+        passwordtxt1.requestFocus();
         try {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
             String user = "root";
@@ -311,10 +311,6 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_proceedforeditMouseClicked
 
-    private void passwordtxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtxt1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordtxt1ActionPerformed
-
     private void proceedforeditMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proceedforeditMouseExited
         proceedforedit.setBackground(new java.awt.Color(0, 153, 153));
     }//GEN-LAST:event_proceedforeditMouseExited
@@ -346,53 +342,24 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_passwordtxtKeyPressed
 
-   class RoundedPanel extends JPanel
-    {
-        private Color backgroundColor;
-        private int cornerRadius = 15;
-
-        public RoundedPanel(LayoutManager layout, int radius) {
-            super(layout);
-            cornerRadius = radius;
+    private void passwordtxt1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordtxt1KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+                    pass1 = passwordtxt1.getText();
+        a=1;
+        User lc = new User();
+        boolean result = lc.getlogincredentials(null, pass1,a);
+        
+        if(result == true){
+            this.dispose();
+             new RegistrationFrame(1).setVisible(true);
         }
-
-        public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
-            super(layout);
-            cornerRadius = radius;
-            backgroundColor = bgColor;
+        else{
+            error.setText("Invalid Password !");
         }
-
-        public RoundedPanel(int radius) {
-            super();
-            cornerRadius = radius;
         }
+    }//GEN-LAST:event_passwordtxt1KeyPressed
 
-        public RoundedPanel(int radius, Color bgColor) {
-            super();
-            cornerRadius = radius;
-            backgroundColor = bgColor;
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Dimension arcs = new Dimension(cornerRadius, cornerRadius);
-            int width = getWidth();
-            int height = getHeight();
-            Graphics2D graphics = (Graphics2D) g;
-            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-            //Draws the rounded panel with borders.
-            if (backgroundColor != null) {
-                graphics.setColor(backgroundColor);
-            } else {
-                graphics.setColor(getBackground());
-            }
-            graphics.fillRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint background
-            graphics.setColor(getForeground());
-            graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
-        }
-    }
+ 
     /**
      * @param args the command line arguments
      */

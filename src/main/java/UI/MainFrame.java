@@ -16,6 +16,7 @@ public class MainFrame extends javax.swing.JFrame {
         SearchInF sif = new SearchInF();
         basepanel.removeAll();
         basepanel.add(sif).setVisible(true);
+        importreclbl.setVisible(false);
     }
 
     /**

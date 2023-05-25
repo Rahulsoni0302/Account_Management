@@ -392,6 +392,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="addresstxtKeyPressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -414,7 +417,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernametxtActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="usernametxtKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="phonenotxt">
@@ -436,7 +439,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phonenotxtActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="phonenotxtKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="enterprisenametxt">
@@ -458,7 +461,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enterprisenametxtActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="enterprisenametxtKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="emailtxt">
@@ -480,7 +483,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailtxtActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="emailtxtKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="gstnotxt">
@@ -502,7 +505,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gstnotxtActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="gstnotxtKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="passwordtxt">
@@ -524,7 +527,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordtxtActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="passwordtxtKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="conpasswordtxt">

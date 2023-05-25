@@ -5,6 +5,7 @@
 package UI;
 
 import backend.User;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -189,6 +190,11 @@ public class RegistrationFrame extends javax.swing.JFrame {
         addresstxt.setForeground(new java.awt.Color(0, 153, 153));
         addresstxt.setRows(5);
         addresstxt.setBorder(null);
+        addresstxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                addresstxtKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(addresstxt);
 
         usernametxt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -196,9 +202,9 @@ public class RegistrationFrame extends javax.swing.JFrame {
         usernametxt.setBorder(null);
         usernametxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         usernametxt.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        usernametxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernametxtActionPerformed(evt);
+        usernametxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernametxtKeyPressed(evt);
             }
         });
 
@@ -207,9 +213,9 @@ public class RegistrationFrame extends javax.swing.JFrame {
         phonenotxt.setBorder(null);
         phonenotxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         phonenotxt.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        phonenotxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phonenotxtActionPerformed(evt);
+        phonenotxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                phonenotxtKeyPressed(evt);
             }
         });
 
@@ -218,9 +224,9 @@ public class RegistrationFrame extends javax.swing.JFrame {
         enterprisenametxt.setBorder(null);
         enterprisenametxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         enterprisenametxt.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        enterprisenametxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterprisenametxtActionPerformed(evt);
+        enterprisenametxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                enterprisenametxtKeyPressed(evt);
             }
         });
 
@@ -229,9 +235,9 @@ public class RegistrationFrame extends javax.swing.JFrame {
         emailtxt.setBorder(null);
         emailtxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         emailtxt.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        emailtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailtxtActionPerformed(evt);
+        emailtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                emailtxtKeyPressed(evt);
             }
         });
 
@@ -240,9 +246,9 @@ public class RegistrationFrame extends javax.swing.JFrame {
         gstnotxt.setBorder(null);
         gstnotxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         gstnotxt.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        gstnotxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gstnotxtActionPerformed(evt);
+        gstnotxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                gstnotxtKeyPressed(evt);
             }
         });
 
@@ -251,9 +257,9 @@ public class RegistrationFrame extends javax.swing.JFrame {
         passwordtxt.setBorder(null);
         passwordtxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwordtxt.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        passwordtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordtxtActionPerformed(evt);
+        passwordtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordtxtKeyPressed(evt);
             }
         });
 
@@ -417,40 +423,10 @@ public class RegistrationFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernametxtActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_usernametxtActionPerformed
-
-    private void passwordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtxtActionPerformed
-        // TODO add your handling code here:
-     
-    }//GEN-LAST:event_passwordtxtActionPerformed
-
-    private void phonenotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenotxtActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_phonenotxtActionPerformed
-
-    private void emailtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailtxtActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_emailtxtActionPerformed
-
-    private void gstnotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gstnotxtActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_gstnotxtActionPerformed
-
     private void conpasswordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conpasswordtxtActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_conpasswordtxtActionPerformed
-
-    private void enterprisenametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterprisenametxtActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_enterprisenametxtActionPerformed
 
     private void savelblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_savelblMouseMoved
         savelbl.setBackground(new java.awt.Color(204,204,204));
@@ -545,6 +521,48 @@ public class RegistrationFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void usernametxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernametxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            phonenotxt.requestFocus();
+        }
+    }//GEN-LAST:event_usernametxtKeyPressed
+
+    private void phonenotxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenotxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            enterprisenametxt.requestFocus();
+        }
+    }//GEN-LAST:event_phonenotxtKeyPressed
+
+    private void enterprisenametxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterprisenametxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            emailtxt.requestFocus();
+        }
+    }//GEN-LAST:event_enterprisenametxtKeyPressed
+
+    private void emailtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailtxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            gstnotxt.requestFocus();
+        }
+    }//GEN-LAST:event_emailtxtKeyPressed
+
+    private void gstnotxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gstnotxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            addresstxt.requestFocus();
+        }
+    }//GEN-LAST:event_gstnotxtKeyPressed
+
+    private void addresstxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addresstxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            passwordtxt.requestFocus();
+        }
+    }//GEN-LAST:event_addresstxtKeyPressed
+
+    private void passwordtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordtxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            conpasswordtxt.requestFocus();
+        }
+    }//GEN-LAST:event_passwordtxtKeyPressed
     
     private void setregistrationdetails(){
         
