@@ -14,7 +14,6 @@ import java.io.File;
 public class Account_Management {
 
     public static void main(String[] args) {
-            LocalDateTime bd = LocalDateTime.now(); // datetime method
             
              java.awt.EventQueue.invokeLater(() -> {
             new LoginFrame().setVisible(true);
