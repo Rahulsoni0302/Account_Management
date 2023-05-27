@@ -106,8 +106,8 @@ import java.sql.PreparedStatement;
         jDialog1 = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        canclelbl = new javax.swing.JLabel();
-        oklbl = new javax.swing.JLabel();
+        dcnclelbl = new javax.swing.JLabel();
+        doklbl = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
@@ -115,11 +115,11 @@ import java.sql.PreparedStatement;
         jDialog2 = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        d2oklbl = new javax.swing.JLabel();
         jDialog3 = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        d3oklbl = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         printpnl = new javax.swing.JPanel();
@@ -186,52 +186,60 @@ import java.sql.PreparedStatement;
         jScrollPane1.setViewportView(jList1);
 
         jDialog1.setLocationByPlatform(true);
-        jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
+        jDialog1.setMaximumSize(new java.awt.Dimension(380, 308));
+        jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog1.setUndecorated(true);
+        jDialog1.setPreferredSize(new java.awt.Dimension(380, 308));
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setMaximumSize(new java.awt.Dimension(380, 308));
+        jPanel2.setMinimumSize(new java.awt.Dimension(380, 308));
+        jPanel2.setPreferredSize(new java.awt.Dimension(380, 308));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("Please confirm the print and save");
 
-        canclelbl.setBackground(new java.awt.Color(255, 255, 255));
-        canclelbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        canclelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        canclelbl.setText("cancle");
-        canclelbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        canclelbl.setOpaque(true);
-        canclelbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        dcnclelbl.setBackground(new java.awt.Color(0, 153, 153));
+        dcnclelbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        dcnclelbl.setForeground(new java.awt.Color(255, 255, 255));
+        dcnclelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dcnclelbl.setText("cancle");
+        dcnclelbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dcnclelbl.setOpaque(true);
+        dcnclelbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                canclelblMouseMoved(evt);
+                dcnclelblMouseMoved(evt);
             }
         });
-        canclelbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        dcnclelbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                canclelblMouseClicked(evt);
+                dcnclelblMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                canclelblMouseExited(evt);
+                dcnclelblMouseExited(evt);
             }
         });
 
-        oklbl.setBackground(new java.awt.Color(255, 255, 255));
-        oklbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        oklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        oklbl.setText("OK");
-        oklbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        oklbl.setOpaque(true);
-        oklbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        doklbl.setBackground(new java.awt.Color(0, 153, 153));
+        doklbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        doklbl.setForeground(new java.awt.Color(255, 255, 255));
+        doklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        doklbl.setText("OK");
+        doklbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        doklbl.setOpaque(true);
+        doklbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                oklblMouseMoved(evt);
+                doklblMouseMoved(evt);
             }
         });
-        oklbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        doklbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                oklblMouseClicked(evt);
+                doklblMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                oklblMouseExited(evt);
+                doklblMouseExited(evt);
             }
         });
 
@@ -240,33 +248,33 @@ import java.sql.PreparedStatement;
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73)
-                        .addComponent(canclelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                        .addComponent(dcnclelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(78, 78, 78)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(canclelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dcnclelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,14 +306,17 @@ import java.sql.PreparedStatement;
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jDialog2.setMinimumSize(new java.awt.Dimension(400, 300));
+        jDialog2.setMaximumSize(new java.awt.Dimension(380, 308));
+        jDialog2.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog2.setUndecorated(true);
+        jDialog2.setPreferredSize(new java.awt.Dimension(380, 308));
+        jDialog2.setResizable(false);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.setMaximumSize(new java.awt.Dimension(338, 247));
-        jPanel4.setMinimumSize(new java.awt.Dimension(338, 247));
-        jPanel4.setPreferredSize(new java.awt.Dimension(338, 247));
+        jPanel4.setMaximumSize(new java.awt.Dimension(380, 308));
+        jPanel4.setMinimumSize(new java.awt.Dimension(380, 308));
+        jPanel4.setPreferredSize(new java.awt.Dimension(380, 308));
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -313,14 +324,20 @@ import java.sql.PreparedStatement;
         jLabel12.setText("Empty Name !!!");
         jLabel12.setOpaque(true);
 
-        jLabel13.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("      OK");
-        jLabel13.setOpaque(true);
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+        d2oklbl.setBackground(new java.awt.Color(0, 153, 153));
+        d2oklbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        d2oklbl.setForeground(new java.awt.Color(255, 255, 255));
+        d2oklbl.setText("      OK");
+        d2oklbl.setOpaque(true);
+        d2oklbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel13MouseClicked(evt);
+                d2oklblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                d2oklblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                d2oklblMouseExited(evt);
             }
         });
 
@@ -332,7 +349,7 @@ import java.sql.PreparedStatement;
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(d2oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addComponent(jLabel12)))
@@ -344,8 +361,8 @@ import java.sql.PreparedStatement;
                 .addGap(86, 86, 86)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addComponent(d2oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
@@ -356,24 +373,40 @@ import java.sql.PreparedStatement;
         );
         jDialog2Layout.setVerticalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jDialog3.setMaximumSize(new java.awt.Dimension(380, 308));
+        jDialog3.setMinimumSize(new java.awt.Dimension(380, 308));
+        jDialog3.setUndecorated(true);
+        jDialog3.setPreferredSize(new java.awt.Dimension(380, 308));
+        jDialog3.setResizable(false);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.setMaximumSize(new java.awt.Dimension(380, 308));
+        jPanel5.setMinimumSize(new java.awt.Dimension(380, 308));
+        jPanel5.setPreferredSize(new java.awt.Dimension(380, 308));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 153, 153));
         jLabel14.setText("ERROR !");
 
-        jLabel17.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("   OK");
-        jLabel17.setOpaque(true);
-        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+        d3oklbl.setBackground(new java.awt.Color(0, 153, 153));
+        d3oklbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        d3oklbl.setForeground(new java.awt.Color(255, 255, 255));
+        d3oklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        d3oklbl.setText("OK");
+        d3oklbl.setOpaque(true);
+        d3oklbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel17MouseClicked(evt);
+                d3oklblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                d3oklblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                d3oklblMouseExited(evt);
             }
         });
 
@@ -386,30 +419,28 @@ import java.sql.PreparedStatement;
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addContainerGap(182, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addContainerGap(69, Short.MAX_VALUE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(47, 47, 47)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel18))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabel14))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(d3oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addContainerGap(131, Short.MAX_VALUE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(103, 103, 103)))
+                .addGap(95, 95, 95)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(d3oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
@@ -965,25 +996,25 @@ import java.sql.PreparedStatement;
        mobnotxt.setText(mobno);
     }//GEN-LAST:event_listMouseClicked
 
-    private void canclelblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canclelblMouseMoved
-        canclelbl.setBackground(new java.awt.Color(204,204,204));
-    }//GEN-LAST:event_canclelblMouseMoved
+    private void dcnclelblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcnclelblMouseMoved
+        dcnclelbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_dcnclelblMouseMoved
 
-    private void canclelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canclelblMouseClicked
+    private void dcnclelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcnclelblMouseClicked
         // TODO add your handling code here:
         // jPanel1.add(editrecordpnl);
         jDialog1.dispose();
-    }//GEN-LAST:event_canclelblMouseClicked
+    }//GEN-LAST:event_dcnclelblMouseClicked
 
-    private void canclelblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canclelblMouseExited
-        canclelbl.setBackground(new java.awt.Color(255,255,255));
-    }//GEN-LAST:event_canclelblMouseExited
+    private void dcnclelblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcnclelblMouseExited
+        dcnclelbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_dcnclelblMouseExited
 
-    private void oklblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oklblMouseMoved
-        oklbl.setBackground(new Color(204,204,204));
-    }//GEN-LAST:event_oklblMouseMoved
+    private void doklblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseMoved
+        doklbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_doklblMouseMoved
 
-    private void oklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oklblMouseClicked
+    private void doklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseClicked
         
         if(nwusr){
             
@@ -1036,11 +1067,11 @@ import java.sql.PreparedStatement;
 //        ginf.setVisible(true);
 //        ginf.revalidate();
         panelRefresh();
-    }//GEN-LAST:event_oklblMouseClicked
+    }//GEN-LAST:event_doklblMouseClicked
 
-    private void oklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oklblMouseExited
-         oklbl.setBackground(new Color(255,255,255));
-    }//GEN-LAST:event_oklblMouseExited
+    private void doklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseExited
+         doklbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_doklblMouseExited
 
     private void amountrec3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec3KeyReleased
         // TODO add your handling code here:
@@ -1085,12 +1116,12 @@ import java.sql.PreparedStatement;
             jDialog2.setVisible(true);
         }
         else if (tabledatacheck()){
-             jDialog1.setLocationRelativeTo(null);
+            jDialog1.setLocationRelativeTo(null);
             jDialog1.setVisible(true);   
         }
         else{
             
-            jDialog3.setLocationRelativeTo(null);
+           jDialog3.setLocationRelativeTo(null);
            jDialog3.setVisible(true);
         }
       
@@ -1246,15 +1277,31 @@ import java.sql.PreparedStatement;
 
     }//GEN-LAST:event_tableMouseClicked
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+    private void d2oklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d2oklblMouseClicked
         // TODO add your handling code here:
         jDialog2.dispose();
-    }//GEN-LAST:event_jLabel13MouseClicked
+    }//GEN-LAST:event_d2oklblMouseClicked
 
-    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+    private void d3oklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d3oklblMouseClicked
                
         jDialog3.dispose();
-    }//GEN-LAST:event_jLabel17MouseClicked
+    }//GEN-LAST:event_d3oklblMouseClicked
+
+    private void d3oklblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d3oklblMouseEntered
+        d3oklbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_d3oklblMouseEntered
+
+    private void d3oklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d3oklblMouseExited
+        d3oklbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_d3oklblMouseExited
+
+    private void d2oklblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d2oklblMouseEntered
+        d2oklbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_d2oklblMouseEntered
+
+    private void d2oklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d2oklblMouseExited
+        d2oklbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_d2oklblMouseExited
 
     
     private void printBill(JPanel panel){
@@ -1462,14 +1509,17 @@ import java.sql.PreparedStatement;
     private javax.swing.JTextField amountrec;
     private javax.swing.JTextField amountrec2;
     private javax.swing.JTextField amountrec3;
-    private javax.swing.JLabel canclelbl;
     private javax.swing.JLabel contactlbl;
     private javax.swing.JLabel customernamelbl;
     private javax.swing.JTextField customernametxt;
+    private javax.swing.JLabel d2oklbl;
+    private javax.swing.JLabel d3oklbl;
     private javax.swing.JLabel datelbl;
     private javax.swing.JLabel dateshow;
+    private javax.swing.JLabel dcnclelbl;
     private javax.swing.JLabel deleterow;
     private javax.swing.JTextField descriptiontxt;
+    private javax.swing.JLabel doklbl;
     private javax.swing.JLabel dueamount;
     private javax.swing.JLabel enterpriselbl;
     private javax.swing.JLabel gstlbl;
@@ -1484,11 +1534,9 @@ import java.sql.PreparedStatement;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1520,7 +1568,6 @@ import java.sql.PreparedStatement;
     private javax.swing.JTextField mobnotxt;
     private javax.swing.JLabel nettotal;
     private javax.swing.JLabel nettotalshowlbl;
-    private javax.swing.JLabel oklbl;
     private javax.swing.JLabel onwernameshowlbl;
     private javax.swing.JLabel ownernamelbl;
     private javax.swing.JLabel printlbl;

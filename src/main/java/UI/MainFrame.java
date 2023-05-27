@@ -32,7 +32,8 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        doklbl = new javax.swing.JLabel();
+        dcncllbl = new javax.swing.JLabel();
         dashboardpanel = new javax.swing.JPanel();
         welcomelbl = new javax.swing.JLabel();
         menuinfo = new javax.swing.JLabel();
@@ -44,7 +45,16 @@ public class MainFrame extends javax.swing.JFrame {
         logoutlbl = new javax.swing.JLabel();
         basepanel = new javax.swing.JPanel();
 
+        jDialog1.setMaximumSize(new java.awt.Dimension(380, 308));
+        jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
+        jDialog1.setUndecorated(true);
+        jDialog1.setPreferredSize(new java.awt.Dimension(380, 308));
+        jDialog1.setResizable(false);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.setMaximumSize(new java.awt.Dimension(380, 308));
+        jPanel1.setMinimumSize(new java.awt.Dimension(380, 308));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -56,14 +66,42 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 153, 153));
         jLabel2.setText("Do You Want To Continue  ?");
 
-        jLabel3.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("   OK");
-        jLabel3.setOpaque(true);
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        doklbl.setBackground(new java.awt.Color(0, 153, 153));
+        doklbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        doklbl.setForeground(new java.awt.Color(255, 255, 255));
+        doklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        doklbl.setText("Ok");
+        doklbl.setMaximumSize(new java.awt.Dimension(56, 25));
+        doklbl.setMinimumSize(new java.awt.Dimension(56, 25));
+        doklbl.setOpaque(true);
+        doklbl.setPreferredSize(new java.awt.Dimension(56, 25));
+        doklbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                doklblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                doklblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                doklblMouseExited(evt);
+            }
+        });
+
+        dcncllbl.setBackground(new java.awt.Color(0, 153, 153));
+        dcncllbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        dcncllbl.setForeground(new java.awt.Color(255, 255, 255));
+        dcncllbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dcncllbl.setText("cancle");
+        dcncllbl.setOpaque(true);
+        dcncllbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dcncllblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dcncllblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dcncllblMouseExited(evt);
             }
         });
 
@@ -72,30 +110,31 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 32, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dcncllbl, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
+                .addGap(69, 69, 69))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(65, 65, 65)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dcncllbl, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -150,7 +189,7 @@ public class MainFrame extends javax.swing.JFrame {
                 homelblMousePressed(evt);
             }
         });
-        dashboardpanel.add(homelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 370, 50));
+        dashboardpanel.add(homelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 370, 50));
 
         genbilllbl.setBackground(new java.awt.Color(0, 153, 153));
         genbilllbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -365,11 +404,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_importreclblMousePressed
 
     private void logoutlblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutlblMouseMoved
-        // TODO add your handling code here:
+       logoutlbl.setBackground(new java.awt.Color(0, 102, 103));
     }//GEN-LAST:event_logoutlblMouseMoved
 
     private void logoutlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutlblMouseExited
-        // TODO add your handling code here:
+        logoutlbl.setBackground(new java.awt.Color(0, 152, 152));
     }//GEN-LAST:event_logoutlblMouseExited
 
     private void logoutlblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutlblMousePressed
@@ -377,18 +416,37 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutlblMousePressed
 
     private void logoutlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutlblMouseClicked
+        jDialog1.setLocationRelativeTo(null);
         jDialog1.setVisible(true);
     }//GEN-LAST:event_logoutlblMouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-       
-        
+    private void doklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseClicked
         this.dispose();
           java.awt.EventQueue.invokeLater(() -> {
             new LoginFrame().setVisible(true);
         });
         
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_doklblMouseClicked
+
+    private void dcncllblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcncllblMouseClicked
+        jDialog1.dispose();
+    }//GEN-LAST:event_dcncllblMouseClicked
+
+    private void doklblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseEntered
+        doklbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_doklblMouseEntered
+
+    private void doklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseExited
+        doklbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_doklblMouseExited
+
+    private void dcncllblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcncllblMouseEntered
+        dcncllbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_dcncllblMouseEntered
+
+    private void dcncllblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcncllblMouseExited
+        dcncllbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_dcncllblMouseExited
 
 
   
@@ -398,13 +456,14 @@ public class MainFrame extends javax.swing.JFrame {
     private static javax.swing.JPanel basepanel;
     private javax.swing.JLabel billinghislbl;
     private javax.swing.JPanel dashboardpanel;
+    private javax.swing.JLabel dcncllbl;
+    private javax.swing.JLabel doklbl;
     private javax.swing.JLabel genbilllbl;
     private javax.swing.JLabel homelbl;
     private javax.swing.JLabel importreclbl;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoutlbl;
     private javax.swing.JLabel menuinfo;

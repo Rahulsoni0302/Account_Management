@@ -77,7 +77,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
         jDialog1 = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         successdialog = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        doklbl = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         customeracctbl = new javax.swing.JTable();
@@ -125,7 +125,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
+        jDialog1.setMaximumSize(new java.awt.Dimension(380, 308));
+        jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
+        jDialog1.setUndecorated(true);
+        jDialog1.setPreferredSize(new java.awt.Dimension(380, 308));
+        jDialog1.setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -134,14 +138,21 @@ public class SearchInF extends javax.swing.JInternalFrame {
         successdialog.setForeground(new java.awt.Color(0, 153, 153));
         successdialog.setText("Details Saved Sucessfully ");
 
-        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("    OK");
-        jLabel1.setOpaque(true);
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        doklbl.setBackground(new java.awt.Color(0, 153, 153));
+        doklbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        doklbl.setForeground(new java.awt.Color(255, 255, 255));
+        doklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        doklbl.setText("OK");
+        doklbl.setOpaque(true);
+        doklbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                doklblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                doklblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                doklblMouseExited(evt);
             }
         });
 
@@ -155,7 +166,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
                 .addGap(50, 50, 50))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(156, 156, 156)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(170, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -164,7 +175,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
                 .addGap(85, 85, 85)
                 .addComponent(successdialog, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
@@ -631,10 +642,10 @@ public class SearchInF extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_listMouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void doklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseClicked
         // TODO add your handling code here:
         jDialog1.dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_doklblMouseClicked
 
     private void receivedtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_receivedtxtKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -648,12 +659,21 @@ public class SearchInF extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_giventxtKeyPressed
 
+    private void doklblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseEntered
+        doklbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_doklblMouseEntered
+
+    private void doklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseExited
+        doklbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_doklblMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable customeracctbl;
     private javax.swing.JLabel customernamelbl;
     private javax.swing.JTextField descriptiontxt;
     private javax.swing.JLabel descrptn;
+    private javax.swing.JLabel doklbl;
     private javax.swing.JLabel duelbl;
     private javax.swing.JLabel dueshowlbl;
     private javax.swing.JLabel editlbl;
@@ -662,7 +682,6 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel givenlbl;
     private javax.swing.JTextField giventxt;
     private javax.swing.JDialog jDialog1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

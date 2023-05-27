@@ -140,10 +140,12 @@ public class LoginFrame extends javax.swing.JFrame {
 
         forgotpasswordlbl.setForeground(new java.awt.Color(51, 153, 255));
         forgotpasswordlbl.setText("Forgot password ?");
+        forgotpasswordlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         foregrndpanel.add(forgotpasswordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 139, -1));
 
         newuserlbl.setForeground(new java.awt.Color(51, 153, 255));
         newuserlbl.setText("new user / edit");
+        newuserlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         newuserlbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newuserlblMouseClicked(evt);

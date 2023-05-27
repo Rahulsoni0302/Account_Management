@@ -65,11 +65,11 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        d1oklbl = new javax.swing.JLabel();
         jDialogsuccess = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         successlbl = new javax.swing.JLabel();
-        oklbl = new javax.swing.JLabel();
+        doklbl = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         headinglbl = new javax.swing.JLabel();
         customernamelbl = new javax.swing.JLabel();
@@ -92,8 +92,11 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         datechoser = new com.toedter.calendar.JDateChooser();
 
-        jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
+        jDialog1.setMaximumSize(new java.awt.Dimension(380, 308));
+        jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog1.setUndecorated(true);
+        jDialog1.setPreferredSize(new java.awt.Dimension(380, 308));
+        jDialog1.setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -110,14 +113,21 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         jLabel3.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3.setText("Fields cannot be empty");
 
-        jLabel4.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("    OK");
-        jLabel4.setOpaque(true);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        d1oklbl.setBackground(new java.awt.Color(0, 153, 153));
+        d1oklbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        d1oklbl.setForeground(new java.awt.Color(255, 255, 255));
+        d1oklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        d1oklbl.setText("OK");
+        d1oklbl.setOpaque(true);
+        d1oklbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                d1oklblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                d1oklblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                d1oklblMouseExited(evt);
             }
         });
 
@@ -126,29 +136,28 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 100, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
+                .addGap(95, 95, 95))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(65, 65, 65)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addComponent(d1oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -162,26 +171,37 @@ public class AddRecInF extends javax.swing.JInternalFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jDialogsuccess.setMinimumSize(new java.awt.Dimension(400, 300));
+        jDialogsuccess.setMaximumSize(new java.awt.Dimension(380, 308));
+        jDialogsuccess.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialogsuccess.setUndecorated(true);
+        jDialogsuccess.setPreferredSize(new java.awt.Dimension(380, 308));
         jDialogsuccess.setResizable(false);
 
-        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel3.setMaximumSize(new java.awt.Dimension(400, 300));
-        jPanel3.setMinimumSize(new java.awt.Dimension(400, 300));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setMaximumSize(new java.awt.Dimension(380, 308));
+        jPanel3.setMinimumSize(new java.awt.Dimension(380, 308));
         jPanel3.setName(""); // NOI18N
+        jPanel3.setPreferredSize(new java.awt.Dimension(380, 308));
 
         successlbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        successlbl.setForeground(new java.awt.Color(255, 255, 255));
+        successlbl.setForeground(new java.awt.Color(0, 153, 153));
         successlbl.setText("Records Saved Successfully ");
 
-        oklbl.setBackground(new java.awt.Color(255, 255, 255));
-        oklbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        oklbl.setText("      OK");
-        oklbl.setOpaque(true);
-        oklbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        doklbl.setBackground(new java.awt.Color(0, 153, 153));
+        doklbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        doklbl.setForeground(new java.awt.Color(255, 255, 255));
+        doklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        doklbl.setText("OK");
+        doklbl.setOpaque(true);
+        doklbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                oklblMouseClicked(evt);
+                doklblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                doklblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                doklblMouseExited(evt);
             }
         });
 
@@ -196,7 +216,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
                         .addComponent(successlbl))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(134, 134, 134)
-                        .addComponent(oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -205,8 +225,8 @@ public class AddRecInF extends javax.swing.JInternalFrame {
                 .addGap(100, 100, 100)
                 .addComponent(successlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialogsuccessLayout = new javax.swing.GroupLayout(jDialogsuccess.getContentPane());
@@ -496,16 +516,16 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         save();
     }//GEN-LAST:event_savelblMouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void d1oklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d1oklblMouseClicked
         // TODO add your handling code here:
          
         jDialog1.dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_d1oklblMouseClicked
 
-    private void oklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oklblMouseClicked
+    private void doklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseClicked
         jDialogsuccess.dispose();
         refresh();
-    }//GEN-LAST:event_oklblMouseClicked
+    }//GEN-LAST:event_doklblMouseClicked
 
     private void customernametxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customernametxtKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -531,6 +551,22 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_descriptiontxtKeyPressed
 
+    private void doklblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseEntered
+        doklbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_doklblMouseEntered
+
+    private void doklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseExited
+        doklbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_doklblMouseExited
+
+    private void d1oklblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d1oklblMouseEntered
+        d1oklbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_d1oklblMouseEntered
+
+    private void d1oklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d1oklblMouseExited
+        d1oklbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_d1oklblMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel amountgivenlbl;
@@ -539,16 +575,17 @@ public class AddRecInF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel cidshowlbl;
     private javax.swing.JLabel customernamelbl;
     private javax.swing.JTextField customernametxt;
+    private javax.swing.JLabel d1oklbl;
     private com.toedter.calendar.JDateChooser datechoser;
     private javax.swing.JLabel decriptionlbl;
     private javax.swing.JTextField descriptiontxt;
+    private javax.swing.JLabel doklbl;
     private javax.swing.JLabel headinglbl;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialogsuccess;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -559,7 +596,6 @@ public class AddRecInF extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JLabel mobilenumberlbl;
     private javax.swing.JTextField mobilenumbertxt;
-    private javax.swing.JLabel oklbl;
     private javax.swing.JLabel registrationlbl1;
     private javax.swing.JLabel savelbl;
     private javax.swing.JLabel successlbl;
