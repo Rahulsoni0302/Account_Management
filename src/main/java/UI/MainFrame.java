@@ -3,6 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Abhishek
@@ -17,6 +26,8 @@ public class MainFrame extends javax.swing.JFrame {
         basepanel.removeAll();
         basepanel.add(sif).setVisible(true);
         importreclbl.setVisible(false);
+        
+        setusername();
     }
 
     /**
@@ -43,12 +54,11 @@ public class MainFrame extends javax.swing.JFrame {
         addreclbl = new javax.swing.JLabel();
         importreclbl = new javax.swing.JLabel();
         logoutlbl = new javax.swing.JLabel();
+        usrnmlbl = new javax.swing.JLabel();
         basepanel = new javax.swing.JPanel();
 
-        jDialog1.setMaximumSize(new java.awt.Dimension(380, 308));
         jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog1.setUndecorated(true);
-        jDialog1.setPreferredSize(new java.awt.Dimension(380, 308));
         jDialog1.setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -91,8 +101,13 @@ public class MainFrame extends javax.swing.JFrame {
         dcncllbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         dcncllbl.setForeground(new java.awt.Color(255, 255, 255));
         dcncllbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dcncllbl.setText("cancle");
+        dcncllbl.setText("cancel");
         dcncllbl.setOpaque(true);
+        dcncllbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                dcncllblMouseMoved(evt);
+            }
+        });
         dcncllbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dcncllblMouseClicked(evt);
@@ -158,8 +173,8 @@ public class MainFrame extends javax.swing.JFrame {
         dashboardpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         welcomelbl.setForeground(new java.awt.Color(255, 255, 255));
-        welcomelbl.setText("WELCOME......");
-        dashboardpanel.add(welcomelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 30));
+        welcomelbl.setText("WELCOME");
+        dashboardpanel.add(welcomelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, 30));
 
         menuinfo.setBackground(new java.awt.Color(0, 102, 102));
         menuinfo.setForeground(new java.awt.Color(255, 255, 255));
@@ -304,6 +319,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
         dashboardpanel.add(logoutlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 710, 110, 29));
 
+        usrnmlbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        usrnmlbl.setForeground(new java.awt.Color(255, 255, 255));
+        usrnmlbl.setText("h");
+        dashboardpanel.add(usrnmlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 250, 30));
+
         getContentPane().add(dashboardpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 369, 850));
 
         basepanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -441,13 +461,49 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_doklblMouseExited
 
     private void dcncllblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcncllblMouseEntered
-        dcncllbl.setBackground(new java.awt.Color(0, 102, 103));
+      //  dcncllbl.setBackground(new java.awt.Color(0, 102, 103));
     }//GEN-LAST:event_dcncllblMouseEntered
 
     private void dcncllblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcncllblMouseExited
         dcncllbl.setBackground(new java.awt.Color(0, 152, 152));
     }//GEN-LAST:event_dcncllblMouseExited
 
+    private void dcncllblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcncllblMouseMoved
+        // TODO add your handling code here:
+         dcncllbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_dcncllblMouseMoved
+
+    private void setusername(){
+     
+          String name=null;
+        try {
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            conn = DriverManager.getConnection(dbURL, user, password);
+            Statement st = conn.createStatement();
+            String sql = "select name from user_registration ";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                name = rs.getString(1);
+               
+            }
+            
+           // int space = name.charAt(' ');
+            
+        //   name =  name.substring(0, space);
+        
+             name= name.toUpperCase();
+           
+           usrnmlbl.setText(name);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+     
+ 
+ }
 
   
     
@@ -467,6 +523,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoutlbl;
     private javax.swing.JLabel menuinfo;
+    private javax.swing.JLabel usrnmlbl;
     private javax.swing.JLabel welcomelbl;
     // End of variables declaration//GEN-END:variables
 }

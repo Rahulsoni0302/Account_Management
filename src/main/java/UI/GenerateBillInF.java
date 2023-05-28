@@ -6,6 +6,7 @@ package UI;
 import backend.AddNewRecord;
 import backend.BillingInfo;
 import backend.Check;
+import static backend.Check.mobnocheck;
 import backend.PdfSaveToDatabase;
 import backend.SearchCustomerRecords;
 import java.awt.Graphics;
@@ -21,7 +22,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
@@ -38,7 +38,6 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.PreparedStatement;
@@ -82,6 +81,9 @@ import java.sql.PreparedStatement;
         ui.setNorthPane(null);
         setuserdetails();
         
+        //making mobno null
+        invalidnolbl.setText(null);
+        
         menu.add(jPanel3);
         menu.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicPopupMenuUI mui;
@@ -121,6 +123,7 @@ import java.sql.PreparedStatement;
         jLabel14 = new javax.swing.JLabel();
         d3oklbl = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         printpnl = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -160,8 +163,6 @@ import java.sql.PreparedStatement;
         printlbl = new javax.swing.JLabel();
         deleterow = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
-        amountrec2 = new javax.swing.JTextField();
-        amountrec3 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -172,6 +173,9 @@ import java.sql.PreparedStatement;
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        invalidnolbl = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -186,10 +190,8 @@ import java.sql.PreparedStatement;
         jScrollPane1.setViewportView(jList1);
 
         jDialog1.setLocationByPlatform(true);
-        jDialog1.setMaximumSize(new java.awt.Dimension(380, 308));
         jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog1.setUndecorated(true);
-        jDialog1.setPreferredSize(new java.awt.Dimension(380, 308));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -205,7 +207,7 @@ import java.sql.PreparedStatement;
         dcnclelbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         dcnclelbl.setForeground(new java.awt.Color(255, 255, 255));
         dcnclelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dcnclelbl.setText("cancle");
+        dcnclelbl.setText("cancel");
         dcnclelbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         dcnclelbl.setOpaque(true);
         dcnclelbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -274,7 +276,7 @@ import java.sql.PreparedStatement;
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,14 +308,12 @@ import java.sql.PreparedStatement;
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jDialog2.setMaximumSize(new java.awt.Dimension(380, 308));
         jDialog2.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog2.setUndecorated(true);
-        jDialog2.setPreferredSize(new java.awt.Dimension(380, 308));
         jDialog2.setResizable(false);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel4.setMaximumSize(new java.awt.Dimension(380, 308));
         jPanel4.setMinimumSize(new java.awt.Dimension(380, 308));
         jPanel4.setPreferredSize(new java.awt.Dimension(380, 308));
@@ -369,21 +369,19 @@ import java.sql.PreparedStatement;
         jDialog2.getContentPane().setLayout(jDialog2Layout);
         jDialog2Layout.setHorizontalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDialog2Layout.setVerticalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jDialog3.setMaximumSize(new java.awt.Dimension(380, 308));
         jDialog3.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog3.setUndecorated(true);
-        jDialog3.setPreferredSize(new java.awt.Dimension(380, 308));
         jDialog3.setResizable(false);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.setMaximumSize(new java.awt.Dimension(380, 308));
         jPanel5.setMinimumSize(new java.awt.Dimension(380, 308));
         jPanel5.setPreferredSize(new java.awt.Dimension(380, 308));
@@ -412,35 +410,45 @@ import java.sql.PreparedStatement;
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel18.setText("Incorrect Values Entered In Table");
+        jLabel18.setText("Or cell is empty");
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel19.setText("Incorrect Values Entered In Table");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(45, 78, Short.MAX_VALUE)
+                .addComponent(jLabel19)
+                .addGap(72, 72, 72))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel18))
+                        .addGap(146, 146, 146)
+                        .addComponent(d3oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
+                        .addGap(149, 149, 149)
                         .addComponent(jLabel14))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(d3oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel18)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(jLabel14)
+                .addContainerGap(76, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(d3oklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
@@ -646,12 +654,12 @@ import java.sql.PreparedStatement;
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(printpnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(printpnlLayout.createSequentialGroup()
                         .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateshow, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addComponent(dateshow, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(242, 242, 242))
             .addGroup(printpnlLayout.createSequentialGroup()
                 .addContainerGap()
@@ -664,9 +672,7 @@ import java.sql.PreparedStatement;
                         .addComponent(contactlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addGap(268, 491, Short.MAX_VALUE)
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
                                 .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -705,10 +711,14 @@ import java.sql.PreparedStatement;
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(printpnlLayout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(descriptiontxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(remainamount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(descriptiontxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(printpnlLayout.createSequentialGroup()
+                                .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(printpnlLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -777,13 +787,12 @@ import java.sql.PreparedStatement;
                 .addGap(28, 28, 28)
                 .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dueamount, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                            .addGroup(printpnlLayout.createSequentialGroup()
-                                .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(remainamount, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                            .addComponent(dueamount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))
                     .addGroup(printpnlLayout.createSequentialGroup()
@@ -876,39 +885,6 @@ import java.sql.PreparedStatement;
         jCheckBox1.setBorder(null);
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 520, 120, 30));
 
-        amountrec2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        amountrec2.setForeground(new java.awt.Color(255, 51, 51));
-        amountrec2.setText("amount due record");
-        amountrec2.setBorder(null);
-        amountrec2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amountrec2ActionPerformed(evt);
-            }
-        });
-        amountrec2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                amountrec2KeyReleased(evt);
-            }
-        });
-        jPanel1.add(amountrec2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 580, 130, 30));
-
-        amountrec3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        amountrec3.setForeground(new java.awt.Color(255, 51, 51));
-        amountrec3.setText("if you want to exclude");
-        amountrec3.setBorder(null);
-        amountrec3.setOpaque(true);
-        amountrec3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amountrec3ActionPerformed(evt);
-            }
-        });
-        amountrec3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                amountrec3KeyReleased(evt);
-            }
-        });
-        jPanel1.add(amountrec3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 550, -1, 30));
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("10");
@@ -958,6 +934,23 @@ import java.sql.PreparedStatement;
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("9");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, 30, 30));
+
+        invalidnolbl.setBackground(new java.awt.Color(255, 255, 255));
+        invalidnolbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        invalidnolbl.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(invalidnolbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 170, 130, 30));
+
+        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel17.setText("if you want to exclude");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 550, 130, 30));
+
+        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel20.setText("amount due ");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 570, 130, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1297, 880));
 
@@ -1073,22 +1066,6 @@ import java.sql.PreparedStatement;
          doklbl.setBackground(new java.awt.Color(0, 152, 152));
     }//GEN-LAST:event_doklblMouseExited
 
-    private void amountrec3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec3KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec3KeyReleased
-
-    private void amountrec3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec3ActionPerformed
-
-    private void amountrec2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountrec2KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec2KeyReleased
-
-    private void amountrec2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountrec2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountrec2ActionPerformed
-
     private void deleterowMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleterowMouseExited
         deleterow.setBackground(new java.awt.Color(0, 152, 152));
     }//GEN-LAST:event_deleterowMouseExited
@@ -1110,10 +1087,16 @@ import java.sql.PreparedStatement;
 
     private void printlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printlblMouseClicked
         
+         String str=null;
+        str=invalidnolbl.getText();
+        
         if(id==null){
             
             jDialog2.setLocationRelativeTo(null);
             jDialog2.setVisible(true);
+        }
+        else if( str!=null){
+            
         }
         else if (tabledatacheck()){
             jDialog1.setLocationRelativeTo(null);
@@ -1151,7 +1134,24 @@ import java.sql.PreparedStatement;
     }//GEN-LAST:event_addrowMouseMoved
 
     private void mobnotxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobnotxtKeyReleased
-        // TODO add your handling code here:
+        String text = mobnotxt.getText();
+        
+        if(text.length()==10){
+            boolean mobnocheck = mobnocheck(text,text.length());
+            
+            if(mobnocheck){
+                invalidnolbl.setText(null);
+            }
+            else{
+                 invalidnolbl.setText("invalid no. !");
+            }
+        }
+        else if(text.isBlank()){
+            invalidnolbl.setText(null);
+        }
+        else{
+            invalidnolbl.setText("invalid no. !");
+        }
     }//GEN-LAST:event_mobnotxtKeyReleased
 
     private void descriptiontxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptiontxtKeyReleased
@@ -1177,6 +1177,8 @@ import java.sql.PreparedStatement;
                  int nwid = BillingInfo.getnewid();
                  id=Integer.toString(nwid);
                  idshowlbl.setText(id);
+                 
+                 mobnotxt.setText(null);
                 
                  nwusr=true;
             }
@@ -1226,7 +1228,9 @@ import java.sql.PreparedStatement;
 
     private void nettotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseClicked
         // TODO add your handling code here:
-        table.selectAll();
+        
+        if(tabledatacheck()){
+             table.selectAll();
         float totalb=0;
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int rows= 0;
@@ -1243,6 +1247,12 @@ import java.sql.PreparedStatement;
         }
 
         nettotalshowlbl.setText(Float.toString(totalb));
+        }
+        else{
+            jDialog3.setLocationRelativeTo(null);
+            jDialog3.setVisible(true);
+        }
+       
     }//GEN-LAST:event_nettotalMouseClicked
 
     private void nettotalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nettotalMouseMoved
@@ -1475,11 +1485,15 @@ import java.sql.PreparedStatement;
     private boolean tabledatacheck(){
          DefaultTableModel model = (DefaultTableModel) table.getModel();
           int rows=model.getRowCount();
+         
           
-         // boolean result=false;
+        if(rows==0){
+            return false;
+        }
           
           for(int i=0; i<rows;i++){
            
+               String  des=String.valueOf(model.getValueAt(i, 0));
                String quantity=(model.getValueAt(i, 1).toString());
                String itmweight=(model.getValueAt(i, 2).toString());
                String rate=(model.getValueAt(i, 3).toString());
@@ -1499,6 +1513,10 @@ import java.sql.PreparedStatement;
                    return false;
                    
                }
+               else if(quantity.isBlank() || itmweight.isBlank() || rate.isBlank() || total.isBlank()|| des.isBlank()){
+                   return false;
+                   
+               }
                
           }
          return true;
@@ -1507,8 +1525,6 @@ import java.sql.PreparedStatement;
     private javax.swing.JLabel addresslbl;
     private javax.swing.JLabel addrow;
     private javax.swing.JTextField amountrec;
-    private javax.swing.JTextField amountrec2;
-    private javax.swing.JTextField amountrec3;
     private javax.swing.JLabel contactlbl;
     private javax.swing.JLabel customernamelbl;
     private javax.swing.JTextField customernametxt;
@@ -1526,6 +1542,7 @@ import java.sql.PreparedStatement;
     private javax.swing.JLabel gstshowlbl;
     private javax.swing.JLabel idlbl;
     private javax.swing.JLabel idshowlbl;
+    private javax.swing.JLabel invalidnolbl;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
@@ -1537,8 +1554,11 @@ import java.sql.PreparedStatement;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

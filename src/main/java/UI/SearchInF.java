@@ -52,6 +52,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
         descriptiontxt.setText("");
         dueshowlbl.setText("");
         searchcustomertxt.setText("");
+        editrecordpnl.setVisible(false); 
         DefaultTableModel model = (DefaultTableModel) customeracctbl.getModel();
        
          int rows = model.getRowCount();
@@ -125,14 +126,12 @@ public class SearchInF extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jDialog1.setMaximumSize(new java.awt.Dimension(380, 308));
         jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog1.setUndecorated(true);
-        jDialog1.setPreferredSize(new java.awt.Dimension(380, 308));
         jDialog1.setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         successdialog.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         successdialog.setForeground(new java.awt.Color(0, 153, 153));
@@ -161,13 +160,13 @@ public class SearchInF extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(successdialog)
                 .addGap(50, 50, 50))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(156, 156, 156)
                 .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +175,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
                 .addComponent(successdialog, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -441,7 +440,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
                                 .addGap(382, 382, 382)
                                 .addComponent(duelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dueshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dueshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -528,8 +527,14 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
     private void editlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editlblMouseClicked
         // TODO add your handling code here:
-       // jPanel1.add(editrecordpnl);
-          editrecordpnl.setVisible(true);
+        if(searchcustomertxt.getText().isBlank()){
+            
+        }
+        else{
+          editrecordpnl.setVisible(true);   
+        }
+        
+         
     }//GEN-LAST:event_editlblMouseClicked
 
     private void editlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editlblMouseExited
@@ -584,18 +589,23 @@ public class SearchInF extends javax.swing.JInternalFrame {
                    SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
                    jDialog1.setLocationRelativeTo(null);
                    jDialog1.setVisible(true);
+                   
+                    refresh();
                
             }
             else{
                 float amourecvd=Float.valueOf(amourec);
                 float amoudue = Float.valueOf(amouduelast);
-                 float updtamoudue= amoudue - amourecvd;
+                float updtamoudue= amoudue - amourecvd;
                  
                 
                  
                 
-                      SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
-                  jDialog1.setVisible(true);
+                SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
+                jDialog1.setLocationRelativeTo(null);
+                jDialog1.setVisible(true);
+                
+                 refresh();
                   
                   
             }
@@ -604,7 +614,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
                     errorlbl.setText("invalid number !!!");
                }      
        }
-        refresh();
+       
     }//GEN-LAST:event_savelblMouseClicked
 
     private void savelblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_savelblMouseExited
