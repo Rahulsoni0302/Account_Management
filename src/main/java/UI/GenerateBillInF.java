@@ -108,7 +108,7 @@ import java.sql.PreparedStatement;
         jDialog1 = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        dcnclelbl = new javax.swing.JLabel();
+        dcncellbl = new javax.swing.JLabel();
         doklbl = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -189,9 +189,13 @@ import java.sql.PreparedStatement;
         });
         jScrollPane1.setViewportView(jList1);
 
-        jDialog1.setLocationByPlatform(true);
         jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog1.setUndecorated(true);
+        jDialog1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDialog1KeyPressed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -203,24 +207,29 @@ import java.sql.PreparedStatement;
         jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("Please confirm the print and save");
 
-        dcnclelbl.setBackground(new java.awt.Color(0, 153, 153));
-        dcnclelbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        dcnclelbl.setForeground(new java.awt.Color(255, 255, 255));
-        dcnclelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dcnclelbl.setText("cancel");
-        dcnclelbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        dcnclelbl.setOpaque(true);
-        dcnclelbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        dcncellbl.setBackground(new java.awt.Color(0, 153, 153));
+        dcncellbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        dcncellbl.setForeground(new java.awt.Color(255, 255, 255));
+        dcncellbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dcncellbl.setText("cancel");
+        dcncellbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dcncellbl.setOpaque(true);
+        dcncellbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                dcnclelblMouseMoved(evt);
+                dcncellblMouseMoved(evt);
             }
         });
-        dcnclelbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        dcncellbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dcnclelblMouseClicked(evt);
+                dcncellblMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                dcnclelblMouseExited(evt);
+                dcncellblMouseExited(evt);
+            }
+        });
+        dcncellbl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                dcncellblKeyPressed(evt);
             }
         });
 
@@ -244,6 +253,11 @@ import java.sql.PreparedStatement;
                 doklblMouseExited(evt);
             }
         });
+        doklbl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                doklblKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -257,7 +271,7 @@ import java.sql.PreparedStatement;
                         .addGap(27, 27, 27)
                         .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73)
-                        .addComponent(dcnclelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dcncellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -268,7 +282,7 @@ import java.sql.PreparedStatement;
                 .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dcnclelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dcncellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
 
@@ -293,6 +307,11 @@ import java.sql.PreparedStatement;
                 listMouseClicked(evt);
             }
         });
+        list.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                listKeyPressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(list);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -311,6 +330,11 @@ import java.sql.PreparedStatement;
         jDialog2.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog2.setUndecorated(true);
         jDialog2.setResizable(false);
+        jDialog2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDialog2KeyPressed(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -379,6 +403,11 @@ import java.sql.PreparedStatement;
         jDialog3.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog3.setUndecorated(true);
         jDialog3.setResizable(false);
+        jDialog3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDialog3KeyPressed(evt);
+            }
+        });
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -510,7 +539,7 @@ import java.sql.PreparedStatement;
 
             },
             new String [] {
-                "desc", "quantity", "item wgt", "rate", "total"
+                "description", "quantity", "item weight (gm)", "rate", "total"
             }
         ));
         table.setRowHeight(40);
@@ -529,7 +558,7 @@ import java.sql.PreparedStatement;
         });
         jScrollPane2.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
-            table.getColumnModel().getColumn(0).setPreferredWidth(80);
+            table.getColumnModel().getColumn(0).setPreferredWidth(100);
             table.getColumnModel().getColumn(1).setPreferredWidth(10);
         }
 
@@ -593,6 +622,9 @@ import java.sql.PreparedStatement;
         customernametxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         customernametxt.setBorder(null);
         customernametxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                customernametxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 customernametxtKeyReleased(evt);
             }
@@ -957,59 +989,8 @@ import java.sql.PreparedStatement;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        // TODO add your haabandling code here:
-        
-       // customernametxt.setText(jList1.getSelectedValue());
-        
-        
-       
-    }//GEN-LAST:event_jList1MouseClicked
-
-    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        // TODO add your handling code here:
-         String custinfo = list.getSelectedValue();
-         // System.out.println(custinfo);
-        
-        SearchCustomerRecords ci = new SearchCustomerRecords();
-        
-       String []indci = ci.returncustinfo(custinfo);
-       
-       id=indci[0];
-       name=indci[1];
-       String mobno=indci[2];
-       
-        
-      // System.out.println(id);
-       //System.out.println(name);
-       //System.out.println(mobno);
-       
-       idshowlbl.setText(id);
-       customernametxt.setText(name);
-       mobnotxt.setText(mobno);
-    }//GEN-LAST:event_listMouseClicked
-
-    private void dcnclelblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcnclelblMouseMoved
-        dcnclelbl.setBackground(new java.awt.Color(0, 102, 103));
-    }//GEN-LAST:event_dcnclelblMouseMoved
-
-    private void dcnclelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcnclelblMouseClicked
-        // TODO add your handling code here:
-        // jPanel1.add(editrecordpnl);
-        jDialog1.dispose();
-    }//GEN-LAST:event_dcnclelblMouseClicked
-
-    private void dcnclelblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcnclelblMouseExited
-        dcnclelbl.setBackground(new java.awt.Color(0, 152, 152));
-    }//GEN-LAST:event_dcnclelblMouseExited
-
-    private void doklblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseMoved
-        doklbl.setBackground(new java.awt.Color(0, 102, 103));
-    }//GEN-LAST:event_doklblMouseMoved
-
-    private void doklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseClicked
-        
-        if(nwusr){
+    private void save(){
+               if(nwusr){
             
             String nm = customernametxt.getText();
             String mob = mobnotxt.getText();
@@ -1060,6 +1041,54 @@ import java.sql.PreparedStatement;
 //        ginf.setVisible(true);
 //        ginf.revalidate();
         panelRefresh();
+    }
+    
+    
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your haabandling code here:
+        
+       // customernametxt.setText(jList1.getSelectedValue());       
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+       String custinfo = list.getSelectedValue();
+       SearchCustomerRecords ci = new SearchCustomerRecords();        
+       String []indci = ci.returncustinfo(custinfo);
+       
+       id=indci[0];
+       name=indci[1];
+       String mobno=indci[2];
+       
+        
+       // System.out.println(id);
+       //System.out.println(name);
+       //System.out.println(mobno);
+       
+       idshowlbl.setText(id);
+       customernametxt.setText(name);
+       mobnotxt.setText(mobno);
+    }//GEN-LAST:event_listMouseClicked
+
+    private void dcncellblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcncellblMouseMoved
+        dcncellbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_dcncellblMouseMoved
+
+    private void dcncellblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcncellblMouseClicked
+        // TODO add your handling code here:
+        // jPanel1.add(editrecordpnl);
+        jDialog1.dispose();
+    }//GEN-LAST:event_dcncellblMouseClicked
+
+    private void dcncellblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcncellblMouseExited
+        dcncellbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_dcncellblMouseExited
+
+    private void doklblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseMoved
+        doklbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_doklblMouseMoved
+
+    private void doklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseClicked
+        save();
     }//GEN-LAST:event_doklblMouseClicked
 
     private void doklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseExited
@@ -1293,8 +1322,7 @@ import java.sql.PreparedStatement;
     }//GEN-LAST:event_d2oklblMouseClicked
 
     private void d3oklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d3oklblMouseClicked
-               
-        jDialog3.dispose();
+         jDialog3.dispose();
     }//GEN-LAST:event_d3oklblMouseClicked
 
     private void d3oklblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d3oklblMouseEntered
@@ -1312,6 +1340,93 @@ import java.sql.PreparedStatement;
     private void d2oklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d2oklblMouseExited
         d2oklbl.setBackground(new java.awt.Color(0, 152, 152));
     }//GEN-LAST:event_d2oklblMouseExited
+
+    private void jDialog2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDialog2KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            jDialog2.dispose();
+        }
+    }//GEN-LAST:event_jDialog2KeyPressed
+
+    private void jDialog3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDialog3KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            jDialog3.dispose();
+        }
+    }//GEN-LAST:event_jDialog3KeyPressed
+
+    private void jDialog1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDialog1KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+            dcncellbl.setBackground(new java.awt.Color(0, 102, 103));
+            doklbl.setBackground(new java.awt.Color(0, 152, 152));
+            dcncellbl.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+            doklbl.setBackground(new java.awt.Color(0, 102, 103));
+            dcncellbl.setBackground(new java.awt.Color(0, 152, 152));
+            doklbl.requestFocus();
+        }
+    }//GEN-LAST:event_jDialog1KeyPressed
+
+    private void doklblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_doklblKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+            dcncellbl.setBackground(new java.awt.Color(0, 102, 103));
+            doklbl.setBackground(new java.awt.Color(0, 152, 152));
+            dcncellbl.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            save();
+        }
+    }//GEN-LAST:event_doklblKeyPressed
+
+    private void dcncellblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcncellblKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+            doklbl.setBackground(new java.awt.Color(0, 102, 103));
+            dcncellbl.setBackground(new java.awt.Color(0, 152, 152));
+            doklbl.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            jDialog1.dispose();
+        }
+    }//GEN-LAST:event_dcncellblKeyPressed
+
+    private void listKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listKeyPressed
+        int index = list.getSelectedIndex();
+        DefaultListModel model = (DefaultListModel)list.getModel();
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            String custinfo = list.getSelectedValue();
+            SearchCustomerRecords ci = new SearchCustomerRecords();        
+            String []indci = ci.returncustinfo(custinfo);
+       
+            id=indci[0];
+            name=indci[1];
+            String mobno=indci[2];
+            
+            idshowlbl.setText(id);
+            customernametxt.setText(name);
+            mobnotxt.setText(mobno);
+//            menu.setVisible(false);
+//            list.setVisible(false);
+//            jPanel3.setVisible(false);
+            customernametxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            if(index==0){
+                index=0;
+                list.setSelectedIndex(index);
+            }
+            list.setSelectedIndex(index-1);
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            list.setSelectedIndex(index);
+        }
+    }//GEN-LAST:event_listKeyPressed
+
+    private void customernametxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customernametxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            list.requestFocus();
+            list.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_customernametxtKeyPressed
 
     
     private void printBill(JPanel panel){
@@ -1532,7 +1647,7 @@ import java.sql.PreparedStatement;
     private javax.swing.JLabel d3oklbl;
     private javax.swing.JLabel datelbl;
     private javax.swing.JLabel dateshow;
-    private javax.swing.JLabel dcnclelbl;
+    private javax.swing.JLabel dcncellbl;
     private javax.swing.JLabel deleterow;
     private javax.swing.JTextField descriptiontxt;
     private javax.swing.JLabel doklbl;

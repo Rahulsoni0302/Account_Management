@@ -43,6 +43,9 @@ public class SearchInF extends javax.swing.JInternalFrame {
         mui = (BasicPopupMenuUI)menu.getUI();
         
         editrecordpnl.setVisible(false);
+        editlbl.setVisible(false);
+        duelbl.setVisible(false);
+        dueshowlbl.setVisible(false);
     }
     String custinfo=null, amouduelast=null,id=null,date=null;
     
@@ -113,6 +116,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
                 listMouseClicked(evt);
             }
         });
+        list.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                listKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(list);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -129,6 +137,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
         jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog1.setUndecorated(true);
         jDialog1.setResizable(false);
+        jDialog1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDialog1KeyPressed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -204,7 +217,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "NAME", "MOB.NO.", "ID", "TRANS. DATE", "BILLING DATE", "TOTAL AMOUNT", "AMOUNT RECEIEVED", "AMOUNT DUE", "DESCRIPTION"
+                "NAME", "MOB.NO.", "ID", "TRXN. DATE", "BILLING DATE", "TOTAL AMOUNT", "AMOUNT RECEIEVED", "AMOUNT DUE", "DESCRIPTION"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -220,6 +233,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
         customeracctbl.setRowHeight(30);
         jScrollPane1.setViewportView(customeracctbl);
         customeracctbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (customeracctbl.getColumnModel().getColumnCount() > 0) {
+            customeracctbl.getColumnModel().getColumn(2).setPreferredWidth(15);
+            customeracctbl.getColumnModel().getColumn(8).setResizable(false);
+            customeracctbl.getColumnModel().getColumn(8).setPreferredWidth(80);
+        }
 
         customernamelbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         customernamelbl.setText("Enter the customer name:");
@@ -227,6 +245,9 @@ public class SearchInF extends javax.swing.JInternalFrame {
         searchcustomertxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         searchcustomertxt.setBorder(null);
         searchcustomertxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchcustomertxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchcustomertxtKeyReleased(evt);
             }
@@ -297,6 +318,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
         descriptiontxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         descriptiontxt.setBorder(null);
+        descriptiontxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                descriptiontxtKeyPressed(evt);
+            }
+        });
 
         errorlbl.setBackground(new java.awt.Color(255, 255, 255));
         errorlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -528,10 +554,10 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private void editlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editlblMouseClicked
         // TODO add your handling code here:
         if(searchcustomertxt.getText().isBlank()){
-            
+              
         }
         else{
-          editrecordpnl.setVisible(true);   
+            editrecordpnl.setVisible(true);   
         }
         
          
@@ -648,8 +674,9 @@ public class SearchInF extends javax.swing.JInternalFrame {
        
        
        search(id,name,mobno);
-       
-        
+       editlbl.setVisible(true);
+       duelbl.setVisible(true);        
+       dueshowlbl.setVisible(true);
     }//GEN-LAST:event_listMouseClicked
 
     private void doklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseClicked
@@ -661,11 +688,20 @@ public class SearchInF extends javax.swing.JInternalFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             giventxt.requestFocus();
         }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            giventxt.requestFocus();
+        }
     }//GEN-LAST:event_receivedtxtKeyPressed
 
     private void giventxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_giventxtKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
            descriptiontxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            descriptiontxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            receivedtxt.requestFocus();
         }
     }//GEN-LAST:event_giventxtKeyPressed
 
@@ -676,6 +712,64 @@ public class SearchInF extends javax.swing.JInternalFrame {
     private void doklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseExited
         doklbl.setBackground(new java.awt.Color(0, 152, 152));
     }//GEN-LAST:event_doklblMouseExited
+
+    private void descriptiontxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptiontxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            giventxt.requestFocus();
+        }
+    }//GEN-LAST:event_descriptiontxtKeyPressed
+
+    private void jDialog1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDialog1KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            jDialog1.dispose();
+        }
+    }//GEN-LAST:event_jDialog1KeyPressed
+
+    private void listKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listKeyPressed
+        int index = list.getSelectedIndex();
+        DefaultListModel model = (DefaultListModel)list.getModel();
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            String custinfo = list.getSelectedValue();
+        
+            SearchCustomerRecords ci = new SearchCustomerRecords();
+        
+            String []indci = ci.returncustinfo(custinfo);
+       
+            id=indci[0];
+            String name=indci[1];
+            String mobno=indci[2];
+       
+            searchcustomertxt.setText(name);
+      
+            search(id,name,mobno);
+            editlbl.setVisible(true);
+            duelbl.setVisible(true);
+            dueshowlbl.setVisible(true);
+//            menu.setVisible(false);
+//            list.setVisible(false);
+//            jPanel2.setVisible(false);
+//            jScrollPane2.setVisible(false);
+            searchcustomertxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            if(index==0){
+                index=0;
+                list.setSelectedIndex(index);
+            }
+            list.setSelectedIndex(index-1);
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            list.setSelectedIndex(index);
+        }
+    }//GEN-LAST:event_listKeyPressed
+
+    private void searchcustomertxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchcustomertxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            list.requestFocus();
+            list.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_searchcustomertxtKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

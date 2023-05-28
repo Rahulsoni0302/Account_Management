@@ -81,8 +81,12 @@ public class RegistrationFrame extends javax.swing.JFrame {
         jDialogeditsaved.setMaximumSize(new java.awt.Dimension(380, 308));
         jDialogeditsaved.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialogeditsaved.setUndecorated(true);
-        jDialogeditsaved.setPreferredSize(new java.awt.Dimension(380, 308));
         jDialogeditsaved.setResizable(false);
+        jDialogeditsaved.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDialogeditsavedKeyPressed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -279,6 +283,11 @@ public class RegistrationFrame extends javax.swing.JFrame {
                 conpasswordtxtActionPerformed(evt);
             }
         });
+        conpasswordtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                conpasswordtxtKeyPressed(evt);
+            }
+        });
 
         passworderror.setBackground(new java.awt.Color(0, 153, 153));
         passworderror.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -429,6 +438,46 @@ public class RegistrationFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+        private void check(){
+        usrnm= usernametxt.getText();
+        phno=  phonenotxt.getText();
+        email=  emailtxt.getText();
+        entnm=  enterprisenametxt.getText();
+        gstno=  gstnotxt.getText();        
+        add=  addresstxt.getText();        
+        pass=passwordtxt.getText();        
+        confpass=  conpasswordtxt.getText();
+        
+      
+        if(usrnm.isBlank()){
+          // set the label that username field cant be empty
+            usrnmpherr.setText("username & mob.no. can't be empty !");
+            jCheckBox1.setSelected(false);
+        }
+        if(phno.isBlank()){
+           // set the label that password field cant be empty
+            usrnmpherr.setText("username & mob.no. can't be empty !");
+            jCheckBox1.setSelected(false);
+        }
+        else if(pass.equals(confpass)){
+           
+            if(usrnm.isBlank()){
+             // set the label that username field cant be empty
+               usrnmpherr.setText("username & mob.no. can't be empty !");
+               jCheckBox1.setSelected(false);
+            }
+             else{
+                jCheckBox1.setSelected(true);
+                savelbl.setVisible(true);
+                savelbl.setEnabled(false);
+               }
+        }
+        else{
+            passworderror.setText("Password doesn't match !");
+            jCheckBox1.setSelected(false);
+        }
+    }
+
     private void conpasswordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conpasswordtxtActionPerformed
         // TODO add your handling code here:
         
@@ -486,50 +535,14 @@ public class RegistrationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_doklblMousePressed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-        
-        usrnm= usernametxt.getText();
-      phno=  phonenotxt.getText();
-     email=  emailtxt.getText();
-       entnm=  enterprisenametxt.getText();
-      gstno=  gstnotxt.getText();        
-      add=  addresstxt.getText();        
-        pass=passwordtxt.getText();        
-      confpass=  conpasswordtxt.getText();
-        
-      
-        if(usrnm.isBlank()){
-          // set the label that username field cant be empty
-          usrnmpherr.setText("username & mob.no. can't be empty !");
-          jCheckBox1.setSelected(false);
-        }
-        if(phno.isBlank()){
-           // set the label that password field cant be empty
-            usrnmpherr.setText("username & mob.no. can't be empty !");
-            jCheckBox1.setSelected(false);
-        }
-        else if(pass.equals(confpass)){
-           
-            if(usrnm.isBlank()){
-             // set the label that username field cant be empty
-               usrnmpherr.setText("username & mob.no. can't be empty !");
-              jCheckBox1.setSelected(false);
-            }
-             else{
-                 jCheckBox1.setSelected(true);
-                 savelbl.setVisible(true);
-                 savelbl.setEnabled(false);
-               }
-        }
-        else{
-            passworderror.setText("Password doesn't match !");
-            jCheckBox1.setSelected(false);
-        }
-        
+       check();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void usernametxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernametxtKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            phonenotxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
             phonenotxt.requestFocus();
         }
     }//GEN-LAST:event_usernametxtKeyPressed
@@ -538,11 +551,23 @@ public class RegistrationFrame extends javax.swing.JFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             enterprisenametxt.requestFocus();
         }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            enterprisenametxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            usernametxt.requestFocus();
+        }
     }//GEN-LAST:event_phonenotxtKeyPressed
 
     private void enterprisenametxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterprisenametxtKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             emailtxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            emailtxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            phonenotxt.requestFocus();
         }
     }//GEN-LAST:event_enterprisenametxtKeyPressed
 
@@ -550,11 +575,23 @@ public class RegistrationFrame extends javax.swing.JFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             gstnotxt.requestFocus();
         }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            gstnotxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            enterprisenametxt.requestFocus();
+        }
     }//GEN-LAST:event_emailtxtKeyPressed
 
     private void gstnotxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gstnotxtKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             addresstxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            addresstxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            emailtxt.requestFocus();
         }
     }//GEN-LAST:event_gstnotxtKeyPressed
 
@@ -562,13 +599,39 @@ public class RegistrationFrame extends javax.swing.JFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             passwordtxt.requestFocus();
         }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            passwordtxt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            gstnotxt.requestFocus();
+        }
     }//GEN-LAST:event_addresstxtKeyPressed
 
     private void passwordtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordtxtKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             conpasswordtxt.requestFocus();
         }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            conpasswordtxt.requestFocus();
+        }
     }//GEN-LAST:event_passwordtxtKeyPressed
+
+    private void conpasswordtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_conpasswordtxtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            check();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            passwordtxt.requestFocus();
+        }
+    }//GEN-LAST:event_conpasswordtxtKeyPressed
+
+    private void jDialogeditsavedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDialogeditsavedKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            dispose();
+            jDialogeditsaved.dispose();
+            new LoginFrame().setVisible(true);
+        }
+    }//GEN-LAST:event_jDialogeditsavedKeyPressed
     
     private void setregistrationdetails(){
         

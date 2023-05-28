@@ -6,6 +6,7 @@ package UI;
 
 import backend.SearchCustBills;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -140,6 +141,11 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
                 listMouseClicked(evt);
             }
         });
+        list.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                listKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(list);
 
         javax.swing.GroupLayout listpnlLayout = new javax.swing.GroupLayout(listpnl);
@@ -207,6 +213,9 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
             }
         });
         txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtKeyReleased(evt);
             }
@@ -358,6 +367,54 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         //  System.out.print(idn+" "+nmn+" "+mobn);
 
     }//GEN-LAST:event_listMouseClicked
+
+    private void listKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listKeyPressed
+        int index = list.getSelectedIndex();
+        DefaultListModel model = (DefaultListModel)list.getModel();
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            String custinfo = list.getSelectedValue();
+
+            int idlen= custinfo.indexOf(32);
+            String idn = custinfo.substring(0, idlen);
+            //  System.out.println(idn);
+
+            int nmstrt=idlen+4;
+            int nmend=custinfo.indexOf(32, nmstrt);
+
+            String nmn= custinfo.substring(nmstrt, nmend);
+      //    System.out.println(nmn);
+
+      //    String mobn = " ";
+            int mobstrt=nmend+4;
+            String mobn=custinfo.substring(mobstrt);
+      //    System.out.println(mobn);
+
+            search(idn,nmn,mobn);
+            txt.setText(nmn);
+      //    System.out.print(idn+" "+nmn+" "+mobn);
+//            menu.setVisible(false);
+//            list.setVisible(false);
+//            listpnl.setVisible(false);
+            txt.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            if(index==0){
+                index=0;
+                list.setSelectedIndex(index);
+            }
+            list.setSelectedIndex(index-1);
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            list.setSelectedIndex(index);
+        }
+    }//GEN-LAST:event_listKeyPressed
+
+    private void txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            list.requestFocus();
+            list.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_txtKeyPressed
 
       private void billingHistory()//used to fetch the bills of the recent customers
     {

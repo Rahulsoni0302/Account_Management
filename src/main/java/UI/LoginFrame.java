@@ -255,7 +255,6 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_submitlblMouseExited
 
     private void newuserlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newuserlblMouseClicked
-        passwordtxt1.requestFocus();
         try {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
             String user = "root";
@@ -272,6 +271,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 proceedforedit.setVisible(true);
                 passwordlbl1.setVisible(true);
                 passwordtxt1.setVisible(true);
+                passwordtxt1.requestFocus();
                 jSeparator3.setVisible(true);
             }
             else{
@@ -321,6 +321,9 @@ public class LoginFrame extends javax.swing.JFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             passwordtxt.requestFocus();
         }
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            passwordtxt.requestFocus();
+        }
     }//GEN-LAST:event_usernametxtKeyPressed
 
     private void passwordtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordtxtKeyPressed
@@ -341,6 +344,10 @@ public class LoginFrame extends javax.swing.JFrame {
 
                     error.setText("invalid username or password !");
                  }
+        }
+        
+         if(evt.getKeyCode()==KeyEvent.VK_UP){
+            usernametxt.requestFocus();
         }
     }//GEN-LAST:event_passwordtxtKeyPressed
 

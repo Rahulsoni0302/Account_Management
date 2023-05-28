@@ -4,6 +4,7 @@
  */
 package UI;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -60,6 +61,11 @@ public class MainFrame extends javax.swing.JFrame {
         jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog1.setUndecorated(true);
         jDialog1.setResizable(false);
+        jDialog1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDialog1KeyPressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -96,6 +102,11 @@ public class MainFrame extends javax.swing.JFrame {
                 doklblMouseExited(evt);
             }
         });
+        doklbl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                doklblKeyPressed(evt);
+            }
+        });
 
         dcncllbl.setBackground(new java.awt.Color(0, 153, 153));
         dcncllbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -117,6 +128,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 dcncllblMouseExited(evt);
+            }
+        });
+        dcncllbl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                dcncllblKeyPressed(evt);
             }
         });
 
@@ -472,6 +488,44 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
          dcncllbl.setBackground(new java.awt.Color(0, 102, 103));
     }//GEN-LAST:event_dcncllblMouseMoved
+
+    private void jDialog1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDialog1KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+            dcncllbl.setBackground(new java.awt.Color(0, 102, 103));
+            doklbl.setBackground(new java.awt.Color(0, 152, 152));
+            dcncllbl.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+            doklbl.setBackground(new java.awt.Color(0, 102, 103));
+            dcncllbl.setBackground(new java.awt.Color(0, 152, 152));
+            doklbl.requestFocus();
+        }
+    }//GEN-LAST:event_jDialog1KeyPressed
+
+    private void doklblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_doklblKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+            dcncllbl.setBackground(new java.awt.Color(0, 102, 103));
+            doklbl.setBackground(new java.awt.Color(0, 152, 152));
+            dcncllbl.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            this.dispose();
+            java.awt.EventQueue.invokeLater(() -> {
+                new LoginFrame().setVisible(true);
+            });
+        }
+    }//GEN-LAST:event_doklblKeyPressed
+
+    private void dcncllblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcncllblKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+            doklbl.setBackground(new java.awt.Color(0, 102, 103));
+            dcncllbl.setBackground(new java.awt.Color(0, 152, 152));
+            doklbl.requestFocus();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            jDialog1.dispose();
+        }
+    }//GEN-LAST:event_dcncllblKeyPressed
 
     private void setusername(){
      
