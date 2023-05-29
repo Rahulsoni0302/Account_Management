@@ -27,6 +27,9 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null); 
         
+        //making mobno null
+        invalidnolbl.setText(null);
+        
         int nwid = BillingInfo.getnewid();
         newid=Integer.toString(nwid);
         cidshowlbl.setText(newid);        
