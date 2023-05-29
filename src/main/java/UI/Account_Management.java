@@ -20,7 +20,9 @@ public class Account_Management {
         });
             
         File file = new File("C:/Account_management/bills");
-        boolean created = file.mkdirs();  
+        File filet = new File("C:/Account_management/temp");
+        boolean created = file.mkdirs();
+         boolean created1 = filet.mkdirs();
       
 }
 }

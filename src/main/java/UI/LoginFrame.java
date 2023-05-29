@@ -11,6 +11,9 @@ import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -53,6 +56,10 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        contacDialog = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        doklbl = new javax.swing.JLabel();
         backgrndpanel = new javax.swing.JPanel();
         foregrndpanel = new javax.swing.JPanel();
         loginlbl = new javax.swing.JLabel();
@@ -70,6 +77,84 @@ public class LoginFrame extends javax.swing.JFrame {
         passwordlbl1 = new javax.swing.JLabel();
         passwordtxt1 = new javax.swing.JPasswordField();
         jSeparator3 = new javax.swing.JSeparator();
+
+        contacDialog.setAlwaysOnTop(true);
+        contacDialog.setMaximumSize(new java.awt.Dimension(380, 308));
+        contacDialog.setMinimumSize(new java.awt.Dimension(380, 308));
+        contacDialog.setUndecorated(true);
+        contacDialog.setResizable(false);
+        contacDialog.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                contacDialogKeyPressed(evt);
+            }
+        });
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel3.setMaximumSize(new java.awt.Dimension(380, 308));
+        jPanel3.setMinimumSize(new java.awt.Dimension(380, 308));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel1.setText("please contact your vendor");
+
+        doklbl.setBackground(new java.awt.Color(0, 153, 153));
+        doklbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        doklbl.setForeground(new java.awt.Color(255, 255, 255));
+        doklbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        doklbl.setText("OK");
+        doklbl.setOpaque(true);
+        doklbl.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                doklblMouseMoved(evt);
+            }
+        });
+        doklbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                doklblMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                doklblMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                doklblMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(92, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(doklbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout contacDialogLayout = new javax.swing.GroupLayout(contacDialog.getContentPane());
+        contacDialog.getContentPane().setLayout(contacDialogLayout);
+        contacDialogLayout.setHorizontalGroup(
+            contacDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        contacDialogLayout.setVerticalGroup(
+            contacDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -141,6 +226,11 @@ public class LoginFrame extends javax.swing.JFrame {
         forgotpasswordlbl.setForeground(new java.awt.Color(51, 153, 255));
         forgotpasswordlbl.setText("Forgot password ?");
         forgotpasswordlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        forgotpasswordlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                forgotpasswordlblMouseClicked(evt);
+            }
+        });
         foregrndpanel.add(forgotpasswordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 139, -1));
 
         newuserlbl.setForeground(new java.awt.Color(51, 153, 255));
@@ -220,6 +310,32 @@ public class LoginFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void addAdmin() throws IOException {
+        
+        try {
+            String name=null , pass=null;
+            String dbURL = "jdbc:mysql://localhost:3306/app_dev";
+            String user = "root";
+            String password = "#@Rahul8269";
+            Connection conn = null;
+            conn = DriverManager.getConnection(dbURL, user, password);
+            Statement st = conn.createStatement();
+            String sql = "select name,u_password from user_registration ";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                name = rs.getString(1);
+                pass = rs.getString(2);
+               
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Account_management\\temp\\AdminUserData.txt"));
+            writer.write(name + " " + pass);
+            writer.newLine();
+            writer.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+    
     private void usernametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernametxtActionPerformed
         // TODO add your handling code here:
         
@@ -368,6 +484,42 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_passwordtxt1KeyPressed
 
+    private void forgotpasswordlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotpasswordlblMouseClicked
+        try {
+            addAdmin();
+            contacDialog.setLocationRelativeTo(null);
+            contacDialog.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_forgotpasswordlblMouseClicked
+
+    private void doklblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseMoved
+        doklbl.setBackground(new java.awt.Color(0, 102, 103));
+    }//GEN-LAST:event_doklblMouseMoved
+
+    private void doklblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseClicked
+        this.dispose();
+        contacDialog.dispose();
+        new LoginFrame().setVisible(true);
+    }//GEN-LAST:event_doklblMouseClicked
+
+    private void doklblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMouseExited
+        doklbl.setBackground(new java.awt.Color(0, 152, 152));
+    }//GEN-LAST:event_doklblMouseExited
+
+    private void doklblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doklblMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_doklblMousePressed
+
+    private void contacDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contacDialogKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            dispose();
+            contacDialog.dispose();
+            new LoginFrame().setVisible(true);
+        }
+    }//GEN-LAST:event_contacDialogKeyPressed
+
  
     /**
      * @param args the command line arguments
@@ -376,9 +528,13 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgrndpanel;
+    private javax.swing.JDialog contacDialog;
+    private javax.swing.JLabel doklbl;
     public javax.swing.JLabel error;
     private javax.swing.JPanel foregrndpanel;
     private javax.swing.JLabel forgotpasswordlbl;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

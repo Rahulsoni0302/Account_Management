@@ -23,14 +23,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     
     public MainFrame() {
-        //GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
         initComponents();
         
         SearchInF sif = new SearchInF();
         basepanel.removeAll();
         basepanel.add(sif).setVisible(true);
         importreclbl.setVisible(false);
-        //device.setFullScreenWindow(new MainFrame());
+        setExtendedState(getExtendedState() | this.MAXIMIZED_BOTH);
         setusername();
     }
 
