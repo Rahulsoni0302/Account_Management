@@ -4,6 +4,8 @@
  */
 package UI;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,13 +23,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     
     public MainFrame() {
+        //GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
         initComponents();
         
         SearchInF sif = new SearchInF();
         basepanel.removeAll();
         basepanel.add(sif).setVisible(true);
         importreclbl.setVisible(false);
-        
+        //device.setFullScreenWindow(new MainFrame());
         setusername();
     }
 
