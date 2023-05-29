@@ -5,7 +5,6 @@
 package UI;
 
 import backend.SearchCustBills;
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -16,14 +15,10 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;

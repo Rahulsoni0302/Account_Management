@@ -9,17 +9,8 @@ import backend.BillingInfo;
 import backend.AddNewRecord;
 import static backend.Check.mobnocheck;
 import java.awt.event.KeyEvent;
-import java.text.DateFormat;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-//import java.util.Date;
-import java.sql.Date;
 import java.time.ZoneId;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
