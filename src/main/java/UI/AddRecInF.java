@@ -644,6 +644,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
     private void jDialogsuccessKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDialogsuccessKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             jDialogsuccess.dispose();
+            refresh();
         }
     }//GEN-LAST:event_jDialogsuccessKeyPressed
 
