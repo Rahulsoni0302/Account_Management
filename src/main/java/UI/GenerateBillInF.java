@@ -81,6 +81,8 @@ import java.sql.PreparedStatement;
         ui.setNorthPane(null);
         setuserdetails();
         
+        customernametxt.requestFocus();
+        
         //making mobno null
         invalidnolbl.setText(null);
         
@@ -88,6 +90,8 @@ import java.sql.PreparedStatement;
         menu.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicPopupMenuUI mui;
         mui = (BasicPopupMenuUI)menu.getUI();
+        
+        
     }
     
     String id=null,date=null,name=null,loc =null;
@@ -693,7 +697,6 @@ import java.sql.PreparedStatement;
                         .addComponent(contactlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpnlLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -912,6 +915,11 @@ import java.sql.PreparedStatement;
         jCheckBox1.setForeground(new java.awt.Color(255, 51, 51));
         jCheckBox1.setText("check this box ");
         jCheckBox1.setBorder(null);
+        jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 520, 120, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1003,7 +1011,7 @@ import java.sql.PreparedStatement;
             Logger.getLogger(GenerateBillInF.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(jCheckBox1.isSelected()){
-
+         // dueamount.setVisible(false);
         }
         else if(rem==0)//to remove unnecessary amount records 
         {
@@ -1424,6 +1432,15 @@ import java.sql.PreparedStatement;
             list.setSelectedIndex(0);
         }
     }//GEN-LAST:event_customernametxtKeyPressed
+
+    private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
+         if(jCheckBox1.isSelected()){
+          dueamount.setVisible(false);
+        }
+         else{
+              dueamount.setVisible(true);
+         }
+    }//GEN-LAST:event_jCheckBox1MouseClicked
 
     
     private void printBill(JPanel panel){

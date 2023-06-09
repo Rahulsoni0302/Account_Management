@@ -21,7 +21,7 @@ public class SearchCustomerRecords {
     
    
  
-    public static void addrecord(String description , float amou_due,String amou_rec,String date , String id){
+    public static void addrecord(String description , float amou_due,String amou_rec,String date , String id,String amougiv){
         
         try {
             String dbURL = "jdbc:mysql://localhost:3306/app_dev";
@@ -30,13 +30,14 @@ public class SearchCustomerRecords {
             Connection conn = null;
             
             conn = DriverManager.getConnection(dbURL, user, password);
-            CallableStatement cscr = conn.prepareCall("{call add_records_cust(?,?,?,?,?)}");
+            CallableStatement cscr = conn.prepareCall("{call add_records_cust(?,?,?,?,?,?)}");
             
             cscr.setString(1, id);
             cscr.setString(2, description);
             cscr.setString(3, amou_rec);
             cscr.setFloat(4, amou_due);
             cscr.setString(5, date);
+            cscr.setString(6, amougiv);
             
             cscr.execute();
             

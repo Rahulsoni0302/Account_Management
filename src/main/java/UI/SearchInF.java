@@ -216,11 +216,11 @@ public class SearchInF extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "NAME", "MOB.NO.", "ID", "TRXN. DATE", "BILLING DATE", "TOTAL AMOUNT", "AMOUNT RECEIEVED", "AMOUNT DUE", "DESCRIPTION"
+                "NAME", "MOB.NO.", "ID", "TRXN. DATE", "BILLING DATE", "TOTAL AMOUNT", "AMOUNT RECEIEVED", "AMOUNT GIVEN", "AMOUNT DUE", "DESCRIPTION"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -234,8 +234,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
         customeracctbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (customeracctbl.getColumnModel().getColumnCount() > 0) {
             customeracctbl.getColumnModel().getColumn(2).setPreferredWidth(15);
-            customeracctbl.getColumnModel().getColumn(8).setResizable(false);
-            customeracctbl.getColumnModel().getColumn(8).setPreferredWidth(80);
+            customeracctbl.getColumnModel().getColumn(9).setPreferredWidth(80);
         }
 
         customernamelbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -611,7 +610,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
             //   System.out.println(updtamoudue);
               
               
-                   SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
+                   SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id,amougiven);
                    jDialog1.setLocationRelativeTo(null);
                    jDialog1.setVisible(true);
                    
@@ -626,7 +625,7 @@ public class SearchInF extends javax.swing.JInternalFrame {
                 
                  
                 
-                SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id);
+                SearchCustomerRecords.addrecord(descrptn, updtamoudue,amourec , date, id,null);
                 jDialog1.setLocationRelativeTo(null);
                 jDialog1.setVisible(true);
                 
@@ -853,7 +852,8 @@ private void search(String id , String nm , String mob){
                 String ttlamou=rs.getString(6);
                 String amourec=rs.getString(7);
               String amoudue=rs.getString(8);
-                String descrptn=rs.getString(9);
+                String descrptnn=rs.getString(9);
+                String amougiven=rs.getString(10);
                 
                 //taking the last amount due cell value
                 if(a==1){
@@ -861,7 +861,7 @@ private void search(String id , String nm , String mob){
                      a++;
                 }
                
-                String []row={name,mob_no,i_d,trnxdt,billdt,ttlamou,amourec,amoudue,descrptn};
+                String []row={name,mob_no,i_d,trnxdt,billdt,ttlamou,amourec,amougiven,amoudue,descrptnn};
                 
                 model.addRow(row);
                 

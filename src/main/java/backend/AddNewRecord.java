@@ -38,13 +38,14 @@ public class AddNewRecord {
             
             conn = DriverManager.getConnection(dbURL, user, password);
           
-            CallableStatement carc = conn.prepareCall("call add_records_cust(?,?,?,?,?)");
+            CallableStatement carc = conn.prepareCall("call add_records_cust(?,?,?,?,?,?)");
             
             carc.setString(1, usrid);
             carc.setString(2, description);
             carc.setString(3, null);
             carc.setString(4, amougiving);
             carc.setString(5,date );
+            carc.setString(6, amougiving);
             
             carc.executeUpdate();
             conn.close();
