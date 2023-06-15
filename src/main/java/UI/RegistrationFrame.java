@@ -610,6 +610,9 @@ public class RegistrationFrame extends javax.swing.JFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             conpasswordtxt.requestFocus();
         }
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            addresstxt.requestFocus();
+        }
         if(evt.getKeyCode()==KeyEvent.VK_DOWN){
             conpasswordtxt.requestFocus();
         }

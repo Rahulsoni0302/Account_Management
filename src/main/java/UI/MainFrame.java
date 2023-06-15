@@ -4,6 +4,9 @@
  */
 package UI;
 
+import java.awt.DisplayMode;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,6 +31,9 @@ public class MainFrame extends javax.swing.JFrame {
         basepanel.add(sif).setVisible(true);
         importreclbl.setVisible(false);
         setExtendedState(getExtendedState() | this.MAXIMIZED_BOTH);
+//        GraphicsDevice graphics = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+//        graphics.setFullScreenWindow(this);
+//        graphics.setDisplayMode(new DisplayMode(1920, 1080, 32, 60));
         setusername();
     }
 
@@ -39,6 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jDialog1 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
@@ -46,6 +53,18 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         doklbl = new javax.swing.JLabel();
         dcncllbl = new javax.swing.JLabel();
+        jFrame1 = new javax.swing.JFrame();
+        dashboardpanel1 = new javax.swing.JPanel();
+        welcomelbl1 = new javax.swing.JLabel();
+        menuinfo1 = new javax.swing.JLabel();
+        homelbl1 = new javax.swing.JLabel();
+        genbilllbl1 = new javax.swing.JLabel();
+        billinghislbl1 = new javax.swing.JLabel();
+        addreclbl1 = new javax.swing.JLabel();
+        importreclbl1 = new javax.swing.JLabel();
+        logoutlbl1 = new javax.swing.JLabel();
+        usrnmlbl1 = new javax.swing.JLabel();
+        basepanel1 = new javax.swing.JPanel();
         dashboardpanel = new javax.swing.JPanel();
         welcomelbl = new javax.swing.JLabel();
         menuinfo = new javax.swing.JLabel();
@@ -179,9 +198,263 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jFrame1.setMinimumSize(new java.awt.Dimension(1676, 850));
+        jFrame1.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        dashboardpanel1.setBackground(new java.awt.Color(0, 153, 153));
+        dashboardpanel1.setMaximumSize(new java.awt.Dimension(360, 346));
+        dashboardpanel1.setMinimumSize(new java.awt.Dimension(360, 346));
+        dashboardpanel1.setLayout(new java.awt.GridBagLayout());
+
+        welcomelbl1.setForeground(new java.awt.Color(255, 255, 255));
+        welcomelbl1.setText("WELCOME");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 13;
+        gridBagConstraints.ipady = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 10, 0, 0);
+        dashboardpanel1.add(welcomelbl1, gridBagConstraints);
+
+        menuinfo1.setBackground(new java.awt.Color(0, 102, 102));
+        menuinfo1.setForeground(new java.awt.Color(255, 255, 255));
+        menuinfo1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        menuinfo1.setText("SEARCH CUSTOMER   ");
+        menuinfo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuinfo1.setOpaque(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.ipadx = 253;
+        gridBagConstraints.ipady = 44;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
+        dashboardpanel1.add(menuinfo1, gridBagConstraints);
+
+        homelbl1.setBackground(new java.awt.Color(0, 153, 153));
+        homelbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        homelbl1.setForeground(new java.awt.Color(255, 255, 255));
+        homelbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        homelbl1.setText("HOME");
+        homelbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        homelbl1.setOpaque(true);
+        homelbl1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                homelbl1MouseMoved(evt);
+            }
+        });
+        homelbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                homelbl1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                homelbl1MousePressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.ipadx = 315;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(70, 0, 0, 0);
+        dashboardpanel1.add(homelbl1, gridBagConstraints);
+
+        genbilllbl1.setBackground(new java.awt.Color(0, 153, 153));
+        genbilllbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        genbilllbl1.setForeground(new java.awt.Color(255, 255, 255));
+        genbilllbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        genbilllbl1.setText("GENERATE BILL");
+        genbilllbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        genbilllbl1.setOpaque(true);
+        genbilllbl1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                genbilllbl1MouseMoved(evt);
+            }
+        });
+        genbilllbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                genbilllbl1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                genbilllbl1MouseExited(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.ipadx = 236;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        dashboardpanel1.add(genbilllbl1, gridBagConstraints);
+
+        billinghislbl1.setBackground(new java.awt.Color(0, 153, 153));
+        billinghislbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        billinghislbl1.setForeground(new java.awt.Color(255, 255, 255));
+        billinghislbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        billinghislbl1.setText("BILLING HISTORY");
+        billinghislbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        billinghislbl1.setOpaque(true);
+        billinghislbl1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                billinghislbl1MouseMoved(evt);
+            }
+        });
+        billinghislbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                billinghislbl1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                billinghislbl1MousePressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.ipadx = 218;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        dashboardpanel1.add(billinghislbl1, gridBagConstraints);
+
+        addreclbl1.setBackground(new java.awt.Color(0, 153, 153));
+        addreclbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        addreclbl1.setForeground(new java.awt.Color(255, 255, 255));
+        addreclbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addreclbl1.setText("ADD NEW RECORD");
+        addreclbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addreclbl1.setOpaque(true);
+        addreclbl1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                addreclbl1MouseMoved(evt);
+            }
+        });
+        addreclbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addreclbl1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addreclbl1MousePressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.ipadx = 207;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        dashboardpanel1.add(addreclbl1, gridBagConstraints);
+
+        importreclbl1.setBackground(new java.awt.Color(0, 153, 153));
+        importreclbl1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        importreclbl1.setForeground(new java.awt.Color(255, 255, 255));
+        importreclbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        importreclbl1.setText("Import Records");
+        importreclbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        importreclbl1.setOpaque(true);
+        importreclbl1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                importreclbl1MouseMoved(evt);
+            }
+        });
+        importreclbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                importreclbl1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                importreclbl1MousePressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 267;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(100, 0, 0, 0);
+        dashboardpanel1.add(importreclbl1, gridBagConstraints);
+
+        logoutlbl1.setBackground(new java.awt.Color(0, 153, 153));
+        logoutlbl1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        logoutlbl1.setForeground(new java.awt.Color(255, 255, 255));
+        logoutlbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutlbl1.setText("logout");
+        logoutlbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logoutlbl1.setOpaque(true);
+        logoutlbl1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                logoutlbl1MouseMoved(evt);
+            }
+        });
+        logoutlbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutlbl1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutlbl1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                logoutlbl1MousePressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 74;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(61, 170, 111, 0);
+        dashboardpanel1.add(logoutlbl1, gridBagConstraints);
+
+        usrnmlbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        usrnmlbl1.setForeground(new java.awt.Color(255, 255, 255));
+        usrnmlbl1.setText("h");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 239;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 10, 0, 0);
+        dashboardpanel1.add(usrnmlbl1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 9;
+        gridBagConstraints.ipady = 504;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jFrame1.getContentPane().add(dashboardpanel1, gridBagConstraints);
+
+        basepanel1.setBackground(new java.awt.Color(255, 255, 255));
+        basepanel1.setMaximumSize(new java.awt.Dimension(1300, 850));
+        basepanel1.setMinimumSize(new java.awt.Dimension(1300, 850));
+        basepanel1.setPreferredSize(new java.awt.Dimension(1300, 850));
+        basepanel1.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(1, 7, 2, 4);
+        jFrame1.getContentPane().add(basepanel1, gridBagConstraints);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1676, 850));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setMaximumSize(new java.awt.Dimension(1280, 1024));
+        setMinimumSize(new java.awt.Dimension(1280, 1024));
+        setPreferredSize(new java.awt.Dimension(1280, 1024));
+        setSize(new java.awt.Dimension(1280, 1024));
 
         dashboardpanel.setBackground(new java.awt.Color(0, 153, 153));
         dashboardpanel.setMaximumSize(new java.awt.Dimension(360, 346));
@@ -198,10 +471,10 @@ public class MainFrame extends javax.swing.JFrame {
         menuinfo.setText("SEARCH CUSTOMER   ");
         menuinfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         menuinfo.setOpaque(true);
-        dashboardpanel.add(menuinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 370, 60));
+        dashboardpanel.add(menuinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 320, 60));
 
         homelbl.setBackground(new java.awt.Color(0, 153, 153));
-        homelbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        homelbl.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         homelbl.setForeground(new java.awt.Color(255, 255, 255));
         homelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         homelbl.setText("HOME");
@@ -220,10 +493,10 @@ public class MainFrame extends javax.swing.JFrame {
                 homelblMousePressed(evt);
             }
         });
-        dashboardpanel.add(homelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 370, 50));
+        dashboardpanel.add(homelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 320, 50));
 
         genbilllbl.setBackground(new java.awt.Color(0, 153, 153));
-        genbilllbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        genbilllbl.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         genbilllbl.setForeground(new java.awt.Color(255, 255, 255));
         genbilllbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         genbilllbl.setText("GENERATE BILL");
@@ -242,10 +515,10 @@ public class MainFrame extends javax.swing.JFrame {
                 genbilllblMouseExited(evt);
             }
         });
-        dashboardpanel.add(genbilllbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 370, 50));
+        dashboardpanel.add(genbilllbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 320, 50));
 
         billinghislbl.setBackground(new java.awt.Color(0, 153, 153));
-        billinghislbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        billinghislbl.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         billinghislbl.setForeground(new java.awt.Color(255, 255, 255));
         billinghislbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         billinghislbl.setText("BILLING HISTORY");
@@ -264,10 +537,10 @@ public class MainFrame extends javax.swing.JFrame {
                 billinghislblMousePressed(evt);
             }
         });
-        dashboardpanel.add(billinghislbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 370, 50));
+        dashboardpanel.add(billinghislbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 320, 50));
 
         addreclbl.setBackground(new java.awt.Color(0, 153, 153));
-        addreclbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        addreclbl.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         addreclbl.setForeground(new java.awt.Color(255, 255, 255));
         addreclbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addreclbl.setText("ADD NEW RECORD");
@@ -286,7 +559,7 @@ public class MainFrame extends javax.swing.JFrame {
                 addreclblMousePressed(evt);
             }
         });
-        dashboardpanel.add(addreclbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 370, 50));
+        dashboardpanel.add(addreclbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 320, 50));
 
         importreclbl.setBackground(new java.awt.Color(0, 153, 153));
         importreclbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -308,7 +581,7 @@ public class MainFrame extends javax.swing.JFrame {
                 importreclblMousePressed(evt);
             }
         });
-        dashboardpanel.add(importreclbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 354, 29));
+        dashboardpanel.add(importreclbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 320, 29));
 
         logoutlbl.setBackground(new java.awt.Color(0, 153, 153));
         logoutlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -333,32 +606,47 @@ public class MainFrame extends javax.swing.JFrame {
                 logoutlblMousePressed(evt);
             }
         });
-        dashboardpanel.add(logoutlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 710, 110, 29));
+        dashboardpanel.add(logoutlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 630, 110, 29));
 
-        usrnmlbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        usrnmlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         usrnmlbl.setForeground(new java.awt.Color(255, 255, 255));
         usrnmlbl.setText("h");
-        dashboardpanel.add(usrnmlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 250, 30));
-
-        getContentPane().add(dashboardpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 369, 850));
+        dashboardpanel.add(usrnmlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 190, 30));
 
         basepanel.setBackground(new java.awt.Color(255, 255, 255));
-        basepanel.setMaximumSize(new java.awt.Dimension(1300, 850));
-        basepanel.setMinimumSize(new java.awt.Dimension(1300, 850));
-        basepanel.setPreferredSize(new java.awt.Dimension(1300, 850));
+        basepanel.setMaximumSize(new java.awt.Dimension(1100, 720));
+        basepanel.setMinimumSize(new java.awt.Dimension(1100, 720));
+        basepanel.setPreferredSize(new java.awt.Dimension(1100, 720));
 
         javax.swing.GroupLayout basepanelLayout = new javax.swing.GroupLayout(basepanel);
         basepanel.setLayout(basepanelLayout);
         basepanelLayout.setHorizontalGroup(
             basepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1300, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         basepanelLayout.setVerticalGroup(
             basepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
-        getContentPane().add(basepanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 1, 1300, 850));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(dashboardpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(basepanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1084, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(basepanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dashboardpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -527,6 +815,82 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dcncllblKeyPressed
 
+    private void homelbl1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homelbl1MouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homelbl1MouseMoved
+
+    private void homelbl1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homelbl1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homelbl1MouseExited
+
+    private void homelbl1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homelbl1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homelbl1MousePressed
+
+    private void genbilllbl1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genbilllbl1MouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genbilllbl1MouseMoved
+
+    private void genbilllbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genbilllbl1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genbilllbl1MouseClicked
+
+    private void genbilllbl1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genbilllbl1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genbilllbl1MouseExited
+
+    private void billinghislbl1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billinghislbl1MouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_billinghislbl1MouseMoved
+
+    private void billinghislbl1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billinghislbl1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_billinghislbl1MouseExited
+
+    private void billinghislbl1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billinghislbl1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_billinghislbl1MousePressed
+
+    private void addreclbl1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addreclbl1MouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addreclbl1MouseMoved
+
+    private void addreclbl1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addreclbl1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addreclbl1MouseExited
+
+    private void addreclbl1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addreclbl1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addreclbl1MousePressed
+
+    private void importreclbl1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importreclbl1MouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importreclbl1MouseMoved
+
+    private void importreclbl1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importreclbl1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importreclbl1MouseExited
+
+    private void importreclbl1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importreclbl1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importreclbl1MousePressed
+
+    private void logoutlbl1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutlbl1MouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutlbl1MouseMoved
+
+    private void logoutlbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutlbl1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutlbl1MouseClicked
+
+    private void logoutlbl1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutlbl1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutlbl1MouseExited
+
+    private void logoutlbl1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutlbl1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutlbl1MousePressed
+
     private void setusername(){
      
           String name=null;
@@ -563,21 +927,33 @@ public class MainFrame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addreclbl;
+    private javax.swing.JLabel addreclbl1;
     private static javax.swing.JPanel basepanel;
+    private static javax.swing.JPanel basepanel1;
     private javax.swing.JLabel billinghislbl;
+    private javax.swing.JLabel billinghislbl1;
     private javax.swing.JPanel dashboardpanel;
+    private javax.swing.JPanel dashboardpanel1;
     private javax.swing.JLabel dcncllbl;
     private javax.swing.JLabel doklbl;
     private javax.swing.JLabel genbilllbl;
+    private javax.swing.JLabel genbilllbl1;
     private javax.swing.JLabel homelbl;
+    private javax.swing.JLabel homelbl1;
     private javax.swing.JLabel importreclbl;
+    private javax.swing.JLabel importreclbl1;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoutlbl;
+    private javax.swing.JLabel logoutlbl1;
     private javax.swing.JLabel menuinfo;
+    private javax.swing.JLabel menuinfo1;
     private javax.swing.JLabel usrnmlbl;
+    private javax.swing.JLabel usrnmlbl1;
     private javax.swing.JLabel welcomelbl;
+    private javax.swing.JLabel welcomelbl1;
     // End of variables declaration//GEN-END:variables
 }
