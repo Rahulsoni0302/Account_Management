@@ -154,6 +154,9 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
         );
 
+        pdfpanel.setFocusable(false);
+        pdfpanel.setRequestFocusEnabled(false);
+
         javax.swing.GroupLayout pdfpanelLayout = new javax.swing.GroupLayout(pdfpanel);
         pdfpanel.setLayout(pdfpanelLayout);
         pdfpanelLayout.setHorizontalGroup(
@@ -325,11 +328,10 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
         int selected = table.getSelectedRow();
         PdfFrame pf =new PdfFrame();
         pf.setVisible(true);
+        pf.setAlwaysOnTop(false);
         String str = String.valueOf(table.getValueAt(selected,4)); 
         
-        System.out.println("file selected from db"+str);
-        
-        pf.openpdf(str);
+              pf.openpdf(str);
     }//GEN-LAST:event_tableMouseClicked
 
 //    public String idString(String str){
