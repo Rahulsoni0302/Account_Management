@@ -5,9 +5,6 @@
     <Container class="javax.swing.JDialog" name="contacDialog">
       <Properties>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[380, 308]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[380, 308]"/>
         </Property>
@@ -161,7 +158,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
-                  <Component id="foregrndpanel" min="-2" pref="237" max="-2" attributes="0"/>
+                  <Component id="icon" min="-2" pref="237" max="-2" attributes="0"/>
                   <EmptySpace pref="248" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -170,14 +167,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                  <Component id="foregrndpanel" min="-2" pref="507" max="-2" attributes="0"/>
+                  <Component id="icon" min="-2" pref="507" max="-2" attributes="0"/>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="foregrndpanel">
+        <Container class="javax.swing.JPanel" name="icon">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -190,11 +187,12 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="loginlbl">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="LOGIN"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="100" y="40" width="100" height="20"/>
+                  <AbsoluteConstraints x="70" y="80" width="100" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>

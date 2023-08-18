@@ -4,6 +4,7 @@
  */
 package UI;
 import backend.User;
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -13,8 +14,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -31,12 +34,13 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoginFrame
      */
-    public LoginFrame() {
+    public LoginFrame() throws HeadlessException{
         initComponents();
         proceedforedit.setVisible(false);
         passwordlbl1.setVisible(false);
         passwordtxt1.setVisible(false);
         jSeparator3.setVisible(false);
+        
         
     }
 
@@ -54,7 +58,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         doklbl = new javax.swing.JLabel();
         backgrndpanel = new javax.swing.JPanel();
-        foregrndpanel = new javax.swing.JPanel();
+        icon = new javax.swing.JPanel();
         loginlbl = new javax.swing.JLabel();
         usernamelbl = new javax.swing.JLabel();
         usernametxt = new javax.swing.JTextField();
@@ -72,7 +76,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
 
         contacDialog.setAlwaysOnTop(true);
-        contacDialog.setMaximumSize(new java.awt.Dimension(380, 308));
         contacDialog.setMinimumSize(new java.awt.Dimension(380, 308));
         contacDialog.setUndecorated(true);
         contacDialog.setResizable(false);
@@ -156,15 +159,16 @@ public class LoginFrame extends javax.swing.JFrame {
 
         backgrndpanel.setBackground(new java.awt.Color(0, 153, 153));
 
-        foregrndpanel.setBackground(new java.awt.Color(255, 255, 255));
-        foregrndpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        icon.setBackground(new java.awt.Color(255, 255, 255));
+        icon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        loginlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loginlbl.setText("LOGIN");
-        foregrndpanel.add(loginlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 100, 20));
+        icon.add(loginlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 100, 20));
 
         usernamelbl.setText("Username");
         usernamelbl.setRequestFocusEnabled(false);
-        foregrndpanel.add(usernamelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 68, -1));
+        icon.add(usernamelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 68, -1));
 
         usernametxt.setBorder(null);
         usernametxt.addActionListener(new java.awt.event.ActionListener() {
@@ -177,10 +181,10 @@ public class LoginFrame extends javax.swing.JFrame {
                 usernametxtKeyPressed(evt);
             }
         });
-        foregrndpanel.add(usernametxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 196, -1));
+        icon.add(usernametxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 196, -1));
 
         passwordlbl.setText("Password");
-        foregrndpanel.add(passwordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 86, -1));
+        icon.add(passwordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 86, -1));
 
         passwordtxt.setBorder(null);
         passwordtxt.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +197,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 passwordtxtKeyPressed(evt);
             }
         });
-        foregrndpanel.add(passwordtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 196, -1));
+        icon.add(passwordtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 196, -1));
 
         submitlbl.setBackground(new java.awt.Color(0, 153, 153));
         submitlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -214,7 +218,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 submitlblMouseExited(evt);
             }
         });
-        foregrndpanel.add(submitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 196, 26));
+        icon.add(submitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 196, 26));
 
         forgotpasswordlbl.setForeground(new java.awt.Color(51, 153, 255));
         forgotpasswordlbl.setText("Forgot password ?");
@@ -224,7 +228,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 forgotpasswordlblMouseClicked(evt);
             }
         });
-        foregrndpanel.add(forgotpasswordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 139, -1));
+        icon.add(forgotpasswordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 139, -1));
 
         newuserlbl.setForeground(new java.awt.Color(51, 153, 255));
         newuserlbl.setText("new user / edit");
@@ -234,16 +238,16 @@ public class LoginFrame extends javax.swing.JFrame {
                 newuserlblMouseClicked(evt);
             }
         });
-        foregrndpanel.add(newuserlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 139, -1));
+        icon.add(newuserlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 139, -1));
 
         jSeparator1.setForeground(new java.awt.Color(0, 153, 153));
-        foregrndpanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 221, 196, 10));
+        icon.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 221, 196, 10));
 
         jSeparator2.setForeground(new java.awt.Color(0, 153, 153));
-        foregrndpanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 196, 10));
+        icon.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 196, 10));
 
         error.setForeground(new java.awt.Color(255, 0, 51));
-        foregrndpanel.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 180, 20));
+        icon.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 180, 20));
 
         proceedforedit.setBackground(new java.awt.Color(0, 153, 153));
         proceedforedit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -264,10 +268,10 @@ public class LoginFrame extends javax.swing.JFrame {
                 proceedforeditMouseExited(evt);
             }
         });
-        foregrndpanel.add(proceedforedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 116, 26));
+        icon.add(proceedforedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 116, 26));
 
         passwordlbl1.setText("Password");
-        foregrndpanel.add(passwordlbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 86, -1));
+        icon.add(passwordlbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 86, -1));
 
         passwordtxt1.setBorder(null);
         passwordtxt1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -275,10 +279,10 @@ public class LoginFrame extends javax.swing.JFrame {
                 passwordtxt1KeyPressed(evt);
             }
         });
-        foregrndpanel.add(passwordtxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 200, -1));
+        icon.add(passwordtxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 200, -1));
 
         jSeparator3.setForeground(new java.awt.Color(0, 153, 153));
-        foregrndpanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 200, 10));
+        icon.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 200, 10));
 
         javax.swing.GroupLayout backgrndpanelLayout = new javax.swing.GroupLayout(backgrndpanel);
         backgrndpanel.setLayout(backgrndpanelLayout);
@@ -286,14 +290,14 @@ public class LoginFrame extends javax.swing.JFrame {
             backgrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgrndpanelLayout.createSequentialGroup()
                 .addGap(236, 236, 236)
-                .addComponent(foregrndpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(248, Short.MAX_VALUE))
         );
         backgrndpanelLayout.setVerticalGroup(
             backgrndpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgrndpanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(foregrndpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -524,8 +528,8 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JDialog contacDialog;
     private javax.swing.JLabel doklbl;
     public javax.swing.JLabel error;
-    private javax.swing.JPanel foregrndpanel;
     private javax.swing.JLabel forgotpasswordlbl;
+    private javax.swing.JPanel icon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;

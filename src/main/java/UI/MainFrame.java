@@ -451,9 +451,7 @@ public class MainFrame extends javax.swing.JFrame {
         jFrame1.getContentPane().add(basepanel1, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 1024));
         setMinimumSize(new java.awt.Dimension(1280, 1024));
-        setPreferredSize(new java.awt.Dimension(1280, 1024));
         setSize(new java.awt.Dimension(1280, 1024));
 
         dashboardpanel.setBackground(new java.awt.Color(0, 153, 153));
@@ -696,35 +694,35 @@ public class MainFrame extends javax.swing.JFrame {
         GenerateBillInF inf = new GenerateBillInF();
         basepanel.removeAll();
         basepanel.add(inf).setVisible(true);
-        menuinfo.setText("GENERATE BILLS  ");
+        menuinfo.setText("GENERATE BILLS    ");
     }//GEN-LAST:event_genbilllblMouseClicked
 
     private void homelblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homelblMousePressed
         SearchInF sif = new SearchInF();
         basepanel.removeAll();
         basepanel.add(sif).setVisible(true);
-        menuinfo.setText("SEARCH CUSTOMER  ");
+        menuinfo.setText("SEARCH CUSTOMER    ");
     }//GEN-LAST:event_homelblMousePressed
 
     private void billinghislblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billinghislblMousePressed
         BillingHistoryInF bif = new BillingHistoryInF(); 
         basepanel.removeAll();
         basepanel.add(bif).setVisible(true);
-        menuinfo.setText("BILLING HISTORY  ");
+        menuinfo.setText("BILLING HISTORY    ");
     }//GEN-LAST:event_billinghislblMousePressed
 
     private void addreclblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addreclblMousePressed
         AddRecInF aif = new AddRecInF(); 
         basepanel.removeAll();
         basepanel.add(aif).setVisible(true);
-        menuinfo.setText("ADD NEW RECORDS  ");
+        menuinfo.setText("ADD NEW RECORDS    ");
     }//GEN-LAST:event_addreclblMousePressed
 
     private void importreclblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importreclblMousePressed
         ImportRecInF iif = new ImportRecInF(); 
         basepanel.removeAll();
         basepanel.add(iif).setVisible(true);
-        menuinfo.setText("Import/Export records  ");
+        menuinfo.setText("Import/Export records    ");
     }//GEN-LAST:event_importreclblMousePressed
 
     private void logoutlblMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutlblMouseMoved

@@ -172,6 +172,8 @@ import java.sql.PreparedStatement;
         jLabel10 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        dpricetxt = new javax.swing.JTextField();
         addrow = new javax.swing.JLabel();
         printlbl = new javax.swing.JLabel();
         deleterow = new javax.swing.JLabel();
@@ -719,6 +721,25 @@ import java.sql.PreparedStatement;
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("2");
 
+        jSeparator8.setBackground(new java.awt.Color(0, 153, 153));
+        jSeparator8.setForeground(new java.awt.Color(0, 153, 153));
+        jSeparator8.setOpaque(true);
+
+        dpricetxt.setBackground(new java.awt.Color(239, 239, 239));
+        dpricetxt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        dpricetxt.setBorder(null);
+        dpricetxt.setOpaque(true);
+        dpricetxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dpricetxtActionPerformed(evt);
+            }
+        });
+        dpricetxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                dpricetxtKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout printpnlLayout = new javax.swing.GroupLayout(printpnl);
         printpnl.setLayout(printpnlLayout);
         printpnlLayout.setHorizontalGroup(
@@ -759,7 +780,34 @@ import java.sql.PreparedStatement;
                                 .addGap(238, 238, 238))
                             .addGroup(printpnlLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(printpnlLayout.createSequentialGroup()
+                                            .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(30, 30, 30)
+                                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(printpnlLayout.createSequentialGroup()
+                                            .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(printpnlLayout.createSequentialGroup()
+                                                    .addGap(29, 29, 29)
+                                                    .addComponent(receivedamou))
+                                                .addGroup(printpnlLayout.createSequentialGroup()
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(dpricetxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(printpnlLayout.createSequentialGroup()
                         .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -787,30 +835,7 @@ import java.sql.PreparedStatement;
                                     .addGroup(printpnlLayout.createSequentialGroup()
                                         .addComponent(gstlbl)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(gstshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(printpnlLayout.createSequentialGroup()
-                                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(printpnlLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(remainamount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(105, 105, 105)
-                                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(printpnlLayout.createSequentialGroup()
-                                        .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(printpnlLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(receivedamou)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(amountrec)
-                                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(gstshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         printpnlLayout.setVerticalGroup(
@@ -889,28 +914,31 @@ import java.sql.PreparedStatement;
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)
                         .addGap(53, 53, 53)))
-                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(remainamount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(printpnlLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(printpnlLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(receivedamou)
-                            .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
+                .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(receivedamou)
+                    .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(printpnlLayout.createSequentialGroup()
+                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(remainamount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dueamount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(nettotalshowlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nettotal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(printpnlLayout.createSequentialGroup()
+                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(descriptiontxt, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                                .addComponent(dpricetxt))
+                            .addGroup(printpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(36, 36, 36)
+                            .addComponent(amountrec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1027,26 +1055,24 @@ import java.sql.PreparedStatement;
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(invalidnolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(addrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deleterow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(printlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(printpnl, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addGap(199, 199, 199)
+                .addComponent(invalidnolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(addrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deleterow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(printlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 437, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(printpnl, javax.swing.GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(jPanel1);
@@ -1505,6 +1531,14 @@ import java.sql.PreparedStatement;
          }
     }//GEN-LAST:event_jCheckBox1MouseClicked
 
+    private void dpricetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpricetxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dpricetxtActionPerformed
+
+    private void dpricetxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dpricetxtKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dpricetxtKeyReleased
+
     
     private void printBill(JPanel panel){
         PrinterJob printerJob = PrinterJob.getPrinterJob();
@@ -1733,6 +1767,7 @@ import java.sql.PreparedStatement;
     private javax.swing.JLabel deleterow;
     private javax.swing.JTextField descriptiontxt;
     private javax.swing.JLabel doklbl;
+    private javax.swing.JTextField dpricetxt;
     private javax.swing.JLabel dueamount;
     private javax.swing.JLabel enterpriselbl;
     private javax.swing.JLabel gstlbl;
@@ -1778,6 +1813,7 @@ import java.sql.PreparedStatement;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JList<String> list;
     private javax.swing.JPopupMenu menu;
     private javax.swing.JLabel mobilenolbl;
