@@ -164,7 +164,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         loginlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loginlbl.setText("LOGIN");
-        icon.add(loginlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 100, 20));
+        icon.add(loginlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 100, 20));
 
         usernamelbl.setText("Username");
         usernamelbl.setRequestFocusEnabled(false);
@@ -247,7 +247,7 @@ public class LoginFrame extends javax.swing.JFrame {
         icon.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 196, 10));
 
         error.setForeground(new java.awt.Color(255, 0, 51));
-        icon.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 180, 20));
+        icon.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 180, 20));
 
         proceedforedit.setBackground(new java.awt.Color(0, 153, 153));
         proceedforedit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

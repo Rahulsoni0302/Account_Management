@@ -168,9 +168,9 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
         );
 
-        setMaximumSize(new java.awt.Dimension(1050, 720));
-        setMinimumSize(new java.awt.Dimension(1050, 720));
-        setPreferredSize(new java.awt.Dimension(1050, 720));
+        setMaximumSize(new java.awt.Dimension(1300, 1024));
+        setMinimumSize(new java.awt.Dimension(1300, 1024));
+        setPreferredSize(new java.awt.Dimension(1300, 1024));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -270,7 +270,7 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txt)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(611, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,10 +288,10 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
                 .addComponent(recentbillbl)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1570, 880));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

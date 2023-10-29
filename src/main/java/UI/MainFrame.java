@@ -466,10 +466,10 @@ public class MainFrame extends javax.swing.JFrame {
         menuinfo.setBackground(new java.awt.Color(0, 102, 102));
         menuinfo.setForeground(new java.awt.Color(255, 255, 255));
         menuinfo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        menuinfo.setText("SEARCH CUSTOMER   ");
+        menuinfo.setText("SEARCH CUSTOMER       ");
         menuinfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         menuinfo.setOpaque(true);
-        dashboardpanel.add(menuinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 320, 60));
+        dashboardpanel.add(menuinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 360, 60));
 
         homelbl.setBackground(new java.awt.Color(0, 153, 153));
         homelbl.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -491,7 +491,7 @@ public class MainFrame extends javax.swing.JFrame {
                 homelblMousePressed(evt);
             }
         });
-        dashboardpanel.add(homelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 320, 50));
+        dashboardpanel.add(homelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 360, 50));
 
         genbilllbl.setBackground(new java.awt.Color(0, 153, 153));
         genbilllbl.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -513,7 +513,7 @@ public class MainFrame extends javax.swing.JFrame {
                 genbilllblMouseExited(evt);
             }
         });
-        dashboardpanel.add(genbilllbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 320, 50));
+        dashboardpanel.add(genbilllbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 360, 50));
 
         billinghislbl.setBackground(new java.awt.Color(0, 153, 153));
         billinghislbl.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -535,7 +535,7 @@ public class MainFrame extends javax.swing.JFrame {
                 billinghislblMousePressed(evt);
             }
         });
-        dashboardpanel.add(billinghislbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 320, 50));
+        dashboardpanel.add(billinghislbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 360, 50));
 
         addreclbl.setBackground(new java.awt.Color(0, 153, 153));
         addreclbl.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -557,7 +557,7 @@ public class MainFrame extends javax.swing.JFrame {
                 addreclblMousePressed(evt);
             }
         });
-        dashboardpanel.add(addreclbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 320, 50));
+        dashboardpanel.add(addreclbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 360, 50));
 
         importreclbl.setBackground(new java.awt.Color(0, 153, 153));
         importreclbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -604,7 +604,7 @@ public class MainFrame extends javax.swing.JFrame {
                 logoutlblMousePressed(evt);
             }
         });
-        dashboardpanel.add(logoutlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 630, 110, 29));
+        dashboardpanel.add(logoutlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 630, 150, 29));
 
         usrnmlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         usrnmlbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -612,19 +612,19 @@ public class MainFrame extends javax.swing.JFrame {
         dashboardpanel.add(usrnmlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 190, 30));
 
         basepanel.setBackground(new java.awt.Color(255, 255, 255));
-        basepanel.setMaximumSize(new java.awt.Dimension(1100, 720));
-        basepanel.setMinimumSize(new java.awt.Dimension(1100, 720));
-        basepanel.setPreferredSize(new java.awt.Dimension(1100, 720));
+        basepanel.setMaximumSize(new java.awt.Dimension(1300, 1024));
+        basepanel.setMinimumSize(new java.awt.Dimension(1300, 1024));
+        basepanel.setPreferredSize(new java.awt.Dimension(1300, 1024));
 
         javax.swing.GroupLayout basepanelLayout = new javax.swing.GroupLayout(basepanel);
         basepanel.setLayout(basepanelLayout);
         basepanelLayout.setHorizontalGroup(
             basepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1300, Short.MAX_VALUE)
         );
         basepanelLayout.setVerticalGroup(
             basepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -632,18 +632,14 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(dashboardpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dashboardpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(basepanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1084, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addComponent(basepanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(basepanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dashboardpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(basepanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dashboardpanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
 
         pack();

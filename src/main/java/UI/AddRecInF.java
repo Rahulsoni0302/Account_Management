@@ -256,9 +256,9 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1300, 850));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1300, 850));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1300, 850));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1300, 1024));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1300, 1024));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1300, 1024));
 
         headinglbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         headinglbl.setText("Add New Record");
@@ -480,7 +480,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
                         .addGap(25, 25, 25)
                         .addComponent(savelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(invalidnolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap(425, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
