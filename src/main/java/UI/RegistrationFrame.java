@@ -595,9 +595,9 @@ public class RegistrationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_gstnotxtKeyPressed
 
     private void addresstxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addresstxtKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            passwordtxt.requestFocus();
-        }
+//        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+//            passwordtxt.requestFocus();
+//        }
         if(evt.getKeyCode()==KeyEvent.VK_DOWN){
             passwordtxt.requestFocus();
         }

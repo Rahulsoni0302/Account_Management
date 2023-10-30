@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `app_dev` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `app_dev`;
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: app_dev
 -- ------------------------------------------------------
@@ -123,7 +123,7 @@ DROP TABLE IF EXISTS `user_registration`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_registration` (
   `name` varchar(30) NOT NULL,
-  `mob_no` varchar(10) NOT NULL,
+  `mob_no` varchar(50) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   `designation` varchar(45) DEFAULT NULL,
   `enterprise_name` varchar(50) DEFAULT NULL,
@@ -337,7 +337,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_registration_details`(
 in usr_name varchar(30),
-in usr_mobno varchar(10),
+in usr_mobno varchar(50),
 in name_enterprise varchar(100),
 in eml varchar(50),
 in add_enterprise varchar(200) ,
@@ -566,4 +566,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-24 18:05:25
+-- Dump completed on 2023-10-30 23:11:39
