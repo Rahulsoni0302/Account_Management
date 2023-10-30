@@ -29,6 +29,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         
         //making mobno null
         invalidnolbl.setText(null);
+        customernametxt.requestFocus();
         
         int nwid = BillingInfo.getnewid();
         newid=Integer.toString(nwid);
@@ -91,7 +92,6 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         datechoser = new com.toedter.calendar.JDateChooser();
         invalidnolbl = new javax.swing.JLabel();
-        optionallbl = new javax.swing.JLabel();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(380, 308));
         jDialog1.setUndecorated(true);
@@ -370,9 +370,6 @@ public class AddRecInF extends javax.swing.JInternalFrame {
         invalidnolbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         invalidnolbl.setForeground(new java.awt.Color(255, 0, 51));
 
-        optionallbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        optionallbl.setText("(optional)");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -386,9 +383,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(invalidnolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(optionallbl, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(amountgivenlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -469,9 +464,7 @@ public class AddRecInF extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(optionallbl)
-                        .addGap(18, 18, 18)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(descriptiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(decriptionlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -686,7 +679,6 @@ public class AddRecInF extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JLabel mobilenumberlbl;
     private javax.swing.JTextField mobilenumbertxt;
-    private javax.swing.JLabel optionallbl;
     private javax.swing.JLabel registrationlbl1;
     private javax.swing.JLabel savelbl;
     private javax.swing.JLabel successlbl;
