@@ -189,15 +189,32 @@ public class BillingHistoryInF extends javax.swing.JInternalFrame {
             new String [] {
                 "ID", "NAME", "MOB.NO.", "DATE", "BILL COPY"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         table.setFocusable(false);
         table.setRowHeight(30);
+        table.getTableHeader().setReorderingAllowed(false);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(table);
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(0).setResizable(false);
+            table.getColumnModel().getColumn(0).setPreferredWidth(10);
+            table.getColumnModel().getColumn(1).setResizable(false);
+            table.getColumnModel().getColumn(2).setResizable(false);
+            table.getColumnModel().getColumn(3).setResizable(false);
+            table.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         recentbillbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         recentbillbl.setText("Most Recent Bills");
